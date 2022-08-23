@@ -6,30 +6,6 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { memo } from 'react';
 
-// const TabsListDetails = [
-//     {
-//       label: "IPHONE",
-//       index: "1",
-//       description: "IPHONE IS COSTLY"
-//     },
-//     {
-//       label: "ONE PLUS",
-//       index: "2",
-//       description: "ONE PLUS IS NOT BAD"
-//     },
-//     {
-//       label: "NOTHING",
-//       index: "3",
-//       description: "DON'T BUY THIS"
-//     },
-//     {
-//       label: "REDMI",
-//       index: "4",
-//       description: "I AM VERY CHEAP",
-//     },
-    
-//   ];
-
   type TabsList = {
     label: string;
     index: string;
@@ -39,7 +15,7 @@ import { memo } from 'react';
   type TabsProps = {
     tabs: TabsList[],
     color?: string;
-    bgColor?: string;
+    labelColor?: string;
     indicatorColor?: string;
   }
   
@@ -56,7 +32,7 @@ import { memo } from 'react';
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} variant="fullWidth" TabIndicatorProps={{ style: { background: props.indicatorColor } }}>
               {props.tabs.map((x): any => {
-                return <Tab style={{ backgroundColor: props.color, color: props.bgColor }} disabled={x.active} label={x.label} value={x.index} />
+                return <Tab style={{ backgroundColor: props.color, color: props.labelColor }} disabled={x.active} label={x.label} value={x.index} />
               })}
             </TabList>
           </Box>

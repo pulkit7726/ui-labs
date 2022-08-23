@@ -3,30 +3,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { template } from '@babel/core';
 import Tabs from 'components/Tabs';
 
-const TabsListDetails = [
-    {
-      label: "IPHONE",
-      index: "1",
-      description: "IPHONE IS COSTLY"
-    },
-    {
-      label: "ONE PLUS",
-      index: "2",
-      description: "ONE PLUS IS NOT BAD"
-    },
-    {
-      label: "NOTHING",
-      index: "3",
-      description: "DON'T BUY THIS"
-    },
-    {
-      label: "REDMI",
-      index: "4",
-      description: "I AM VERY CHEAP",
-    },
-    
-  ];
-
 export default {
     title: 'Example/Tabs',
     component: Tabs,
@@ -41,18 +17,24 @@ export const TabsList = Template.bind({});
 TabsList.args= {
       tabs: [
         {
-            label: "IPHONE",
+            label: "TAB1",
             index: "1",
-            description: "IPHONE IS COSTLY"
+            description: "Tab1 details"
           },
           {
-            label: "ONE PLUS",
+            label: "TAB2",
             index: "2",
-            description: "ONE PLUS IS NOT BAD"
-          }
+            description: "Tab2 details"
+          },
+          {
+            label: "TAB3",
+            index: "3",
+            description: "Tab3 details"
+          },
+
       ],
-      color:'red',
-      bgColor:'black',
+      color:'#00abff',
+      labelColor:'black',
       indicatorColor:'black'
      
 }
