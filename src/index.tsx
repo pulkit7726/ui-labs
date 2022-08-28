@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
@@ -7,6 +8,15 @@ import reportWebVitals from './reportWebVitals';
 const root = createRoot(
   document.getElementById('root') as HTMLElement
 );
+=======
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+
+const root = createRoot(document.getElementById("root") as HTMLElement);
+>>>>>>> feature/containercard
 root.render(
   <React.StrictMode>
     <App />
