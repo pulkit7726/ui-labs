@@ -1,26 +1,42 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React from "react";
-import { ContainerCustomCards } from "../ContainerCustomCards";
+import { ContainerCustomCards } from "../components/ContainerCustomCards";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+let images1: any = [
+  {
+    title: 'asas'
+  }
+]
 export default {
   title: "Components/ContainerCustomCards",
   component: ContainerCustomCards,
-  argTypes: {
-    imageList: {
-      options: [],
-      control: { type: "select" }
-    }
+  props: {
+    images1
   },
-  args: {
-    primary: true
-  }
+  // argTypes: {
+  //   imageList: {
+  //     control: {
+  //       type: 'select',
+  //       labels: {
+  //         first: 'First Option',
+  //         second: 'Second Option'
+  //       }
+  //     },
+  //     options: ['first', 'second'],
+  //     mapping: {
+  //       first: "",
+  //       second:"" 
+  //     }
+  //   }
+  // },
+  // args: {
+  //   primary: true
+  // }
 } as ComponentMeta<typeof ContainerCustomCards>;
 
 const Example: ComponentStory<typeof ContainerCustomCards> = args => {
-  console.log(args);
-
-  return <ContainerCustomCards {...args} />;
+  return <ContainerCustomCards {...args} images={images} />;
 };
 
 const images = [
@@ -368,6 +384,6 @@ const images = [
 
 export const CardComponentTest = Example.bind({});
 
-CardComponentTest.args = {
-  imageList: []
-};
+// CardComponentTest.args = {
+//   imageList: []
+// };

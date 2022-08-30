@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React from "react";
-import ButtonMemo, { ButtonComponent } from "../Button";
+import ButtonMemo, { ButtonComponent } from "../components/Button";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {

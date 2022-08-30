@@ -30,13 +30,13 @@ interface Type {
 }
 
 export const ContainerCustomCards: FC<ContainerCustomCardsProps> = ({
-  imageList = []
+  images = []
 }) => {
   return (
-    <Box pt={30}>
+    <Box pt={10}>
       <PortalProvider>
         <ImagePortalContainer />
-        <SlickSlider images={imageList} />
+        <SlickSlider images={images} />
       </PortalProvider>
     </Box>
   );

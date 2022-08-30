@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import { styled, Theme, useTheme } from "@mui/material/styles";
