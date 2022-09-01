@@ -9,12 +9,15 @@ import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import MenuItemList from './MenuItemList';
+import ResponsiveSideBar from "./Responsive";
+
 
 
 const drawerWidth = 240;
 
 type SideBarProps = {
   MenuItems: any;
+  Responsive: boolean;
   position?: "left" | "right";
   iconHide?: boolean;
   showActiveTabs?: boolean;
@@ -27,6 +30,7 @@ type SideBarProps = {
 
 export const SideBar = ({
   position,
+  Responsive,
   iconHide,
   MenuItems,
   showActiveTabs,
@@ -50,9 +54,9 @@ export const SideBar = ({
 
   const drawer = (
     <div>
-      <Toolbar>{(!image) ? <h2 style={{ color }}>{title}</h2> :
+      <Toolbar>{(!image?.length) && <h2 style={{ color }}>{title}</h2>} 
 
-        <img src={image} className="logoSize" />}
+        {(!title?.length) && <img src={image} className="logoSize" />}
 
       </Toolbar>
       <Divider />
@@ -88,7 +92,7 @@ export const SideBar = ({
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Box
+      {!Responsive ? <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
@@ -139,7 +143,21 @@ export const SideBar = ({
         >
           {drawer}
         </Drawer>
-      </Box>
+      </Box> : <ResponsiveSideBar
+        MenuItems={MenuItems}
+        position={"left"}
+        iconHide={iconHide}
+        title={title}
+        image={image}
+        backgroundColor={backgroundColor}
+        color={color}
+        window={window}
+      />
+
+      }
+
+
+
     </Box>
   )
 };

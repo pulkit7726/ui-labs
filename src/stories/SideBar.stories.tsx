@@ -3,8 +3,10 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { SideBar } from "components/SideBar/SideBar";
 
 
+
+
 export default {
-  title: "UI/SideBar",
+  title: "SideBar",
   component: SideBar,
 
   argTypes: {
@@ -84,5 +86,10 @@ ActiveIndicator.args = {
   MenuItems: MenuItems,
   showActiveTabs: false,
 };
-
+export const Responsive = Template.bind({});
+Responsive.args = {
+  MenuItems: MenuItems,
+  Responsive: true,
+  iconHide: false
+};
 

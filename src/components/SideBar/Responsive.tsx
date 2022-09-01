@@ -80,7 +80,7 @@ const Drawer: any = styled(MuiDrawer, {
     "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
-type SideBarProps = {
+type ResponsiveProps = {
   MenuItems: any;
   position: "left" | "right";
   iconHide?: boolean;
@@ -103,7 +103,7 @@ export default function ResponsiveSideBar({
   backgroundColor,
   color,
   ...props
-}: SideBarProps) {
+}: ResponsiveProps) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(null);
@@ -119,7 +119,7 @@ export default function ResponsiveSideBar({
   };
 
   return (
-    <Box sx={{ display: "flex", border: "1px solid red" }} >
+    <Box sx={{ display: "flex" }} >
       <CssBaseline />
       <AppBar
 
