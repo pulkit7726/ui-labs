@@ -22,11 +22,6 @@ test("drawer should be by default left position", () => {
     expect(container.getElementsByClassName('MuiDrawer-paperAnchorLeft').length).toBe(1);
 
 });
-test('the flavor list contains lime', () => {
-    expect(['lime', 'mangle']).toContain('lime');
-});
-
-
 
 test("in sidebar should render button", () => {
     const { getByRole } = render(<SideBar MenuItems={[]} Responsive={false} />);
