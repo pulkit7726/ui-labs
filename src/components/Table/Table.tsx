@@ -1,0 +1,342 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { memo } from 'react';
+import { styled } from "@mui/material/styles";
+import {Box,TableCell,tableCellClasses,TableHead,TableRow,TableSortLabel,Paper,TablePagination,TableContainer,TableBody,Table, TextField, IconButton} from "@mui/material";
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
+import { visuallyHidden } from "@mui/utils";
+import { ToolbarComponent } from './Toolbar';
+import { useTheme } from '@mui/material/styles';
+
+interface TableData {
+  name:string,
+  calories:number,
+  fat:number,
+  carbs:number,
+  protein:number
+}
+
+interface TableHeader {
+  id : string,
+  numeric: boolean,
+  disablePadding: boolean,
+  label:string
+}
+
+interface TableProps {
+  title:string,
+  tableSize?:'small'|'medium', 
+  tableData?:  TableData[] , 
+  tableHeader: TableHeader[] , 
+  emptyDataMsg?: string, 
+  pagination?: boolean, 
+  stripe?: boolean, 
+  hover?: boolean,
+  search?: boolean,
+  downloadCsv?:boolean,
+}
+// interface TablePaginationActionsProps {
+//   count: number;
+//   page: number;
+//   rowsPerPage: number;
+//   onPageChange: (
+//     event: React.MouseEvent<HTMLButtonElement>,
+//     newPage: number,
+//   ) => void;
+// }
+
+// function TablePaginationActions(props: TablePaginationActionsProps) {
+//   const theme = useTheme();
+//   const { count, page, rowsPerPage, onPageChange } = props;
+
+//   const handleFirstPageButtonClick = (
+//     event: React.MouseEvent<HTMLButtonElement>,
+//   ) => {
+//     onPageChange(event, 0);
+//   };
+
+//   const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+//     onPageChange(event, page - 1);
+//   };
+
+//   const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+//     onPageChange(event, page + 1);
+//   };
+
+//   const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+//     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+//   };
+
+//   return (
+//     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+//       <IconButton
+//         onClick={handleFirstPageButtonClick}
+//         disabled={page === 0}
+//         aria-label="first page"
+//       >
+//         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+//       </IconButton>
+//       <IconButton
+//         onClick={handleBackButtonClick}
+//         disabled={page === 0}
+//         aria-label="previous page"
+//       >
+//         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+//       </IconButton>
+//       <IconButton
+//         onClick={handleNextButtonClick}
+//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+//         aria-label="next page"
+//       >
+//         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+//       </IconButton>
+//       <IconButton
+//         onClick={handleLastPageButtonClick}
+//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+//         aria-label="last page"
+//       >
+//         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+//       </IconButton>
+//     </Box>
+//   );
+// }
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  "&:last-child td, &:last-child th": {
+    // border: 0, 
+  },
+}));
+
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+type Order = 'asc' | 'desc';
+function getComparator<Key extends keyof any>(order:Order, orderBy:Key): (
+  a: { [key in Key]: number | string },
+  b: { [key in Key]: number | string },
+) => number {
+  return order === "desc"
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort<T>(array: T[], comparator:(a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
+
+
+export const TableComponent = (props : TableProps) => {
+  const {title,tableSize, tableData, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv} = props;
+  const [searchText,setSearchText]=useState<string>('');
+  const [order, setOrder] = useState<Order>("asc");
+  const [orderBy, setOrderBy] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const [checkedValues, setCheckedValues] = useState([""]);
+  const [filteredTableHeading, setFilteredTableHeading] = useState<TableHeader[]>([]);
+
+  
+  const handleRequestSort = (event:React.MouseEvent<unknown>, property:string) => {
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(property);
+  };
+  
+  const handleChangePage = (event: unknown, newPage:number) => {
+    setPage(newPage);
+  };
+  
+  const handleChangeRowsPerPage = (event:  React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+  
+  const createSortHandler = (property: string) => (event: React.MouseEvent<unknown>) => {
+    handleRequestSort(event, property);
+  };
+
+  const tableDataSearch =(search:string)=>{
+    setSearchText(search)
+  }
+
+  function selectColumn(key:any) {
+    setCheckedValues(checkedValues.includes(key) ? checkedValues.filter(c => c !== key) : [...checkedValues, key]);
+  }
+
+  useEffect(() => {
+    const filterHeading = tableHeader.filter((el) => checkedValues.includes(el.id));
+    setFilteredTableHeading(filterHeading);
+  }, [checkedValues]);
+  const filterHead = filteredTableHeading.length > 0 ? filteredTableHeading : tableHeader;
+  const newData:any = tableData?.filter((item)=>item.name.toLowerCase().includes(searchText.toLowerCase()));
+  
+  return (
+    <Box sx={{ width: "100%" }}>
+      <ToolbarComponent title={title} tableHeader={tableHeader} filterHead={filterHead} newData={newData} downloadCsv={downloadCsv}  search={search} searchText={searchText} setSearchText={setSearchText} tableDataSearch={tableDataSearch} selectColumn={selectColumn} checkedValues={checkedValues} />
+      <Paper sx={{ width: "100%", mb: 2 }}>
+        <TableContainer>
+          <Table size={tableSize} aria-labelledby="tableTitle">
+            <TableHead >
+              <TableRow>
+                {filterHead?.map((headCell) => {
+                  return stripe ? (
+                    <StyledTableCell
+                      key={headCell.id}
+                      align={headCell.numeric ? "right" : "left"}
+                      padding={headCell.disablePadding ? "none" : "normal"}
+                      sortDirection={orderBy === headCell.id ? order : false}
+                    >
+                      <TableSortLabel
+                        active={orderBy === headCell.id}
+                        direction={orderBy === headCell.id ? order : "asc"}
+                        onClick={createSortHandler(headCell.id)}
+                      >
+                        {headCell.label}
+                        {orderBy === headCell.id ? (
+                        <Box component="span" sx={visuallyHidden}>
+                          {order === "desc"
+                            ? "sorted descending"
+                            : "sorted ascending"}
+                        </Box>
+                        ) : null}
+                      </TableSortLabel>
+                    </StyledTableCell>
+                  ) : (
+                    <TableCell
+                      key={headCell.id}
+                      align={headCell.numeric ? "right" : "left"}
+                      padding={headCell.disablePadding ? "none" : "normal"}
+                      sortDirection={orderBy === headCell.id ? order : false}
+                    >
+                      <TableSortLabel
+                        active={orderBy === headCell.id}
+                        direction={orderBy === headCell.id ? order : "asc"}
+                        onClick={createSortHandler(headCell.id)}
+                      >
+                        <h4 style={{margin:0}}>{headCell.label}</h4>
+                        {orderBy === headCell.id ? (
+                        <Box component="span" sx={visuallyHidden}>
+                          {order === "desc"
+                            ? "sorted descending"
+                            : "sorted ascending"}
+                        </Box>
+                        ) : null}
+                      </TableSortLabel>
+                    </TableCell>
+                  )
+                })}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {newData?.length > 0 ? (
+                pagination ? (
+                  stableSort(newData, getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      return stripe ? (
+                        <StyledTableRow hover={hover} tabIndex={-1} key={index}>
+                          {filterHead.map((el, index) => (
+                              <StyledTableCell key={index}  >
+                                {row[el.id]}
+                              </StyledTableCell>
+                            ))}
+                        </StyledTableRow>
+                      ) : (
+                        <TableRow hover={hover} key={index}>
+                          {filterHead.map((el, index) => (
+                            <TableCell key={index} >
+                              {row[el.id]}
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      );
+                    })
+                ) : (
+                  stableSort(newData, getComparator(order, orderBy)).map(
+                    (row, index) => {
+                      return stripe ? (
+                        <StyledTableRow hover={hover} tabIndex={-1} key={index} >
+                          {filterHead.map((el, index) => (
+                            <StyledTableCell key={index}  >
+                              {row[el.id]}
+                            </StyledTableCell>
+                          ))}
+                        </StyledTableRow>
+                      ) : (
+                        <TableRow hover={hover} key={index} >
+                          {filterHead.map((el, index) => (
+                            <TableCell key={index}  >
+                              {row[el.id]}
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      );
+                    }
+                  )
+                ))
+                : (
+                <TableRow>
+                  <TableCell align="center" colSpan={filterHead?.length}>
+                    {emptyDataMsg}
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {pagination && (
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={newData?.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            showFirstButton
+            showLastButton
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            // ActionsComponent={TablePaginationActions}
+          />
+        )}
+      </Paper>
+    </Box>
+  )
+};
+
+export default memo(TableComponent);
+
+
+// TableComponent.defaultProps = {
+//   downloadCsv : false,
+//   search : false,
+// }

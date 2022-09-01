@@ -1,0 +1,101 @@
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import TableMemo, { TableComponent } from '../components/Table/Table';
+
+export default {
+  title: 'Table',
+  component: TableComponent,
+} as ComponentMeta<typeof TableComponent>;
+
+const tableHeader = [
+  {id: "name",numeric: false,disablePadding: false,label: "Dessert (100g serving)"},
+  { id: "calories", numeric: false, disablePadding: false, label: "Calories" },
+  { id: "fat", numeric: false, disablePadding: false, label: "Fat (g)" },
+  { id: "carbs", numeric: false, disablePadding: false, label: "Carbs (g)" },
+  { id: "protein", numeric: false, disablePadding: false, label: "Protein (g)" }
+]
+const tableData = [
+  { name: "a", calories: 305, fat: 3.7, carbs: 67, protein: 4.3 },
+  { name: "f", calories: 452, fat: 25.0, carbs: 51, protein: 4.3 },
+  { name: "d", calories: 262, fat: 16.0, carbs: 24, protein: 6.0 },
+  { name: "j", calories: 159, fat: 6.0, carbs: 24, protein: 4.0 },
+  { name: "c", calories: 356, fat: 16.0, carbs: 49, protein: 3.9 },
+  { name: "i", calories: 408, fat: 3.2, carbs: 87, protein: 6.5 },
+  { name: "k", calories: 237, fat: 9.0, carbs: 37, protein: 4.3 },
+  { name: "b", calories: 375, fat: 0.0, carbs: 94, protein: 0.0 },
+  { name: "g", calories: 518, fat: 26.0, carbs: 65, protein: 7.0 },
+  { name: "n", calories: 305, fat: 3.7, carbs: 67, protein: 4.3 },
+  { name: "h", calories: 452, fat: 25.0, carbs: 51, protein: 4.3 },
+  { name: "m", calories: 262, fat: 16.0, carbs: 24, protein: 6.0 },
+  { name: "z", calories: 375, fat: 0.0, carbs: 94, protein: 0.0 },
+  { name: "y", calories: 518, fat: 26.0, carbs: 65, protein: 7.0 },
+  { name: "l", calories: 159, fat: 6.0, carbs: 24, protein: 4.0 },
+  { name: "o", calories: 356, fat: 16.0, carbs: 49, protein: 3.9 },
+  { name: "r", calories: 408, fat: 3.2, carbs: 87, protein: 6.5 },
+  { name: "p", calories: 237, fat: 9.0, carbs: 37, protein: 4.3 },
+  { name: "s", calories: 375, fat: 0.0, carbs: 94, protein: 0.0 },
+  { name: "q", calories: 518, fat: 26.0, carbs: 65, protein: 7.0 },
+  { name: "t", calories: 356, fat: 16.0, carbs: 49, protein: 3.9 },
+  { name: "u", calories: 408, fat: 3.2, carbs: 87, protein: 6.5 },
+  { name: "x", calories: 237, fat: 9.0, carbs: 37, protein: 4.3 },
+  { name: "w", calories: 375, fat: 0.0, carbs: 94, protein: 0.0 },
+  { name: "v", calories: 518, fat: 26.0, carbs: 65, protein: 7.0 },
+]
+
+
+const Template: ComponentStory<typeof TableComponent> = (args) => <TableMemo {...args} />;
+
+
+export const Basic = Template.bind({});
+Basic.args = {
+  title:"Calories List",
+  tableData:tableData,
+  tableHeader:tableHeader,
+  tableSize:'medium'
+}
+
+export const Stripe_Hover = Template.bind({});
+Stripe_Hover.args = {
+  title:"Calories List",
+  tableData:tableData,
+  tableHeader:tableHeader,
+  stripe:true,
+  hover:true
+}
+
+export const EmptyData = Template.bind({});
+EmptyData.args = {
+  title:"Calories List",
+  tableHeader:tableHeader,
+  stripe:true,
+  hover:true,
+  emptyDataMsg:"Please provide Data"
+}
+
+export const Pagination = Template.bind({});
+Pagination.args = {
+  title:"Calories List",
+  tableData:tableData,
+  tableHeader:tableHeader,
+  hover:true,
+  pagination:true
+}
+
+export const SearchTable = Template.bind({});
+SearchTable.args = {
+  title:"Calories List",
+  tableData:tableData,
+  tableHeader:tableHeader,
+  tableSize:'medium',
+  search:true,
+}
+
+export const ExportToCsv = Template.bind({});
+ExportToCsv.args = {
+  title:"Calories List",
+  tableData:tableData,
+  tableHeader:tableHeader,
+  tableSize:'medium',
+  search:true,
+  downloadCsv:true,
+}
