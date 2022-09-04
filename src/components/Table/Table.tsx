@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { memo } from 'react';
 import { styled } from "@mui/material/styles";
-import {Box,TableCell,tableCellClasses,TableHead,TableRow,TableSortLabel,Paper,TablePagination,TableContainer,TableBody,Table, TextField, IconButton} from "@mui/material";
+import {Box,TableCell,tableCellClasses,TableHead,TableRow,TableSortLabel,Paper,TablePagination,TableContainer,TableBody,Table, TextField, IconButton, FormControl, Select, MenuItem} from "@mui/material";
+import "./table.css";
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -9,6 +10,8 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import { visuallyHidden } from "@mui/utils";
 import { ToolbarComponent } from './Toolbar';
 import { useTheme } from '@mui/material/styles';
+import ReactPaginate from 'react-paginate';
+import { OfflineShareOutlined } from '@mui/icons-material';
 
 interface TableData {
   name:string,
@@ -29,6 +32,7 @@ interface TableProps {
   title:string,
   tableSize?:'small'|'medium', 
   tableData?:  TableData[] , 
+  totalRecord:number,
   tableHeader: TableHeader[] , 
   emptyDataMsg?: string, 
   pagination?: boolean, 
@@ -156,15 +160,36 @@ function stableSort<T>(array: T[], comparator:(a: T, b: T) => number) {
 
 
 export const TableComponent = (props : TableProps) => {
-  const {title,tableSize, tableData, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv} = props;
+  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv} = props;
   const [searchText,setSearchText]=useState<string>('');
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<string>("");
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [checkedValues, setCheckedValues] = useState([""]);
   const [filteredTableHeading, setFilteredTableHeading] = useState<TableHeader[]>([]);
 
+  //Pagination
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const pageCount=Math.ceil(totalRecord/rowsPerPage);
+  const [page, setPage] = useState<number>(0);
+
+  const [data,setData] = useState(null);
+  const offSetStart = page*rowsPerPage
+  // (page-1)*rowsPerPage + 1;
+  const offSetEnd = page* rowsPerPage > totalRecord ? totalRecord : (page*rowsPerPage)+rowsPerPage;
+  // page* rowsPerPage;
+
+  const getData = () => {
+    const newData = tableData?.slice(offSetStart,offSetEnd);
+    return newData;
+  }
+  useEffect(()=>{
+    const data:any = getData();
+    setData(data);
+  },[page,rowsPerPage])
+
+  const handlePageClick=(e:any)=>{
+    setPage(e.selected);
+  };
   
   const handleRequestSort = (event:React.MouseEvent<unknown>, property:string) => {
     const isAsc = orderBy === property && order === "asc";
@@ -172,14 +197,14 @@ export const TableComponent = (props : TableProps) => {
     setOrderBy(property);
   };
   
-  const handleChangePage = (event: unknown, newPage:number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event: unknown, newPage:number) => {
+  //   setPage(newPage);
+  // };
   
-  const handleChangeRowsPerPage = (event:  React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event:  React.ChangeEvent<HTMLInputElement>) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
   
   const createSortHandler = (property: string) => (event: React.MouseEvent<unknown>) => {
     handleRequestSort(event, property);
@@ -197,8 +222,9 @@ export const TableComponent = (props : TableProps) => {
     const filterHeading = tableHeader.filter((el) => checkedValues.includes(el.id));
     setFilteredTableHeading(filterHeading);
   }, [checkedValues]);
+
   const filterHead = filteredTableHeading.length > 0 ? filteredTableHeading : tableHeader;
-  const newData:any = tableData?.filter((item)=>item.name.toLowerCase().includes(searchText.toLowerCase()));
+  const newData:any = data?.filter((item:any)=>item.name.toLowerCase().includes(searchText.toLowerCase()));
   
   return (
     <Box sx={{ width: "100%" }}>
@@ -261,7 +287,7 @@ export const TableComponent = (props : TableProps) => {
               {newData?.length > 0 ? (
                 pagination ? (
                   stableSort(newData, getComparator(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => {
                       return stripe ? (
                         <StyledTableRow hover={hover} tabIndex={-1} key={index}>
@@ -314,20 +340,41 @@ export const TableComponent = (props : TableProps) => {
             </TableBody>
           </Table>
         </TableContainer>
-        {pagination && (
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={newData?.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            showFirstButton
-            showLastButton
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            // ActionsComponent={TablePaginationActions}
+        {newData?.length > 0 &&
+        <div className="paginate">
+          <span className='menuItem' style={{paddingLeft:".5rem"}}>Showing entries {offSetStart+1}-{offSetEnd} of {totalRecord}</span>
+          <ReactPaginate 
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          breakLabel="..."
+          pageRangeDisplayed={3}
+          containerClassName="pagination"
+          pageLinkClassName='page-num'
+          previousLinkClassName='page-num'
+          nextLinkClassName='page-num'
+          activeClassName='active'
           />
-        )}
+          <div className='menuItem'>
+          <span>Show</span>
+          <FormControl sx={{ m: 1 }} variant="standard">
+            <Select
+                labelId="demo-customized-select-label"
+                id="demo-customized-select"
+                value={rowsPerPage}
+                onChange={(e:any) => setRowsPerPage(e.target.value)}
+                variant="outlined"
+            >
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={15}>15</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+              <MenuItem value={25}>25</MenuItem>
+            </Select>
+          </FormControl>
+          <span style={{paddingRight:".5rem"}}>Entries</span>
+          </div>
+        </div>
+        }
       </Paper>
     </Box>
   )
