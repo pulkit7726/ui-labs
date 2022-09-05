@@ -18,7 +18,6 @@ interface ListItemProps {
   HideShowIcon?: string;
   onHandleActiveTab: () => void;
   backgroundColor?: string;
-  iconHide?: boolean;
 }
 
 const MenuItemList = ({
@@ -28,7 +27,6 @@ const MenuItemList = ({
   HideShowIcon,
   onHandleActiveTab,
   backgroundColor,
-  iconHide,
   ...props
 }: ListItemProps) => {
   const [open, setOpen] = useState(false);
@@ -52,7 +50,7 @@ const MenuItemList = ({
       >
         {" "}
         <ListItemIcon className={HideShowIcon}>
-          <img src={item.icon} alt="icon" className="icon" />
+          {item.icon}
         </ListItemIcon>
         <ListItemText primary={item.Name} />
         {item?.SubMenu?.length && (open && drawerOpen ? <ExpandLess /> : <ExpandMore />)}
@@ -64,11 +62,10 @@ const MenuItemList = ({
         <List component="li" disablePadding key={item.Id}>
           {item.SubMenu?.map(
             (subItems: { Id: number; Name: string; icon: string }) => {
-              console.log(item)
               return (
                 <ListItem button key={subItems.Id}>
                   <ListItemIcon className={`${HideShowIcon} child-Icon`}>
-                    <img src={subItems.icon} alt="icon" className="icon" />
+                    {subItems.icon}
                   </ListItemIcon>
                   <ListItemText
                     key={subItems.Id}

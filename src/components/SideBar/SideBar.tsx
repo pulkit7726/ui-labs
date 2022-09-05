@@ -11,15 +11,13 @@ import Toolbar from "@mui/material/Toolbar";
 import MenuItemList from './MenuItemList';
 import ResponsiveSideBar from "./Responsive";
 
-
-
 const drawerWidth = 240;
 
 type SideBarProps = {
   MenuItems: any;
   Responsive: boolean;
   position?: "left" | "right";
-  iconHide?: boolean;
+  showIcon?: boolean;
   showActiveTabs?: boolean;
   window?: () => Window;
   title?: string;
@@ -31,7 +29,7 @@ type SideBarProps = {
 export const SideBar = ({
   position,
   Responsive,
-  iconHide,
+  showIcon,
   MenuItems,
   showActiveTabs,
   window,
@@ -44,7 +42,7 @@ export const SideBar = ({
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(null);
 
-  const HideShowIcon = iconHide ? "showIcon" : "hideIcon";
+  const HideShowIcon = showIcon ? "showIcon" : "hideIcon";
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -54,15 +52,13 @@ export const SideBar = ({
 
   const drawer = (
     <div>
-      <Toolbar>{(!image?.length) && <h2 style={{ color }}>{title}</h2>} 
-
-        {(!title?.length) && <img src={image} className="logoSize" />}
-
+      <Toolbar>
+       <img src={image} className="logoSize" />
+       <h2 style={{ color }}>{title}</h2>
       </Toolbar>
       <Divider />
       <List>
         {MenuItems.map((item: any, index: any, Id: number) => (
-
           <MenuItemList
             item={item}
             key={item.Id}
@@ -98,7 +94,6 @@ export const SideBar = ({
         aria-label="mailbox folders"
       >
         <Drawer
-          style={{ border: "2px solid red" }}
           container={container}
           variant="temporary"
           anchor={position}
@@ -118,6 +113,8 @@ export const SideBar = ({
             style: {
               backgroundColor,
               color,
+              width: 'max-content',
+              minWidth: '245px'
             },
           }}
         >
@@ -138,6 +135,8 @@ export const SideBar = ({
             style: {
               backgroundColor,
               color,
+              width: 'max-content',
+              minWidth: '245px'
             },
           }}
         >
@@ -146,18 +145,14 @@ export const SideBar = ({
       </Box> : <ResponsiveSideBar
         MenuItems={MenuItems}
         position={"left"}
-        iconHide={iconHide}
+        iconHide={showIcon}
         title={title}
         image={image}
         backgroundColor={backgroundColor}
         color={color}
         window={window}
       />
-
       }
-
-
-
     </Box>
   )
 };
