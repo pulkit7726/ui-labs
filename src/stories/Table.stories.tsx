@@ -8,13 +8,14 @@ export default {
 } as ComponentMeta<typeof TableComponent>;
 
 const tableHeader = [
-  {id: "name",numeric: false,disablePadding: false,label: "Dessert (100g serving)"},
+  { id: "name", numeric: false, disablePadding: false, label: "Dessert (100g serving)" },
   { id: "calories", numeric: false, disablePadding: false, label: "Calories" },
   { id: "fat", numeric: false, disablePadding: false, label: "Fat (g)" },
   { id: "carbs", numeric: false, disablePadding: false, label: "Carbs (g)" },
   { id: "protein", numeric: false, disablePadding: false, label: "Protein (g)" }
 ]
-const tableData = [
+
+const fakeData = [
   { name: "a", calories: 305, fat: 3.7, carbs: 67, protein: 4.3 },
   { name: "f", calories: 452, fat: 25.0, carbs: 51, protein: 4.3 },
   { name: "d", calories: 262, fat: 16.0, carbs: 24, protein: 6.0 },
@@ -90,67 +91,77 @@ const tableData = [
   { name: "xb", calories: 237, fat: 9.0, carbs: 37, protein: 4.3 },
   { name: "wb", calories: 375, fat: 0.0, carbs: 94, protein: 0.0 },
   { name: "vb", calories: 518, fat: 26.0, carbs: 65, protein: 7.0 },
-]
+];
 
+const totalRecords = 75;
+
+const getPaginatedData = (pageNum: number, pageSize: number) => {
+  // To the server send pageNum, pageSize data and get paginated records
+  const offsetFrom = pageNum * pageSize;
+  const offsetTo = pageSize * (pageNum + 1);
+
+  return fakeData.slice(offsetFrom, offsetTo);
+}
 
 const Template: ComponentStory<typeof TableComponent> = (args) => <TableMemo {...args} />;
 
 
 export const Basic = Template.bind({});
 Basic.args = {
-  title:"Calories List",
-  tableData:tableData,
-  tableHeader:tableHeader,
-  tableSize:'medium',
-  totalRecord: tableData?.length,
+  title: "Calories List",
+  tableData: fakeData.slice(0, 10),
+  tableHeader: tableHeader,
+  tableSize: 'medium',
+  totalRecord: totalRecords,
 }
 
 export const Stripe_Hover = Template.bind({});
 Stripe_Hover.args = {
-  title:"Calories List",
-  tableData:tableData,
-  tableHeader:tableHeader,
-  totalRecord: tableData?.length,
-  stripe:true,
-  hover:true
+  title: "Calories List",
+  tableData: fakeData.slice(0, 10),
+  tableHeader: tableHeader,
+  totalRecord: totalRecords,
+  stripe: true,
+  hover: true
 }
 
 export const EmptyData = Template.bind({});
 EmptyData.args = {
-  title:"Calories List",
-  tableHeader:tableHeader,
-  stripe:true,
-  hover:true,
-  emptyDataMsg:"Please provide Data"
+  title: "Calories List",
+  tableHeader: tableHeader,
+  stripe: true,
+  hover: true,
+  emptyDataMsg: "Please provide Data"
 }
 
 export const Pagination = Template.bind({});
 Pagination.args = {
-  title:"Calories List",
-  tableData:tableData,
-  tableHeader:tableHeader,
-  totalRecord: tableData?.length,
-  hover:true,
-  pagination:true
+  title: "Calories List",
+  tableData: fakeData.slice(0, 5),
+  tableHeader: tableHeader,
+  totalRecord: totalRecords,
+  hover: true,
+  pagination: true,
+  getPaginatedDataFn: getPaginatedData
 }
 
 export const SearchTable = Template.bind({});
 SearchTable.args = {
-  title:"Calories List",
-  tableData:tableData,
-  tableHeader:tableHeader,
-  totalRecord: tableData?.length,
-  tableSize:'medium',
-  search:true,
+  title: "Calories List",
+  tableData: fakeData.slice(0, 10),
+  tableHeader: tableHeader,
+  totalRecord: totalRecords,
+  tableSize: 'medium',
+  search: true,
 }
 
 export const ExportToCsv = Template.bind({});
 ExportToCsv.args = {
-  title:"Calories List",
-  tableData:tableData,
-  tableHeader:tableHeader,
-  totalRecord: tableData?.length,
-  tableSize:'medium',
-  search:true,
-  downloadCsv:true,
+  title: "Calories List",
+  tableData: fakeData.slice(0, 10),
+  tableHeader: tableHeader,
+  totalRecord: totalRecords,
+  tableSize: 'medium',
+  search: true,
+  downloadCsv: true,
 }

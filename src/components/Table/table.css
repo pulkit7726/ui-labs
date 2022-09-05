@@ -23,6 +23,11 @@
   background-color: #5AB1BB;
   color: #fff;
 }
+.pagination>li.disabled a:hover {
+  cursor: not-allowed;
+  background: none;
+  color: inherit;
+}
 .pagination .active {
   background-color: #5AB1BB;
 }

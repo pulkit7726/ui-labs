@@ -40,6 +40,7 @@ interface TableProps {
   hover?: boolean,
   search?: boolean,
   downloadCsv?:boolean,
+  getPaginatedDataFn?: Function
 }
 // interface TablePaginationActionsProps {
 //   count: number;
@@ -160,7 +161,8 @@ function stableSort<T>(array: T[], comparator:(a: T, b: T) => number) {
 
 
 export const TableComponent = (props : TableProps) => {
-  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv} = props;
+  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv, getPaginatedDataFn} = props;
+
   const [searchText,setSearchText]=useState<string>('');
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<string>("");
@@ -172,19 +174,21 @@ export const TableComponent = (props : TableProps) => {
   const pageCount=Math.ceil(totalRecord/rowsPerPage);
   const [page, setPage] = useState<number>(0);
 
-  const [data,setData] = useState(null);
-  const offSetStart = page*rowsPerPage
+  const [data,setData] = useState(tableData);
+  const offSetStart = page*rowsPerPage;
   // (page-1)*rowsPerPage + 1;
   const offSetEnd = page* rowsPerPage > totalRecord ? totalRecord : (page*rowsPerPage)+rowsPerPage;
   // page* rowsPerPage;
 
-  const getData = () => {
-    const newData = tableData?.slice(offSetStart,offSetEnd);
-    return newData;
+  const getNewData = async () => {
+    if (pagination && getPaginatedDataFn) {
+      const data = await getPaginatedDataFn(page, rowsPerPage);
+      setData(data);
+    }
   }
+
   useEffect(()=>{
-    const data:any = getData();
-    setData(data);
+    getNewData();
   },[page,rowsPerPage])
 
   const handlePageClick=(e:any)=>{
@@ -340,7 +344,7 @@ export const TableComponent = (props : TableProps) => {
             </TableBody>
           </Table>
         </TableContainer>
-        {newData?.length > 0 &&
+        {newData?.length > 0 && pagination &&
         <div className="paginate">
           <span className='menuItem' style={{paddingLeft:".5rem"}}>Showing entries {offSetStart+1}-{offSetEnd} of {totalRecord}</span>
           <ReactPaginate 

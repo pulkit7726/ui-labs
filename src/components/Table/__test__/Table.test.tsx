@@ -11,7 +11,7 @@ const tableHeader = [
 ]
 
 test('Should render properly ', () => {
-  render(<Table title={'calories'} tableHeader={[]} />);
+  render(<Table title={'calories'} tableHeader={[]} totalRecord={30} />);
   const linkElement = screen.getByText(/calories/i);
   expect(linkElement).toBeInTheDocument();
 });
