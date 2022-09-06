@@ -113,6 +113,7 @@ Basic.args = {
   tableHeader: tableHeader,
   tableSize: 'medium',
   totalRecord: totalRecords,
+  columnFilter: true,
 }
 
 export const Stripe_Hover = Template.bind({});
@@ -121,6 +122,8 @@ Stripe_Hover.args = {
   tableData: fakeData.slice(0, 10),
   tableHeader: tableHeader,
   totalRecord: totalRecords,
+  tableHeaderBackground:"#f09999",
+  tableHeaderColor:"#471111",
   stripe: true,
   hover: true
 }
@@ -131,7 +134,8 @@ EmptyData.args = {
   tableHeader: tableHeader,
   stripe: true,
   hover: true,
-  emptyDataMsg: "Please provide Data"
+  emptyDataMsg: "Please provide Data",
+  tableHeaderBackground:"#580808"
 }
 
 export const Pagination = Template.bind({});

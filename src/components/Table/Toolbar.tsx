@@ -9,6 +9,7 @@ import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import FilterIcon from '@mui/icons-material/FilterList';
 import "./table.css";
 import { CsvBuilder } from 'filefy';
+import * as XLSX from "xlsx";
 
 interface TableData {
     name:string,
@@ -29,20 +30,23 @@ interface ToolbarProps {
     search?:boolean,
     downloadCsv?:boolean,
     searchText:string,
-    newData:readonly TableData[],
+    newData:TableData[],
     tableHeader: TableHeader[] ,
     filterHead:TableHeader[] ,
     tableDataSearch:(search:string) => void;
     setSearchText:(text:string)=> void;
     selectColumn:(key:any)=>void;
     checkedValues:string[];
+    columnFilter?:boolean;
+    pagination?:boolean
 }
 
 export const ToolbarComponent = (props:ToolbarProps) => {
-    const {title,search,tableHeader,filterHead,newData,downloadCsv,searchText,tableDataSearch,setSearchText,selectColumn,checkedValues}=props;
+    const {title,search,tableHeader,filterHead,newData,downloadCsv,searchText,tableDataSearch,setSearchText,selectColumn,checkedValues,columnFilter,pagination}=props;
     
     const [showSearch,setShowSearch]=useState(false);
     const [isOpen, setIsOpen] =useState(false);
+    const [download,setDownload] = useState(false);
     const anchorRef = useRef(null);
     const Search="search";
     const DownloadCsv = "downloadCsv";
@@ -74,6 +78,15 @@ export const ToolbarComponent = (props:ToolbarProps) => {
           .exportFile();
     };
 
+    const exportToExcel = () => {
+        var ws = XLSX.utils.json_to_sheet(newData);
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb,ws,title);
+        let buf=XLSX.write(wb,{bookType:"xlsx",type:"buffer"})
+        XLSX.write(wb,{bookType:"xlsx",type:"binary"})
+        XLSX.writeFile(wb,`${title}.xlsx`);
+    }
+
   return (
     <Toolbar role={'toolbar'} aria-label={'Table Toolbar'} style={{display:"flex",flexDirection:"row",justifyContent:"space-between",padding:0}}>
         <div>
@@ -102,7 +115,7 @@ export const ToolbarComponent = (props:ToolbarProps) => {
             </Typography>}
         </div>
         <div>
-            {search && 
+            {!pagination && search && 
                 <Tooltip title={Search} disableFocusListener>
                     <IconButton
                     aria-label={Search}
@@ -113,28 +126,57 @@ export const ToolbarComponent = (props:ToolbarProps) => {
                     </IconButton>
                 </Tooltip>
             }
-            {downloadCsv && 
-                <Tooltip title={DownloadCsv}>
+            {!pagination && downloadCsv && 
+                <span>
+                <Tooltip title="Download">
                     <IconButton
-                    data-testid={DownloadCsv.replace(/\s/g, '') + '-iconButton'}
-                    aria-label={DownloadCsv}
+                    onClick={()=>setDownload(true)}
+                    // data-testid={DownloadCsv.replace(/\s/g, '') + '-iconButton'}
+                    // aria-label={DownloadCsv}
                     // classes={{ root: classes.icon }}
-                    onClick={defaultExportCsv}
                     >
                         <DownloadIcon />
                     </IconButton>
                 </Tooltip>
+                <Menu
+                hideBackdrop={true}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                className="paper"
+                open={download}
+                onClose={() => setDownload(false)}
+                > 
+                    <div className="wrapper">
+                        <ClickAwayListener onClickAway={() => setDownload(false)}>
+                            <div className="popOverMenu">
+                                <div className="tablePopupContainer">
+                                    <Button onClick={defaultExportCsv} className="filterHeads">
+                                        Download Csv
+                                    </Button>
+                                </div>
+                                <div className="tablePopupContainer">
+                                    <Button onClick={exportToExcel} className="filterHeads">
+                                        Download Excel
+                                    </Button>
+                                </div>
+                            </div>
+                        </ClickAwayListener>
+                    </div>
+                </Menu>
+                </span>
             }
             <span>
-                <Tooltip title={viewColumns} disableFocusListener>
-                    <IconButton
-                        data-testid={viewColumns + '-iconButton'}
-                        aria-label={viewColumns}
-                        onClick={() => setIsOpen(true)}
-                    >
-                        <ViewColumnIcon />
-                    </IconButton>
-                </Tooltip>
+                {columnFilter &&
+                    <Tooltip title={viewColumns} disableFocusListener>
+                        <IconButton
+                            data-testid={viewColumns + '-iconButton'}
+                            aria-label={viewColumns}
+                            onClick={() => setIsOpen(true)}
+                        >
+                            <ViewColumnIcon />
+                        </IconButton>
+                    </Tooltip>
+                }
                 <Menu
                 hideBackdrop={true}
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}

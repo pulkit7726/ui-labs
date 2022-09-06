@@ -40,78 +40,16 @@ interface TableProps {
   hover?: boolean,
   search?: boolean,
   downloadCsv?:boolean,
-  getPaginatedDataFn?: Function
+  getPaginatedDataFn?: Function,
+  columnFilter?:boolean,
+  tableHeaderBackground?:string,
+  tableHeaderColor?:string
 }
-// interface TablePaginationActionsProps {
-//   count: number;
-//   page: number;
-//   rowsPerPage: number;
-//   onPageChange: (
-//     event: React.MouseEvent<HTMLButtonElement>,
-//     newPage: number,
-//   ) => void;
-// }
-
-// function TablePaginationActions(props: TablePaginationActionsProps) {
-//   const theme = useTheme();
-//   const { count, page, rowsPerPage, onPageChange } = props;
-
-//   const handleFirstPageButtonClick = (
-//     event: React.MouseEvent<HTMLButtonElement>,
-//   ) => {
-//     onPageChange(event, 0);
-//   };
-
-//   const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-//     onPageChange(event, page - 1);
-//   };
-
-//   const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-//     onPageChange(event, page + 1);
-//   };
-
-//   const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-//     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-//   };
-
-//   return (
-//     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-//       <IconButton
-//         onClick={handleFirstPageButtonClick}
-//         disabled={page === 0}
-//         aria-label="first page"
-//       >
-//         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-//       </IconButton>
-//       <IconButton
-//         onClick={handleBackButtonClick}
-//         disabled={page === 0}
-//         aria-label="previous page"
-//       >
-//         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-//       </IconButton>
-//       <IconButton
-//         onClick={handleNextButtonClick}
-//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-//         aria-label="next page"
-//       >
-//         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-//       </IconButton>
-//       <IconButton
-//         onClick={handleLastPageButtonClick}
-//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-//         aria-label="last page"
-//       >
-//         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-//       </IconButton>
-//     </Box>
-//   );
-// }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: "black",
+    color: "white",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -161,7 +99,7 @@ function stableSort<T>(array: T[], comparator:(a: T, b: T) => number) {
 
 
 export const TableComponent = (props : TableProps) => {
-  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv, getPaginatedDataFn} = props;
+  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv, getPaginatedDataFn,columnFilter,tableHeaderColor,tableHeaderBackground} = props;
 
   const [searchText,setSearchText]=useState<string>('');
   const [order, setOrder] = useState<Order>("asc");
@@ -201,14 +139,6 @@ export const TableComponent = (props : TableProps) => {
     setOrderBy(property);
   };
   
-  // const handleChangePage = (event: unknown, newPage:number) => {
-  //   setPage(newPage);
-  // };
-  
-  // const handleChangeRowsPerPage = (event:  React.ChangeEvent<HTMLInputElement>) => {
-  //   setRowsPerPage(parseInt(event.target.value, 10));
-  //   setPage(0);
-  // };
   
   const createSortHandler = (property: string) => (event: React.MouseEvent<unknown>) => {
     handleRequestSort(event, property);
@@ -232,7 +162,7 @@ export const TableComponent = (props : TableProps) => {
   
   return (
     <Box sx={{ width: "100%" }}>
-      <ToolbarComponent title={title} tableHeader={tableHeader} filterHead={filterHead} newData={newData} downloadCsv={downloadCsv}  search={search} searchText={searchText} setSearchText={setSearchText} tableDataSearch={tableDataSearch} selectColumn={selectColumn} checkedValues={checkedValues} />
+      <ToolbarComponent title={title} tableHeader={tableHeader} filterHead={filterHead} newData={newData} downloadCsv={downloadCsv} pagination={pagination} columnFilter={columnFilter} search={search} searchText={searchText} setSearchText={setSearchText} tableDataSearch={tableDataSearch} selectColumn={selectColumn} checkedValues={checkedValues} />
       <Paper sx={{ width: "100%", mb: 2 }}>
         <TableContainer>
           <Table size={tableSize} aria-labelledby="tableTitle">
@@ -245,6 +175,7 @@ export const TableComponent = (props : TableProps) => {
                       align={headCell.numeric ? "right" : "left"}
                       padding={headCell.disablePadding ? "none" : "normal"}
                       sortDirection={orderBy === headCell.id ? order : false}
+                      style={{backgroundColor:tableHeaderBackground,color:tableHeaderColor,fontWeight:"bold"}}
                     >
                       <TableSortLabel
                         active={orderBy === headCell.id}
