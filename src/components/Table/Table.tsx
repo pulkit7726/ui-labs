@@ -13,14 +13,6 @@ import { useTheme } from '@mui/material/styles';
 import ReactPaginate from 'react-paginate';
 import { OfflineShareOutlined } from '@mui/icons-material';
 
-interface TableData {
-  name:string,
-  calories:number,
-  fat:number,
-  carbs:number,
-  protein:number
-}
-
 interface TableHeader {
   id : string,
   numeric: boolean,
@@ -31,7 +23,7 @@ interface TableHeader {
 interface TableProps {
   title:string,
   tableSize?:'small'|'medium', 
-  tableData?:  TableData[] , 
+  tableData?: any, 
   totalRecord:number,
   tableHeader: TableHeader[] , 
   emptyDataMsg?: string, 
@@ -39,7 +31,7 @@ interface TableProps {
   stripe?: boolean, 
   hover?: boolean,
   search?: boolean,
-  downloadCsv?:boolean,
+  exportData?:boolean,
   getPaginatedDataFn?: Function,
   columnFilter?:boolean,
   tableHeaderBackground?:string,
@@ -99,7 +91,7 @@ function stableSort<T>(array: T[], comparator:(a: T, b: T) => number) {
 
 
 export const TableComponent = (props : TableProps) => {
-  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,downloadCsv, getPaginatedDataFn,columnFilter,tableHeaderColor,tableHeaderBackground} = props;
+  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,exportData, getPaginatedDataFn,columnFilter,tableHeaderColor,tableHeaderBackground} = props;
 
   const [searchText,setSearchText]=useState<string>('');
   const [order, setOrder] = useState<Order>("asc");
@@ -162,7 +154,7 @@ export const TableComponent = (props : TableProps) => {
   
   return (
     <Box sx={{ width: "100%" }}>
-      <ToolbarComponent title={title} tableHeader={tableHeader} filterHead={filterHead} newData={newData} downloadCsv={downloadCsv} pagination={pagination} columnFilter={columnFilter} search={search} searchText={searchText} setSearchText={setSearchText} tableDataSearch={tableDataSearch} selectColumn={selectColumn} checkedValues={checkedValues} />
+      <ToolbarComponent title={title} tableHeader={tableHeader} filterHead={filterHead} newData={newData} exportData={exportData} pagination={pagination} columnFilter={columnFilter} search={search} searchText={searchText} setSearchText={setSearchText} tableDataSearch={tableDataSearch} selectColumn={selectColumn} checkedValues={checkedValues} />
       <Paper sx={{ width: "100%", mb: 2 }}>
         <TableContainer>
           <Table size={tableSize} aria-labelledby="tableTitle">

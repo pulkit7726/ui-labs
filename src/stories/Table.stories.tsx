@@ -159,13 +159,13 @@ SearchTable.args = {
   search: true,
 }
 
-export const ExportToCsv = Template.bind({});
-ExportToCsv.args = {
+export const ExportData = Template.bind({});
+ExportData.args = {
   title: "Calories List",
   tableData: fakeData.slice(0, 10),
   tableHeader: tableHeader,
   totalRecord: totalRecords,
   tableSize: 'medium',
   search: true,
-  downloadCsv: true,
+  exportData: true,
 }

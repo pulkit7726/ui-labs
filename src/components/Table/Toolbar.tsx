@@ -28,7 +28,7 @@ interface TableHeader {
 interface ToolbarProps {
     title:string,
     search?:boolean,
-    downloadCsv?:boolean,
+    exportData?:boolean,
     searchText:string,
     newData:TableData[],
     tableHeader: TableHeader[] ,
@@ -42,16 +42,14 @@ interface ToolbarProps {
 }
 
 export const ToolbarComponent = (props:ToolbarProps) => {
-    const {title,search,tableHeader,filterHead,newData,downloadCsv,searchText,tableDataSearch,setSearchText,selectColumn,checkedValues,columnFilter,pagination}=props;
+    const {title,search,tableHeader,filterHead,newData,exportData,searchText,tableDataSearch,setSearchText,selectColumn,checkedValues,columnFilter,pagination}=props;
     
     const [showSearch,setShowSearch]=useState(false);
     const [isOpen, setIsOpen] =useState(false);
     const [download,setDownload] = useState(false);
     const anchorRef = useRef(null);
     const Search="search";
-    const DownloadCsv = "downloadCsv";
     const viewColumns="viewColumns";
-    const filterTable = "filterTable";
 
     //SearchFiled
     const handleTextChange = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -126,7 +124,7 @@ export const ToolbarComponent = (props:ToolbarProps) => {
                     </IconButton>
                 </Tooltip>
             }
-            {!pagination && downloadCsv && 
+            {!pagination && exportData && 
                 <span>
                 <Tooltip title="Download">
                     <IconButton
