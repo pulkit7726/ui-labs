@@ -10,12 +10,22 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import MenuItemList from './MenuItemList';
+import MenuItemList from "./MenuItemList";
+import {
+  Grid,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Tooltip,
+} from "@mui/material";
+import "./sidebar.css";
+import Button from "components/Button";
 
-const drawerWidth = 240;
+const drawerWidth = 245;
 
 const openedMixin = (theme: Theme): CSSObject => ({
-  width: drawerWidth,
+  width: "max-content",
+  minWidth: "245px",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -56,8 +66,10 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    // marginLeft: drawerWidth,
+
+    width: "max-content",
+    minWidth: "245px",
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -68,7 +80,8 @@ const AppBar = styled(MuiAppBar, {
 const Drawer: any = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  width: drawerWidth,
+  width: "max-content",
+  minWidth: "245px",
   flexShrink: 0,
   // boxSizing: 'border-box',
   ...(open && {
@@ -83,8 +96,9 @@ const Drawer: any = styled(MuiDrawer, {
 type ResponsiveProps = {
   MenuItems: any;
   position: "left" | "right";
-  iconHide?: boolean;
+  showArrowIcon?: boolean;
   showActiveTabs?: boolean;
+  tooltip?: boolean;
   window?: () => Window;
   title?: string;
   image?: string;
@@ -94,8 +108,9 @@ type ResponsiveProps = {
 
 export default function ResponsiveSideBar({
   position,
-  iconHide,
+  showArrowIcon,
   showActiveTabs,
+  tooltip,
   window,
   title,
   MenuItems,
@@ -105,13 +120,12 @@ export default function ResponsiveSideBar({
   ...props
 }: ResponsiveProps) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [drawerOpen, drawersetOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(null);
-
-  const HideShowIcon = iconHide ? "showIcon" : "hideIcon";
+  const HideShowArrowIcon = showArrowIcon ? "showArrowIcon" : "hideArrowIcon";
 
   const handleDrawerClose = () => {
-    setOpen(!open);
+    drawersetOpen(!drawerOpen);
   };
 
   const handleActiveTab = (index: any) => {
@@ -119,59 +133,94 @@ export default function ResponsiveSideBar({
   };
 
   return (
-    <Box sx={{ display: "flex" }} >
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
-
         position="fixed"
-        open={open}
+        open={drawerOpen}
         style={{ backgroundColor: "#343A40", zIndex: 0 }}
-      >
-        <Toolbar></Toolbar>
-      </AppBar>
+      ></AppBar>
       <Drawer
         variant="permanent"
-        open={open}
+        open={drawerOpen}
         anchor={position}
         PaperProps={{
           style: {
             backgroundColor,
             color,
-
-
           },
         }}
       >
-        <DrawerHeader style={{ zIndex: 0 }}>
-          <Toolbar style={{ marginLeft: "2px" }}>
-            <h2>{title}</h2>
+        <DrawerHeader className={HideShowArrowIcon}>
+          <Toolbar>
             <img src={image} className="logoSize" />
+            <h2 style={{ color }}>{title}</h2>
           </Toolbar>
 
           <IconButton onClick={handleDrawerClose}>
-            {open ? (
-              <ChevronLeftIcon style={{ color }} className='LeftArrow' />
+            {drawerOpen ? (
+              <ChevronLeftIcon
+                style={{ color }}
+                className={`${HideShowArrowIcon} LeftArrow`}
+              />
             ) : (
-              <ChevronRightIcon style={{ color }} className='RightArrow' />
+              <ChevronRightIcon
+                style={{ color }}
+                className={`${HideShowArrowIcon} RightArrow`}
+              />
             )}
           </IconButton>
         </DrawerHeader>
         <Divider />
+
         <List>
-          {MenuItems.map((item: any, index: number) => (
-            <MenuItemList
-              item={item}
-              drawerOpen={open}
-              showActiveTabs={
-                index === activeIndex ? "avtiveTab" : "inActiveTab"
+          {MenuItems.map((item: any, index: number, Name: string) => (
+            <Tooltip
+              disableHoverListener={!tooltip || drawerOpen ? true : false}
+              title={
+                item?.SubMenu?.length ? (
+                  <>
+                    <List component="li" disablePadding key={item.Id}>
+                      {item.SubMenu?.map(
+                        (
+                          subItems: { Id: number; Name: string; icon: string },
+                          index: any
+                        ) => {
+                          return (
+                            <ListItem button key={subItems.Id}>
+                              <ListItemIcon>{subItems.icon}</ListItemIcon>
+                              <ListItemText
+                                key={subItems.Id}
+                                primary={subItems.Name}
+                                style={{ marginLeft: "45px" }}
+                              />
+                            </ListItem>
+                          );
+                        }
+                      )}
+                      <Divider />
+                    </List>
+                  </>
+                ) : (
+                  ""
+                )
               }
-              onHandleActiveTab={() => handleActiveTab(index)}
-              HideShowIcon={HideShowIcon}
-              backgroundColor={`${backgroundColor} `}
-            />
+              placement="left-end"
+            >
+              <li>
+                <MenuItemList
+                  item={item}
+                  drawerOpen={drawerOpen}
+                  showActiveTabs={
+                    index === activeIndex ? "avtiveTab" : "inActiveTab"
+                  }
+                  onHandleActiveTab={() => handleActiveTab(index)}
+                  backgroundColor={`${backgroundColor} `}
+                />
+              </li>
+            </Tooltip>
           ))}
         </List>
-
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

@@ -1,9 +1,14 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { SideBar } from "components/SideBar/SideBar";
-
-
-
+import HomeIcon from '@mui/icons-material/Home';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import PagesIcon from '@mui/icons-material/Pages';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import PersonIcon from '@mui/icons-material/Person';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 
 export default {
   title: "SideBar",
@@ -13,38 +18,32 @@ export default {
     backgroundColor: { control: "color" },
     color: { control: "color" },
 
-    label: {
-      options: ["Normal", "Bold", "Italic"],
-      mapping: {
-        Bold: <b>Bold</b>,
-        Italic: <i>Italic</i>,
-      },
-    },
+
   },
 } as ComponentMeta<typeof SideBar>;
 
 const MenuItems = [
 
-  { Id: 1, Name: "Home", icon: "/icons/home.svg" },
+  { Id: 1, Name: "Home", icon: <div><HomeIcon /></div> },
   {
     Id: 2,
     Name: "Content",
-    icon: "/icons/content.svg",
+    icon: <div><ContentPasteIcon /></div>,
 
     SubMenu: [
-      { Id: 1, Name: "New Content Sync", icon: "/icons/content-sync.svg" },
-      { Id: 2, Name: "Existing Content", icon: "/icons/existing-Content.svg" },
+      { Id: 1, Name: "New Content Sync", icon: <div><AddCircleOutlineIcon /></div> },
+      { Id: 2, Name: "Existing Content", icon: <div><FolderCopyIcon /></div> },
     ],
   },
 
-  { Id: 3, Name: "Pages", icon: "/icons/page.svg" },
+  { Id: 3, Name: "Pages", icon: <div><PagesIcon /></div> },
   {
     Id: 4,
-    Name: "Setting", icon: "/icons/setting.svg",
+    Name: "Settings", icon: <div><SettingsIcon /></div>,
 
     SubMenu: [
-      { Id: 3, Name: "Notification", icon: "/icons/notifications.svg" },
-      { Id: 4, Name: "Account", icon: "/icons/account.svg" },
+      { Id: 3, Name: "Notification", icon: <div><NotificationsIcon /></div> },
+      { Id: 4, Name: "Account", icon: <div><PersonIcon /></div> },
     ],
   },
 
@@ -57,9 +56,29 @@ const Template: ComponentStory<typeof SideBar> = (args) => (
 
 export const Basic = Template.bind({});
 Basic.args = {
-  MenuItems: MenuItems,
+  MenuItems: [{ Id: 1, Name: "Home" },
+  {
+    Id: 2,
+    Name: "Content",
+
+
+    SubMenu: [
+      { Id: 1, Name: "New Content Sync" },
+      { Id: 2, Name: "Existing Content" },
+    ],
+  },
+
+  { Id: 3, Name: "Pages" },
+  {
+    Id: 4,
+    Name: "Settings",
+
+    SubMenu: [
+      { Id: 3, Name: "Notification" },
+      { Id: 4, Name: "Account" },
+    ],
+  },],
   title: "MyLogo",
-  iconHide: false,
   position: "left",
   image:
     "https://audimediacenter-a.akamaihd.net/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_full.jpg?1581961854",
@@ -68,9 +87,11 @@ Basic.args = {
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  iconHide: true,
+  showIcon: true,
   MenuItems: MenuItems,
-
+  title: "MyLogo",
+  image:
+    "https://audimediacenter-a.akamaihd.net/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_full.jpg?1581961854",
 };
 
 export const CustomizeTheme = Template.bind({});
@@ -85,11 +106,17 @@ export const ActiveIndicator = Template.bind({});
 ActiveIndicator.args = {
   MenuItems: MenuItems,
   showActiveTabs: false,
+
 };
 export const Responsive = Template.bind({});
 Responsive.args = {
   MenuItems: MenuItems,
   Responsive: true,
-  iconHide: false
+  showArrowIcon: true,
+  tooltip: false
+
+
+
+
 };
 

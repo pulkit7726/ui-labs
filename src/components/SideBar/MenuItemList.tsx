@@ -6,6 +6,8 @@ import {
   Collapse,
   Divider,
   ListItemIcon,
+  Grid,
+  Tooltip,
 } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -18,7 +20,6 @@ interface ListItemProps {
   HideShowIcon?: string;
   onHandleActiveTab: () => void;
   backgroundColor?: string;
-  iconHide?: boolean;
 }
 
 const MenuItemList = ({
@@ -28,10 +29,10 @@ const MenuItemList = ({
   HideShowIcon,
   onHandleActiveTab,
   backgroundColor,
-  iconHide,
   ...props
 }: ListItemProps) => {
   const [open, setOpen] = useState(false);
+  const [activeSubIndex, setActiveSubIndex] = useState(null);
   const handleClick = () => {
     if (drawerOpen === false) {
       return;
@@ -40,7 +41,7 @@ const MenuItemList = ({
   };
 
   return (
-    <div {...props} >
+    <div {...props}>
       <ListItem
         button
         key={item.Id}
@@ -51,11 +52,10 @@ const MenuItemList = ({
         className={`${showActiveTabs} hover-List`}
       >
         {" "}
-        <ListItemIcon className={HideShowIcon}>
-          <img src={item.icon} alt="icon" className="icon" />
-        </ListItemIcon>
+        <ListItemIcon className={HideShowIcon}>{item.icon}</ListItemIcon>
         <ListItemText primary={item.Name} />
-        {item?.SubMenu?.length && (open && drawerOpen ? <ExpandLess /> : <ExpandMore />)}
+        {item?.SubMenu?.length &&
+          (open && drawerOpen ? <ExpandLess /> : <ExpandMore />)}
       </ListItem>
 
       <Divider />
@@ -63,12 +63,23 @@ const MenuItemList = ({
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="li" disablePadding key={item.Id}>
           {item.SubMenu?.map(
-            (subItems: { Id: number; Name: string; icon: string }) => {
-              console.log(item)
+            (
+              subItems: { Id: number; Name: string; icon: string },
+              index: any
+            ) => {
               return (
-                <ListItem button key={subItems.Id}>
+                <ListItem
+                  button
+                  key={subItems.Id}
+                  onClick={() => {
+                    setActiveSubIndex(index);
+                  }}
+                  className={
+                    index === activeSubIndex ? "activeSubTab" : "InactiveSubTab"
+                  }
+                >
                   <ListItemIcon className={`${HideShowIcon} child-Icon`}>
-                    <img src={subItems.icon} alt="icon" className="icon" />
+                    {subItems.icon}
                   </ListItemIcon>
                   <ListItemText
                     key={subItems.Id}
