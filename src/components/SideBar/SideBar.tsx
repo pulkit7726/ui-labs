@@ -46,7 +46,9 @@ export const SideBar = ({
 }: SideBarProps) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(null);
+
   const [activeSubIndex, setActiveSubIndex] = React.useState(null);
+
   const HideShowIcon = showIcon ? "showIcon" : "hideIcon";
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -94,6 +96,7 @@ export const SideBar = ({
           </IconButton>
         </Toolbar>
       </AppBar>
+
       {!Responsive ? (
         <Box
           component="nav"
