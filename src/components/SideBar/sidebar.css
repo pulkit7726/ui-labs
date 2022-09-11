@@ -54,14 +54,6 @@
   display: block;
 }
 
-.showIcon {
-  visibility: visible !important;
-}
-
-.hideIcon {
-  display: none !important;
-}
-
 .avtiveTab {
   background-color: #f6f9fc !important;
   box-shadow: 0px 0px 8px #888888;

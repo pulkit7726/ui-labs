@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
+import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
@@ -12,14 +12,10 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuItemList from "./MenuItemList";
 import {
-  Grid,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Tooltip,
+  Typography,
 } from "@mui/material";
 import "./sidebar.css";
-import Button from "components/Button";
 
 const drawerWidth = 245;
 
@@ -119,17 +115,13 @@ export default function ResponsiveSideBar({
   color,
   ...props
 }: ResponsiveProps) {
-  const theme = useTheme();
   const [drawerOpen, drawersetOpen] = React.useState(false);
-  const [activeIndex, setActiveIndex] = React.useState(null);
+  const [activeSubMenu, setActiveSubMenu] = React.useState('');
   const HideShowArrowIcon = showArrowIcon ? "showArrowIcon" : "hideArrowIcon";
+  const [activeTab, setActiveTab] = React.useState('');
 
   const handleDrawerClose = () => {
     drawersetOpen(!drawerOpen);
-  };
-
-  const handleActiveTab = (index: any) => {
-    setActiveIndex(index);
   };
 
   return (
@@ -139,7 +131,13 @@ export default function ResponsiveSideBar({
         position="fixed"
         open={drawerOpen}
         style={{ backgroundColor: "#343A40", zIndex: 0 }}
-      ></AppBar>
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            Permanent drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Drawer
         variant="permanent"
         open={drawerOpen}
@@ -177,45 +175,22 @@ export default function ResponsiveSideBar({
           {MenuItems.map((item: any, index: number, Name: string) => (
             <Tooltip
               disableHoverListener={!tooltip || drawerOpen ? true : false}
-              title={
-                item?.SubMenu?.length ? (
-                  <>
-                    <List component="li" disablePadding key={item.Id}>
-                      {item.SubMenu?.map(
-                        (
-                          subItems: { Id: number; Name: string; icon: string },
-                          index: any
-                        ) => {
-                          return (
-                            <ListItem button key={subItems.Id}>
-                              <ListItemIcon>{subItems.icon}</ListItemIcon>
-                              <ListItemText
-                                key={subItems.Id}
-                                primary={subItems.Name}
-                                style={{ marginLeft: "45px" }}
-                              />
-                            </ListItem>
-                          );
-                        }
-                      )}
-                      <Divider />
-                    </List>
-                  </>
-                ) : (
-                  ""
-                )
-              }
-              placement="left-end"
+              title={item.Name}
+              placement="right"
+              arrow
             >
               <li>
                 <MenuItemList
+                  responsive={true}
                   item={item}
                   drawerOpen={drawerOpen}
-                  showActiveTabs={
-                    index === activeIndex ? "avtiveTab" : "inActiveTab"
-                  }
-                  onHandleActiveTab={() => handleActiveTab(index)}
-                  backgroundColor={`${backgroundColor} `}
+                  setActiveTab={setActiveTab}
+                  className={`${showActiveTabs && (item.Id === activeTab ? "avtiveTab" : "inActiveTab")} hover-List`}
+                  key={item.Id}
+                  backgroundColor={`${backgroundColor}`}
+                  setActiveSubMenu={setActiveSubMenu}
+                  activeSubMenu={activeSubMenu}
+                  showActiveTabs={showActiveTabs}
                 />
               </li>
             </Tooltip>

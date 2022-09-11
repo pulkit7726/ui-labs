@@ -41,7 +41,7 @@ const MenuItems = [
 
     SubMenu: [
       {
-        Id: 1,
+        Id: 3,
         Name: "New Content Sync",
         icon: (
           <div>
@@ -50,7 +50,7 @@ const MenuItems = [
         ),
       },
       {
-        Id: 2,
+        Id: 4,
         Name: "Existing Content",
         icon: (
           <div>
@@ -62,7 +62,7 @@ const MenuItems = [
   },
 
   {
-    Id: 3,
+    Id: 5,
     Name: "Pages",
     icon: (
       <div>
@@ -71,7 +71,7 @@ const MenuItems = [
     ),
   },
   {
-    Id: 4,
+    Id: 6,
     Name: "Settings",
     icon: (
       <div>
@@ -81,7 +81,7 @@ const MenuItems = [
 
     SubMenu: [
       {
-        Id: 3,
+        Id: 7,
         Name: "Notification",
         icon: (
           <div>
@@ -91,7 +91,7 @@ const MenuItems = [
       },
 
       {
-        Id: 4,
+        Id: 8,
         Name: "Account",
         icon: (
           <div>
@@ -133,17 +133,12 @@ Basic.args = {
     },
   ],
   title: "MyLogo",
-
-  showIcon: false,
-
-  position: "left",
   image:
     "https://audimediacenter-a.akamaihd.net/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_full.jpg?1581961854",
 };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  showIcon: true,
   MenuItems: MenuItems,
   title: "MyLogo",
   image:
@@ -160,12 +155,31 @@ CustomizeTheme.args = {
 export const ActiveIndicator = Template.bind({});
 ActiveIndicator.args = {
   MenuItems: MenuItems,
-  showActiveTabs: false,
+  showActiveTabs: true,
 };
+
 export const Responsive = Template.bind({});
+
 Responsive.args = {
   MenuItems: MenuItems,
   Responsive: true,
   showArrowIcon: true,
   tooltip: false,
 };
+
+
+export const WithIconTooltip = Template.bind({});
+
+WithIconTooltip.args = {
+  MenuItems: MenuItems,
+  showArrowIcon: false,
+  tooltip: true,
+  Responsive: true,
+};
+
+// export const Position = Template.bind({});
+// Position.args = {
+//   MenuItems: MenuItems,
+//   title: "",
+//   position: "right",
+// };

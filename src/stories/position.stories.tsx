@@ -58,9 +58,7 @@ export const Position = Template.bind({});
 Position.args = {
     MenuItems: MenuItems,
     title: "",
-    showIcon: false,
     position: "right",
-
 };
 
 
