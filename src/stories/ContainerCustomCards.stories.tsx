@@ -3,17 +3,12 @@ import React from "react";
 import { ContainerCustomCards } from "../components/ContainerCustomCards";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-let images1: any = [
-  {
-    title: 'asas'
-  }
-]
 export default {
   title: "Components/ContainerCustomCards",
   component: ContainerCustomCards,
-  props: {
-    images1
-  },
+  // props: {
+  //   images1
+  // },
   // argTypes: {
   //   imageList: {
   //     control: {
@@ -36,7 +31,9 @@ export default {
 } as ComponentMeta<typeof ContainerCustomCards>;
 
 const Example: ComponentStory<typeof ContainerCustomCards> = args => {
-  return <ContainerCustomCards {...args} images={images} />;
+  console.log(args, 'argsargs');
+  
+  return <ContainerCustomCards images={args.images} />;
 };
 
 const images = [
@@ -382,8 +379,13 @@ const images = [
   }
 ];
 
-export const CardComponentTest = Example.bind({});
+export const CardComponent = Example.bind({});
+export const CardComponent1   = Example.bind({});
 
-// CardComponentTest.args = {
-//   imageList: []
-// };
+CardComponent1.args = {
+  images: images
+};
+
+CardComponent.args = {
+  images: images
+};

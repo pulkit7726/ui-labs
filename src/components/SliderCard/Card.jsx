@@ -5,10 +5,6 @@ export const Card = ({
         <div>
             <div>
             <div>Titile</div>
-            <div>Titile</div>
-            <div>Titile</div>
-            <div>Titile</div>
-            <div>Titile</div>
             </div>
         </div>
     )

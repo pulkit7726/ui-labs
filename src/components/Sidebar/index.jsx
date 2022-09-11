@@ -35,7 +35,7 @@ export default function MiniDrawer() {
 
   const mobileMenuId = "primary-search-account-menu-mobile";
 
-  const handleMobileMenuOpen = (event: any) => {
+  const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -49,7 +49,7 @@ export default function MiniDrawer() {
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-  const handleProfileMenuOpen = (event: any) => {
+  const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleMenuClose = () => {

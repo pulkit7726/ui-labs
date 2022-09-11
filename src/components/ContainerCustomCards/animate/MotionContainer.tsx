@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { motion } from "framer-motion";
 import Box, { BoxProps } from "@mui/material/Box";
 import { varWrapBoth } from "./variants/Wrap";

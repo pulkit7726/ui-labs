@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export interface ContainerCustomCardsProps {
-  imageList: Array<Type>;
+  images: Array<Type>;
 }
 
 interface Type {
