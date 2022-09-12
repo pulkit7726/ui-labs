@@ -1,9 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Notification from "components/Notificaton/Notification";
-
-
+import { Notification } from "components/Notificaton/Notification";
 
 export default {
   title: "Notification",
@@ -42,4 +40,11 @@ transition.args = {
   Grow_Transition: true,
   autoHideDuration: 2000,
   message: "you can choose transition of snackbar",
+};
+export const enqueNotification = Template.bind({});
+enqueNotification.args = {
+  Notistack: true,
+  message: "this is enqueSnackbar",
+  maxsnack: 4,
+  Variant: "info",
 };

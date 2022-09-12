@@ -7,20 +7,19 @@ import { AlertTitle, Box, IconButton, SliderThumb } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
+import { SnackbarProvider, useSnackbar, VariantType } from "notistack";
 import Grow from "@mui/material/Grow";
-import {
-  SnackbarProvider,
-  VariantType,
-  useSnackbar,
-  SnackbarContent,
-} from "notistack";
+import { Variant } from "../../stories/Notification.stories";
 
 type NotiFicationProps = {
   color?: "error" | "info" | "success" | "warning";
   variaent?: "filled" | "outlined" | "standard";
   message?: string;
+  Variant?: "error" | "info" | "success" | "warning";
   title?: string;
   Basic?: boolean;
+  Notistack?: boolean;
+  maxsnack?: number;
   direction?: "down" | "left" | "right" | "up";
   BasicMessage?: string;
   autoHideDuration?: number;
@@ -33,10 +32,11 @@ type NotiFicationProps = {
   };
 };
 
-export default function Notification({
+export const Notification = ({
   color,
   variaent,
   message,
+  maxsnack,
   Slide_Transition,
   Fade_Transition,
   Grow_Transition,
@@ -44,9 +44,12 @@ export default function Notification({
   BasicMessage,
   title,
   Basic,
+  Variant,
+  Notistack,
   autoHideDuration,
   position,
-}: NotiFicationProps) {
+  ...props
+}: NotiFicationProps) => {
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [slide, setOpenSlide] = React.useState(false);
   const [fade, setOpenFade] = React.useState(false);
@@ -96,101 +99,145 @@ export default function Notification({
       </IconButton>
     </React.Fragment>
   );
-  //const { enqueueSnackbar } = useSnackbar();
 
-  //   const handleNotistack = () => {
-  //     enqueueSnackbar(`notistack`);
+  //   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  //   const handleNoticeClick = () => {
+  //     enqueueSnackbar("I love hooks");
   //   };
+  const MyButton = () => {
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  return (
-    <Stack spacing={2} sx={{ width: "50px" }}>
-      {Basic && (
-        <>
-          <Button variant="outlined" onClick={handleClick}>
+    const handleNotisClick = () => {
+      enqueueSnackbar(`${message}`);
+    };
+    const handleClickVariant = (variant: any) => () => {
+      // variant could be success, error, warning, info, or default
+      enqueueSnackbar("This is a success message!", { variant });
+    };
+    return (
+      <>
+        {" "}
+        <Box mt={2} justifyContent="space-between" alignItems="center">
+          <Button
+            variant="outlined"
+            onClick={handleNotisClick}
+            sx={{ height: 40, width: 90, padding: "10px" }}
+          >
             Basic
           </Button>
-          <Snackbar
-            open={openSnackbar}
-            message={BasicMessage || message}
-            autoHideDuration={6000}
-            onClose={handleClose}
-            action={action}
-          />
-        </>
-      )}
-      {Slide_Transition && (
-        <>
-          <Button variant="outlined" onClick={handleSlideClick}>
-            Slide
-          </Button>
-          <Snackbar
-            open={slide}
-            message={message}
-            autoHideDuration={autoHideDuration}
-            TransitionComponent={SlideTransition}
-            onClose={handleClose}
-            action={action}
-          />
-        </>
-      )}
-      {Fade_Transition && (
-        <>
-          <Button variant="outlined" onClick={handleFadeClick}>
-            Fade
-          </Button>
-          <Snackbar
-            open={fade}
-            message={message}
-            autoHideDuration={autoHideDuration}
-            TransitionComponent={Fade}
-            onClose={handleClose}
-            action={action}
-          />
-        </>
-      )}
-      {Grow_Transition && (
-        <>
-          <Button variant="outlined" onClick={handleGrowClick}>
-            Grow
-          </Button>
-          <Snackbar
-            open={grow}
-            message={message}
-            autoHideDuration={autoHideDuration}
-            TransitionComponent={Grow}
-            onClose={handleClose}
-            action={action}
-          />
-        </>
-      )}
-
-      {!Basic && !Slide_Transition && !Fade_Transition && (
-        <>
-          <Button variant="outlined" onClick={handleClick}>
-            click
-          </Button>
-          <Snackbar
-            onClose={handleClose}
-            open={openSnackbar}
-            autoHideDuration={autoHideDuration}
-            anchorOrigin={{
-              horizontal: position?.horizontal || "left",
-              vertical: position?.vertical || "bottom",
-            }}
+          <Button
+            variant="outlined"
+            onClick={handleClickVariant(`${Variant}`)}
+            sx={{ height: 40, width: 100, marginTop: "5px", padding: "10px" }}
           >
-            <Alert
+            Customized
+          </Button>
+        </Box>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <Stack spacing={2} sx={{ width: "50px" }}>
+        {Basic && (
+          <>
+            <Button variant="outlined" onClick={handleClick}>
+              Basic
+            </Button>
+            <Snackbar
+              open={openSnackbar}
+              message={BasicMessage || message}
+              autoHideDuration={6000}
               onClose={handleClose}
-              color={color}
-              severity={color}
-              variant={variaent}
-              sx={{ width: "100%" }}
+              action={action}
+            />
+          </>
+        )}
+        {Slide_Transition && (
+          <>
+            <Button variant="outlined" onClick={handleSlideClick}>
+              Slide
+            </Button>
+            <Snackbar
+              open={slide}
+              message={message}
+              autoHideDuration={autoHideDuration}
+              TransitionComponent={SlideTransition}
+              onClose={handleClose}
+              action={action}
+            />
+          </>
+        )}
+        {Fade_Transition && (
+          <>
+            <Button variant="outlined" onClick={handleFadeClick}>
+              Fade
+            </Button>
+            <Snackbar
+              open={fade}
+              message={message}
+              autoHideDuration={autoHideDuration}
+              TransitionComponent={Fade}
+              onClose={handleClose}
+              action={action}
+            />
+          </>
+        )}
+        {Grow_Transition && (
+          <>
+            <Button variant="outlined" onClick={handleGrowClick}>
+              Grow
+            </Button>
+            <Snackbar
+              open={grow}
+              message={message}
+              autoHideDuration={autoHideDuration}
+              TransitionComponent={Grow}
+              onClose={handleClose}
+              action={action}
+            />
+          </>
+        )}
+        {Notistack && !Slide_Transition && !Fade_Transition && !Basic && (
+          <SnackbarProvider maxSnack={maxsnack}>
+            <MyButton />
+          </SnackbarProvider>
+        )}
+        {!Basic && !Slide_Transition && !Fade_Transition && !Notistack && (
+          <>
+            <Button variant="outlined" onClick={handleClick}>
+              click
+            </Button>
+            <Snackbar
+              onClose={handleClose}
+              open={openSnackbar}
+              autoHideDuration={autoHideDuration}
+              anchorOrigin={{
+                horizontal: position?.horizontal || "left",
+                vertical: position?.vertical || "bottom",
+              }}
             >
-              <AlertTitle> {title}</AlertTitle>
-              {message}
-            </Alert>
-          </Snackbar>
-        </>
-      )}
-    </Stack>
+              <Alert
+                onClose={handleClose}
+                color={color}
+                severity={color}
+                variant={variaent}
+                sx={{ width: "100%" }}
+              >
+                <AlertTitle> {title}</AlertTitle>
+                {message}
+              </Alert>
+            </Snackbar>
+          </>
+        )}
+      </Stack>
+    </>
   );
+};
+
+function enqueueSnackbar(arg0: { message: string | undefined; option: any }) {
+  throw new Error("Function not implemented.");
 }
+  
