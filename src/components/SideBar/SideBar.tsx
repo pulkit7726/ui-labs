@@ -19,7 +19,6 @@ type SideBarProps = {
   tooltip: boolean;
   Responsive: boolean;
   position?: "left" | "right";
-  showIcon?: boolean;
   showActiveTabs?: boolean;
   window?: () => Window;
   title?: string;
@@ -33,7 +32,6 @@ export const SideBar = ({
   Responsive,
   showArrowIcon,
   tooltip,
-  showIcon,
   MenuItems,
   showActiveTabs,
   window,
@@ -41,22 +39,15 @@ export const SideBar = ({
   image,
   backgroundColor,
   color,
-
   ...props
 }: SideBarProps) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [activeIndex, setActiveIndex] = React.useState(null);
-
-  const [activeSubIndex, setActiveSubIndex] = React.useState(null);
-
-  const HideShowIcon = showIcon ? "showIcon" : "hideIcon";
+  const [activeTab, setActiveTab] = React.useState('');
+  const [activeSubMenu, setActiveSubMenu] = React.useState('');
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
-
-  const handleActiveTab = (index: any) => setActiveIndex(index);
-  const handleSubActiveTab = (index: any) => setActiveSubIndex(index);
 
   const drawer = (
     <div>
@@ -68,12 +59,14 @@ export const SideBar = ({
       <List>
         {MenuItems.map((item: any, index: any, Id: number) => (
           <MenuItemList
+            setActiveTab={setActiveTab}
+            className={`${showActiveTabs && (item.Id === activeTab ? "avtiveTab" : "inActiveTab")} hover-List`}
             item={item}
             key={item.Id}
-            showActiveTabs={index === activeIndex ? "avtiveTab" : "inActiveTab"}
-            onHandleActiveTab={() => handleActiveTab(index)}
-            HideShowIcon={HideShowIcon}
-            backgroundColor={`${backgroundColor} `}
+            showActiveTabs={showActiveTabs}
+            backgroundColor={`${backgroundColor}`}
+            setActiveSubMenu={setActiveSubMenu}
+            activeSubMenu={activeSubMenu}
           />
         ))}
       </List>
@@ -164,6 +157,7 @@ export const SideBar = ({
           color={color}
           window={window}
           tooltip={tooltip}
+          showActiveTabs={showActiveTabs}
         />
       )}
     </Box>
