@@ -47,4 +47,5 @@ enqueNotification.args = {
   message: "this is enqueSnackbar",
   maxsnack: 4,
   Variant: "info",
+  autoHideDuration: 3000,
 };

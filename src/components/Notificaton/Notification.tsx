@@ -201,7 +201,10 @@ export const Notification = ({
           </>
         )}
         {Notistack && !Slide_Transition && !Fade_Transition && !Basic && (
-          <SnackbarProvider maxSnack={maxsnack}>
+          <SnackbarProvider
+            maxSnack={maxsnack}
+            autoHideDuration={autoHideDuration}
+          >
             <MyButton />
           </SnackbarProvider>
         )}
@@ -237,7 +240,5 @@ export const Notification = ({
   );
 };
 
-function enqueueSnackbar(arg0: { message: string | undefined; option: any }) {
-  throw new Error("Function not implemented.");
-}
+
   
