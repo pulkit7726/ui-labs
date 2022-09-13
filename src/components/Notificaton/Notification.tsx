@@ -3,13 +3,12 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { AlertTitle, Box, IconButton, SliderThumb } from "@mui/material";
+import { AlertTitle, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
-import { SnackbarProvider, useSnackbar, VariantType } from "notistack";
+import { SnackbarProvider, useSnackbar } from "notistack";
 import Grow from "@mui/material/Grow";
-import { Variant } from "../../stories/Notification.stories";
 
 type NotiFicationProps = {
   color?: "error" | "info" | "success" | "warning";
@@ -239,6 +238,3 @@ export const Notification = ({
     </>
   );
 };
-
-
-  
