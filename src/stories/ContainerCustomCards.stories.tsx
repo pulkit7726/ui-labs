@@ -31,8 +31,6 @@ export default {
 } as ComponentMeta<typeof ContainerCustomCards>;
 
 const Example: ComponentStory<typeof ContainerCustomCards> = args => {
-  console.log(args, 'argsargs');
-  
   return <ContainerCustomCards images={args.images} />;
 };
 
