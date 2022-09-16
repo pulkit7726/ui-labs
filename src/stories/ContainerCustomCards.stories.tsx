@@ -6,28 +6,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 export default {
   title: "Components/ContainerCustomCards",
   component: ContainerCustomCards,
-  // props: {
-  //   images1
-  // },
-  // argTypes: {
-  //   imageList: {
-  //     control: {
-  //       type: 'select',
-  //       labels: {
-  //         first: 'First Option',
-  //         second: 'Second Option'
-  //       }
-  //     },
-  //     options: ['first', 'second'],
-  //     mapping: {
-  //       first: "",
-  //       second:"" 
-  //     }
-  //   }
-  // },
-  // args: {
-  //   primary: true
-  // }
 } as ComponentMeta<typeof ContainerCustomCards>;
 
 const Example: ComponentStory<typeof ContainerCustomCards> = args => {
@@ -378,11 +356,11 @@ const images = [
 ];
 
 export const CardComponent = Example.bind({});
-export const CardComponent1   = Example.bind({});
+// export const CardComponent1   = Example.bind({});
 
-CardComponent1.args = {
-  images: images
-};
+// CardComponent1.args = {
+//   images: images
+// };
 
 CardComponent.args = {
   images: images

@@ -11,7 +11,7 @@ import {
   varZoomInLeft,
   varZoomInRight
 } from "../animate/variants/zoom/ZoomIn";
-import { usePortal } from "../../../providers/PortalProvider";
+import { usePortal } from "../providers/PortalProvider";
 
 export default function ImagePortalContainer() {
   const { miniModalMediaData, anchorElement } = usePortal();

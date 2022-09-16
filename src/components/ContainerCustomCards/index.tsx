@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 
 import SlickSlider from "./slick-slider/SlickSlider";
 import ImagePortalContainer from "./slick-slider/ImagePortalContainer";
-import PortalProvider from "../../providers/PortalProvider";
+import PortalProvider from "./providers/PortalProvider";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

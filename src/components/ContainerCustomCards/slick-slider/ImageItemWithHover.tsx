@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
-import { usePortal } from "../../../providers/PortalProvider";
+import { usePortal } from "../providers/PortalProvider";
 
 const PaperStyle = styled(Paper)(() => ({
   zIndex: 9,

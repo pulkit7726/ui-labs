@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, Typography, CardActions } from "@mui/material";
-import { usePortal } from "../../../providers/PortalProvider";
+import { usePortal } from "../providers/PortalProvider";
 
 interface ImageCardModalProps {
   image: any;

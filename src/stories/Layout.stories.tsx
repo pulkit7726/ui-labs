@@ -1,8 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React from 'react';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/MainLayout';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 
 export default {
   title: 'Layout/MainLayout',

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Image } from '../components/Image/WovenImage';
+import { Image } from '../components/Image/WovenImageList';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 
 export default {
   title: 'Images/Image',

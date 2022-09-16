@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from '../components/Image/QuiltedImage';
+import { Image } from '../components/Image/QuiltedImageList';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 

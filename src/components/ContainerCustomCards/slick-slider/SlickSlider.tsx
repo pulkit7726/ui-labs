@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 
 import CustomNavigation from "./CustomNavigation";
 import ImageItemWithHover from "./ImageItemWithHover";
-import { ARROW_MAX_WIDTH } from "../../../constant";
+import { ARROW_MAX_WIDTH } from "../constant";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
