@@ -4,6 +4,7 @@ import { Notification } from "components/Notification/Notification";
 import { Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
+import { useSnackbar } from "notistack";
 
 export default {
   title: "Notification",
@@ -11,9 +12,20 @@ export default {
 } as ComponentMeta<typeof Notification>;
 
 const Template: ComponentStory<typeof Notification> = (args) => {
-  const [open, setOpen] = useState(false);
+  const [slide, setOpenSlide] = React.useState(false);
+  const [fade, setOpenFade] = React.useState(false);
+  const [grow, setOpenGrow] = React.useState(false);
 
-  const toggleNotification = () => setOpen((open) => !open);
+  const slideTransition = () => {
+    setOpenSlide(true);
+  };
+  const fadeTransition = () => {
+    setOpenFade(true);
+  };
+
+  const growTransition = () => {
+    setOpenGrow(true);
+  };
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -22,7 +34,10 @@ const Template: ComponentStory<typeof Notification> = (args) => {
     if (reason === "clickaway") {
       return;
     }
-    setOpen(false);
+
+    setOpenSlide(false);
+    setOpenFade(false);
+    setOpenGrow(false);
   };
   const action = (
     <React.Fragment>
@@ -39,32 +54,19 @@ const Template: ComponentStory<typeof Notification> = (args) => {
       </IconButton>
     </React.Fragment>
   );
+
   return (
     <>
-      <Button variant="outlined" onClick={toggleNotification}>
-        Open Notification
-      </Button>
-
-      <Notification {...args} open={open} action={action} />
+      <Notification {...args} action={action} />
     </>
   );
 };
-export const Customized = Template.bind({});
-Customized.args = {
-  color: "error",
-  basic: true,
-  message: "this is error message ",
-  title: "Error",
-  autoHideDuration: 3000,
-};
 
-export const Variant = Template.bind({});
-Variant.args = {
-  variant: "outlined",
-  message: "you can choose any type variant",
-};
-export const Position = Template.bind({});
-Position.args = {
-  position: { vertical: "bottom", horizontal: "left" },
-  message: "You can change the position ",
+export const enqueNotification = Template.bind({});
+enqueNotification.args = {
+  notistack: true,
+  message: "this is enqueSnackbar",
+  maxsnack: 4,
+  notistackVariant: "info",
+  autoHideDuration: 3000,
 };

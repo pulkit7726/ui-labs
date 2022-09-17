@@ -4,27 +4,32 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { AlertTitle, Box, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import Grow from "@mui/material/Grow";
 
 type NotiFicationProps = {
+  open?: boolean;
+  action?: any;
+  notistackButton?: any;
+  grow?: boolean;
+  fade?: boolean;
+  slide?: boolean;
   color?: "error" | "info" | "success" | "warning";
-  variaent?: "filled" | "outlined" | "standard";
+  variant?: "filled" | "outlined" | "standard";
   message?: string;
-  Variant?: "error" | "info" | "success" | "warning";
+  notistackVariant?: "error" | "info" | "success" | "warning";
   title?: string;
-  Basic?: boolean;
-  Notistack?: boolean;
+  basic?: boolean;
+  notistack?: boolean;
   maxsnack?: number;
   direction?: "down" | "left" | "right" | "up";
-  BasicMessage?: string;
   autoHideDuration?: number;
-  Slide_Transition?: boolean;
-  Fade_Transition?: boolean;
-  Grow_Transition?: boolean;
+  slideTransition?: boolean;
+  fadeTransition?: boolean;
+  growTransition?: boolean;
   position?: {
     horizontal: "center" | "left" | "right";
     vertical: "bottom" | "top";
@@ -33,39 +38,27 @@ type NotiFicationProps = {
 
 export const Notification = ({
   color,
-  variaent,
+  open,
+  slide,
+  fade,
+  grow,
+  action,
+  variant,
   message,
   maxsnack,
-  Slide_Transition,
-  Fade_Transition,
-  Grow_Transition,
+  notistackButton,
+  slideTransition,
+  fadeTransition,
+  growTransition,
   direction,
-  BasicMessage,
   title,
-  Basic,
-  Variant,
-  Notistack,
+  basic,
+  notistackVariant,
+  notistack,
   autoHideDuration,
   position,
   ...props
 }: NotiFicationProps) => {
-  const [openSnackbar, setOpenSnackbar] = React.useState(false);
-  const [slide, setOpenSlide] = React.useState(false);
-  const [fade, setOpenFade] = React.useState(false);
-  const [grow, setOpenGrow] = React.useState(false);
-  const handleClick = () => {
-    setOpenSnackbar(true);
-  };
-  const handleSlideClick = () => {
-    setOpenSlide(true);
-  };
-  const handleFadeClick = () => {
-    setOpenFade(true);
-  };
-  const handleGrowClick = () => {
-    setOpenGrow(true);
-  };
-
   const handleClose = (
     event?: React.SyntheticEvent | Event,
     reason?: string
@@ -73,37 +66,11 @@ export const Notification = ({
     if (reason === "clickaway") {
       return;
     }
-
-    setOpenSnackbar(false);
-    setOpenSlide(false);
-    setOpenFade(false);
-    setOpenGrow(false);
   };
   const SlideTransition = ({ ...props }: any) => {
     return <Slide {...props} direction={direction} />;
   };
 
-  const action = (
-    <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
-
-  //   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
-  //   const handleNoticeClick = () => {
-  //     enqueueSnackbar("I love hooks");
-  //   };
   const MyButton = () => {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -111,26 +78,30 @@ export const Notification = ({
       enqueueSnackbar(`${message}`);
     };
     const handleClickVariant = (variant: any) => () => {
-      // variant could be success, error, warning, info, or default
-      enqueueSnackbar("This is a success message!", { variant });
+      enqueueSnackbar(`${message}`, { variant });
     };
     return (
       <>
         {" "}
-        <Box mt={2} justifyContent="space-between" alignItems="center">
+        <Box>
           <Button
             variant="outlined"
             onClick={handleNotisClick}
-            sx={{ height: 40, width: 90, padding: "10px" }}
+            sx={{
+              whiteSpace: "nowrap",
+            }}
           >
-            Basic
+            open Notification
           </Button>
           <Button
             variant="outlined"
-            onClick={handleClickVariant(`${Variant}`)}
-            sx={{ height: 40, width: 100, marginTop: "5px", padding: "10px" }}
+            onClick={handleClickVariant(`${notistackVariant}`)}
+            style={{
+              marginTop: "5px",
+              whiteSpace: "nowrap",
+            }}
           >
-            Customized
+            open Notification
           </Button>
         </Box>
       </>
@@ -140,25 +111,19 @@ export const Notification = ({
   return (
     <>
       <Stack spacing={2} sx={{ width: "50px" }}>
-        {Basic && (
+        {basic && (
           <>
-            <Button variant="outlined" onClick={handleClick}>
-              Basic
-            </Button>
             <Snackbar
-              open={openSnackbar}
-              message={BasicMessage || message}
+              open={open}
+              message={message}
               autoHideDuration={6000}
               onClose={handleClose}
               action={action}
             />
           </>
         )}
-        {Slide_Transition && (
+        {slideTransition && (
           <>
-            <Button variant="outlined" onClick={handleSlideClick}>
-              Slide
-            </Button>
             <Snackbar
               open={slide}
               message={message}
@@ -169,11 +134,8 @@ export const Notification = ({
             />
           </>
         )}
-        {Fade_Transition && (
+        {fadeTransition && (
           <>
-            <Button variant="outlined" onClick={handleFadeClick}>
-              Fade
-            </Button>
             <Snackbar
               open={fade}
               message={message}
@@ -184,11 +146,8 @@ export const Notification = ({
             />
           </>
         )}
-        {Grow_Transition && (
+        {growTransition && (
           <>
-            <Button variant="outlined" onClick={handleGrowClick}>
-              Grow
-            </Button>
             <Snackbar
               open={grow}
               message={message}
@@ -199,7 +158,7 @@ export const Notification = ({
             />
           </>
         )}
-        {Notistack && !Slide_Transition && !Fade_Transition && !Basic && (
+        {notistack && (
           <SnackbarProvider
             maxSnack={maxsnack}
             autoHideDuration={autoHideDuration}
@@ -207,14 +166,11 @@ export const Notification = ({
             <MyButton />
           </SnackbarProvider>
         )}
-        {!Basic && !Slide_Transition && !Fade_Transition && !Notistack && (
+        {!basic && !slideTransition && !fadeTransition && !notistack && (
           <>
-            <Button variant="outlined" onClick={handleClick}>
-              click
-            </Button>
             <Snackbar
               onClose={handleClose}
-              open={openSnackbar}
+              open={open}
               autoHideDuration={autoHideDuration}
               anchorOrigin={{
                 horizontal: position?.horizontal || "left",
@@ -225,7 +181,7 @@ export const Notification = ({
                 onClose={handleClose}
                 color={color}
                 severity={color}
-                variant={variaent}
+                variant={variant}
                 sx={{ width: "100%" }}
               >
                 <AlertTitle> {title}</AlertTitle>
