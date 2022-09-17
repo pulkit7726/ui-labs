@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Notification } from "components/Notification/Notification";
 import { Button, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 
 export default {
@@ -15,37 +14,12 @@ const Template: ComponentStory<typeof Notification> = (args) => {
 
   const toggleNotification = () => setOpen((open) => !open);
 
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
-  const action = (
-    <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
   return (
     <>
-      <Button variant="outlined" onClick={toggleNotification}>
+      <Button variant="outlined" onClick={toggleNotification} >
         Open Notification
       </Button>
-
-      <Notification {...args} open={open} action={action} />
+      <Notification {...args} open={open} />
     </>
   );
 };
@@ -68,3 +42,26 @@ Position.args = {
   position: { vertical: "bottom", horizontal: "left" },
   message: "You can change the position ",
 };
+
+export const SlideTransition = Template.bind({});
+SlideTransition.args = {
+  transition: 'slide',
+  direction: "right",
+  autoHideDuration: 2000,
+  message: "you can choose transition of snackbar",
+};
+
+export const GrowTransition = Template.bind({});
+GrowTransition.args = {
+  transition: 'grow',
+  autoHideDuration: 2000,
+  message: "you can choose transition of snackbar",
+};
+
+export const FadeTransition = Template.bind({});
+FadeTransition.args = {
+  transition: 'fade',
+  autoHideDuration: 2000,
+  message: "you can choose transition of snackbar",
+};
+

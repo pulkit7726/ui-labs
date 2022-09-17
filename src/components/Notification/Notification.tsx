@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { AlertTitle, Box, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
@@ -12,11 +13,7 @@ import Grow from "@mui/material/Grow";
 
 type NotiFicationProps = {
   open?: boolean;
-  action?: any;
   notistackButton?: any;
-  grow?: boolean;
-  fade?: boolean;
-  slide?: boolean;
   color?: "error" | "info" | "success" | "warning";
   variant?: "filled" | "outlined" | "standard";
   message?: string;
@@ -27,9 +24,7 @@ type NotiFicationProps = {
   maxsnack?: number;
   direction?: "down" | "left" | "right" | "up";
   autoHideDuration?: number;
-  slideTransition?: boolean;
-  fadeTransition?: boolean;
-  growTransition?: boolean;
+  transition?: "slide" | "grow" | "fade",
   position?: {
     horizontal: "center" | "left" | "right";
     vertical: "bottom" | "top";
@@ -39,17 +34,10 @@ type NotiFicationProps = {
 export const Notification = ({
   color,
   open,
-  slide,
-  fade,
-  grow,
-  action,
   variant,
   message,
   maxsnack,
   notistackButton,
-  slideTransition,
-  fadeTransition,
-  growTransition,
   direction,
   title,
   basic,
@@ -57,8 +45,15 @@ export const Notification = ({
   notistack,
   autoHideDuration,
   position,
+  transition,
   ...props
 }: NotiFicationProps) => {
+
+
+  const SlideTransition = ({ ...props }: any) => {
+    return <Slide {...props} direction={direction} />;
+  };
+
   const handleClose = (
     event?: React.SyntheticEvent | Event,
     reason?: string
@@ -67,9 +62,22 @@ export const Notification = ({
       return;
     }
   };
-  const SlideTransition = ({ ...props }: any) => {
-    return <Slide {...props} direction={direction} />;
-  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   const MyButton = () => {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -111,7 +119,7 @@ export const Notification = ({
   return (
     <>
       <Stack spacing={2} sx={{ width: "50px" }}>
-        {basic && (
+        {(basic || transition) && (
           <>
             <Snackbar
               open={open}
@@ -119,45 +127,11 @@ export const Notification = ({
               autoHideDuration={6000}
               onClose={handleClose}
               action={action}
+              TransitionComponent={transition === 'slide' ? SlideTransition : transition === 'grow' ? Grow : Fade}
             />
           </>
         )}
-        {slideTransition && (
-          <>
-            <Snackbar
-              open={slide}
-              message={message}
-              autoHideDuration={autoHideDuration}
-              TransitionComponent={SlideTransition}
-              onClose={handleClose}
-              action={action}
-            />
-          </>
-        )}
-        {fadeTransition && (
-          <>
-            <Snackbar
-              open={fade}
-              message={message}
-              autoHideDuration={autoHideDuration}
-              TransitionComponent={Fade}
-              onClose={handleClose}
-              action={action}
-            />
-          </>
-        )}
-        {growTransition && (
-          <>
-            <Snackbar
-              open={grow}
-              message={message}
-              autoHideDuration={autoHideDuration}
-              TransitionComponent={Grow}
-              onClose={handleClose}
-              action={action}
-            />
-          </>
-        )}
+
         {notistack && (
           <SnackbarProvider
             maxSnack={maxsnack}
@@ -166,7 +140,7 @@ export const Notification = ({
             <MyButton />
           </SnackbarProvider>
         )}
-        {!basic && !slideTransition && !fadeTransition && !notistack && (
+        {!basic && !transition && !notistack && (
           <>
             <Snackbar
               onClose={handleClose}
