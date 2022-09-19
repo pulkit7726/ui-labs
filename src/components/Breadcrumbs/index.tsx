@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
-import "./style.css";
 
 type BreadcrumbsProps = {
     list: ReactElement[] | string[];
