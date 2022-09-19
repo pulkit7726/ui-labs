@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Notification } from "components/Notification/Notification";
-import { Button, IconButton } from "@mui/material";
-import Slide from "@mui/material/Slide";
+import { Button } from "@mui/material";
+import { SnackBars } from "components/Notification/Snackbars";
 
 export default {
-  title: "Notification",
-  component: Notification,
-} as ComponentMeta<typeof Notification>;
+  title: "SnackBars",
+  component: SnackBars,
+} as ComponentMeta<typeof SnackBars>;
 
-const Template: ComponentStory<typeof Notification> = (args) => {
+const Template: ComponentStory<typeof SnackBars> = (args) => {
   const [open, setOpen] = useState(false);
 
   const toggleNotification = () => setOpen((open) => !open);
 
   return (
     <>
-      <Button variant="outlined" onClick={toggleNotification} >
-        Open Notification
+      <Button variant="outlined" onClick={toggleNotification}>
+        Open SnackBars
       </Button>
-      <Notification {...args} open={open} />
+      <SnackBars {...args} open={open} />
     </>
   );
 };
@@ -45,7 +44,7 @@ Position.args = {
 
 export const SlideTransition = Template.bind({});
 SlideTransition.args = {
-  transition: 'slide',
+  transition: "slide",
   direction: "right",
   autoHideDuration: 2000,
   message: "you can choose transition of snackbar",
@@ -53,16 +52,14 @@ SlideTransition.args = {
 
 export const GrowTransition = Template.bind({});
 GrowTransition.args = {
-  transition: 'grow',
+  transition: "grow",
   autoHideDuration: 2000,
   message: "you can choose transition of snackbar",
 };
 
 export const FadeTransition = Template.bind({});
 FadeTransition.args = {
-  transition: 'fade',
+  transition: "fade",
   autoHideDuration: 2000,
   message: "you can choose transition of snackbar",
 };
-
-

@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Notification } from "../Notification";
+import { SnackBars } from "../Snackbars";
 import { SnackbarProvider } from "notistack";
 
 const mockEnqueue = jest.fn();
@@ -20,36 +20,36 @@ jest.mock("notistack");
 beforeEach(() => {});
 
 test("should render Notififaction component", () => {
-  render(<Notification />);
+  render(<SnackBars />);
 });
 
-it("Notification should wrap in SnackbarProvider  ", async () => {
+it("SnackBars should wrap in SnackbarProvider  ", async () => {
   const component = render(
     <SnackbarProvider maxSnack={3}>
-      <Notification />
+      <SnackBars />
     </SnackbarProvider>
   );
   expect(component);
 });
 
-test("in Notification component should render Button", () => {
-  const Button = render(<Notification />);
+test("in SnackBars component should render Button", () => {
+  const Button = render(<SnackBars />);
   expect(Button.getByRole("button")).toBeInTheDocument();
 });
 
-test("in Notification component should render ButtonText", () => {
-  const Button = render(<Notification />);
+test("in SnackBars component should render ButtonText", () => {
+  const Button = render(<SnackBars />);
   expect(Button.getByText("click")).toBeInTheDocument();
 });
 
 test("renders buttons", async () => {
-  render(<Notification />);
+  render(<SnackBars />);
   const items = await screen.findAllByRole("button");
   expect(items).toHaveLength(1);
 });
 
 test("clicking the button ", () => {
-  render(<Notification />);
+  render(<SnackBars />);
   const button = screen.getByRole("button");
   fireEvent.click(button);
   expect(mockEnqueue).toHaveBeenCalledTimes(0);
@@ -58,6 +58,6 @@ test("clicking the button ", () => {
 });
 
 test("should render parent element ", () => {
-  const { container } = render(<Notification />);
+  const { container } = render(<SnackBars />);
   expect(container.getElementsByClassName("MuiStack-root").length).toBe(0);
 });

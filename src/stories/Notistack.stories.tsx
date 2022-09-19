@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Notification } from "components/Notification/Notification";
-import { Button, IconButton } from "@mui/material";
-import Slide from "@mui/material/Slide";
+import { SnackBars } from "components/Notification/Snackbars";
 
 export default {
-  title: "Notification",
-  component: Notification,
-} as ComponentMeta<typeof Notification>;
+  title: "SnackBars",
+  component: SnackBars,
+} as ComponentMeta<typeof SnackBars>;
 
-const Template: ComponentStory<typeof Notification> = (args) => {
-  return <Notification {...args} />;
+const Template: ComponentStory<typeof SnackBars> = (args) => {
+  return <SnackBars {...args} />;
 };
 
-export const EnqueNotification = Template.bind({});
-EnqueNotification.args = {
+export const StackSnackbars = Template.bind({});
+StackSnackbars.args = {
   maxsnack: 4,
   notistack: true,
   notistackVariant: "info",

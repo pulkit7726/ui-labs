@@ -11,7 +11,6 @@ import Slide from "@mui/material/Slide";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import Grow from "@mui/material/Grow";
 
-
 type NotiFicationProps = {
   /**open is a state  */
   open?: boolean;
@@ -45,7 +44,7 @@ type NotiFicationProps = {
   };
 };
 
-export const Notification = ({
+export const SnackBars = ({
   color,
   open,
   withVariant,
