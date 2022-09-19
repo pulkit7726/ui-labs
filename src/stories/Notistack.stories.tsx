@@ -14,9 +14,9 @@ const Template: ComponentStory<typeof SnackBars> = (args) => {
 export const StackSnackbars = Template.bind({});
 StackSnackbars.args = {
   maxsnack: 4,
-  notistack: true,
+  withVariant: true,
   notistackVariant: "info",
   autoHideDuration: 3000,
-  withVariant: false,
   message: "this is Notistack",
+  notistack: true,
 };

@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof SnackBars> = (args) => {
   return (
     <>
       <Button variant="outlined" onClick={toggleNotification}>
-        Open SnackBars
+        Open Notification
       </Button>
       <SnackBars {...args} open={open} />
     </>
