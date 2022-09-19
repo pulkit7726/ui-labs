@@ -11,20 +11,34 @@ import Slide from "@mui/material/Slide";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import Grow from "@mui/material/Grow";
 
+
 type NotiFicationProps = {
+  /**open is a state  */
   open?: boolean;
-  notistackButton?: any;
+  /**To change the type of Notification */
   color?: "error" | "info" | "success" | "warning";
+  /**To change the type of variant */
   variant?: "filled" | "outlined" | "standard";
+  /**To display the message*/
   message?: string;
+  /**If withVarient is true can change the type of notistack else can't */
+  withVariant?: boolean;
+  /** To change the type of Notistack*/
   notistackVariant?: "error" | "info" | "success" | "warning";
+  /** To display the title */
   title?: string;
+  /**If Basic is true basic notification is display else Customize */
   basic?: boolean;
   notistack?: boolean;
+  /** To change the number of Notification */
   maxsnack?: number;
+  /** To change the direction of slide */
   direction?: "down" | "left" | "right" | "up";
+  /** The number of milliseconds to wait before dismissing after user interaction. */
   autoHideDuration?: number;
-  transition?: "slide" | "grow" | "fade",
+  /**Can Choose any type of transition */
+  transition?: "slide" | "grow" | "fade";
+  /**The anchor of the Snackbar. On smaller screens, the component grows to occupy all the available width, the horizontal alignment is ignored. */
   position?: {
     horizontal: "center" | "left" | "right";
     vertical: "bottom" | "top";
@@ -34,10 +48,10 @@ type NotiFicationProps = {
 export const Notification = ({
   color,
   open,
+  withVariant,
   variant,
   message,
   maxsnack,
-  notistackButton,
   direction,
   title,
   basic,
@@ -48,8 +62,6 @@ export const Notification = ({
   transition,
   ...props
 }: NotiFicationProps) => {
-
-
   const SlideTransition = ({ ...props }: any) => {
     return <Slide {...props} direction={direction} />;
   };
@@ -82,30 +94,20 @@ export const Notification = ({
   const MyButton = () => {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-    const handleNotisClick = () => {
-      enqueueSnackbar(`${message}`);
-    };
-    const handleClickVariant = (variant: any) => () => {
+    const handleNotisClick = (variant: any) => () => {
       enqueueSnackbar(`${message}`, { variant });
     };
+
     return (
       <>
         {" "}
         <Box>
           <Button
             variant="outlined"
-            onClick={handleNotisClick}
+            onClick={handleNotisClick(
+              `${withVariant ? notistackVariant : false}`
+            )}
             sx={{
-              whiteSpace: "nowrap",
-            }}
-          >
-            open Notification
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={handleClickVariant(`${notistackVariant}`)}
-            style={{
-              marginTop: "5px",
               whiteSpace: "nowrap",
             }}
           >
@@ -127,7 +129,13 @@ export const Notification = ({
               autoHideDuration={6000}
               onClose={handleClose}
               action={action}
-              TransitionComponent={transition === 'slide' ? SlideTransition : transition === 'grow' ? Grow : Fade}
+              TransitionComponent={
+                transition === "slide"
+                  ? SlideTransition
+                  : transition === "grow"
+                  ? Grow
+                  : Fade
+              }
             />
           </>
         )}
@@ -145,6 +153,7 @@ export const Notification = ({
             <Snackbar
               onClose={handleClose}
               open={open}
+              action={action}
               autoHideDuration={autoHideDuration}
               anchorOrigin={{
                 horizontal: position?.horizontal || "left",
