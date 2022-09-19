@@ -42,6 +42,7 @@ type NotiFicationProps = {
     horizontal: "center" | "left" | "right";
     vertical: "bottom" | "top";
   };
+  handleClose: any
 };
 
 export const SnackBars = ({
@@ -59,19 +60,11 @@ export const SnackBars = ({
   autoHideDuration,
   position,
   transition,
+  handleClose,
   ...props
 }: NotiFicationProps) => {
   const SlideTransition = ({ ...props }: any) => {
     return <Slide {...props} direction={direction} />;
-  };
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
   };
 
   const action = (

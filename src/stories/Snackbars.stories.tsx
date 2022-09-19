@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Button } from "@mui/material";
-import { SnackBars } from "components/Notification/Snackbars";
+import { SnackBars } from "components/Snackbars";
 
 export default {
   title: "SnackBars",
@@ -18,14 +18,15 @@ const Template: ComponentStory<typeof SnackBars> = (args) => {
       <Button variant="outlined" onClick={toggleNotification}>
         Open SnackBars
       </Button>
-      <SnackBars {...args} open={open} />
+      <SnackBars {...args} open={open} handleClose={() => setOpen(false)} />
     </>
   );
 };
+
 export const Customized = Template.bind({});
 Customized.args = {
   color: "error",
-  basic: true,
+  basic: false,
   message: "this is error message ",
   title: "Error",
   autoHideDuration: 3000,
@@ -42,24 +43,11 @@ Position.args = {
   message: "You can change the position ",
 };
 
-export const SlideTransition = Template.bind({});
-SlideTransition.args = {
+export const Transition = Template.bind({});
+Transition.args = {
   transition: "slide",
   direction: "right",
   autoHideDuration: 2000,
   message: "you can choose transition of snackbar",
 };
 
-export const GrowTransition = Template.bind({});
-GrowTransition.args = {
-  transition: "grow",
-  autoHideDuration: 2000,
-  message: "you can choose transition of snackbar",
-};
-
-export const FadeTransition = Template.bind({});
-FadeTransition.args = {
-  transition: "fade",
-  autoHideDuration: 2000,
-  message: "you can choose transition of snackbar",
-};
