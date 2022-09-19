@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { SnackBars } from "../Snackbars";
+import { SnackBars } from "..";
 import { SnackbarProvider } from "notistack";
 
 const mockEnqueue = jest.fn();

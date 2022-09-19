@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { SnackBars } from "components/Notification/Snackbars";
+import { SnackBars } from "components/Snackbars";
 
 export default {
   title: "SnackBars",
