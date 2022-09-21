@@ -11,12 +11,14 @@ export default {
 const Template: ComponentStory<typeof SnackBars> = (args) => {
   const [open, setOpen] = useState(false);
 
-  const toggleNotification = () => setOpen((open) => !open);
+  const toggleNotification = () => {
+    setOpen((open) => !open);
+  }
 
   return (
     <>
       <Button variant="outlined" onClick={toggleNotification}>
-        Open SnackBars
+        Open Notification 
       </Button>
       <SnackBars {...args} open={open} handleClose={() => setOpen(false)} />
     </>
@@ -46,7 +48,7 @@ Position.args = {
 export const Transition = Template.bind({});
 Transition.args = {
   transition: "slide",
-  direction: "right",
+  slideDirection: "right",
   autoHideDuration: 2000,
   message: "you can choose transition of snackbar",
 };

@@ -20,36 +20,36 @@ jest.mock("notistack");
 beforeEach(() => {});
 
 test("should render Notififaction component", () => {
-  render(<SnackBars />);
+  render(<SnackBars open={true} handleClose={()=>{}} />);
 });
 
 it("SnackBars should wrap in SnackbarProvider  ", async () => {
   const component = render(
     <SnackbarProvider maxSnack={3}>
-      <SnackBars />
+      <SnackBars open={true} handleClose={()=>{}} />
     </SnackbarProvider>
   );
   expect(component);
 });
 
 test("in SnackBars component should render Button", () => {
-  const Button = render(<SnackBars />);
+  const Button = render(<SnackBars open={true} handleClose={()=>{}} />);
   expect(Button.getByRole("button")).toBeInTheDocument();
 });
 
 test("in SnackBars component should render ButtonText", () => {
-  const Button = render(<SnackBars />);
+  const Button = render(<SnackBars open={true} handleClose={()=>{}} />);
   expect(Button.getByText("click")).toBeInTheDocument();
 });
 
 test("renders buttons", async () => {
-  render(<SnackBars />);
+  render(<SnackBars open={true} handleClose={()=>{}} />);
   const items = await screen.findAllByRole("button");
   expect(items).toHaveLength(1);
 });
 
 test("clicking the button ", () => {
-  render(<SnackBars />);
+  render(<SnackBars open={true} handleClose={()=>{}} />);
   const button = screen.getByRole("button");
   fireEvent.click(button);
   expect(mockEnqueue).toHaveBeenCalledTimes(0);
@@ -58,6 +58,6 @@ test("clicking the button ", () => {
 });
 
 test("should render parent element ", () => {
-  const { container } = render(<SnackBars />);
+  const { container } = render(<SnackBars open={true} handleClose={()=>{}} />);
   expect(container.getElementsByClassName("MuiStack-root").length).toBe(0);
 });
