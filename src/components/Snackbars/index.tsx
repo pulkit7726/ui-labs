@@ -52,7 +52,7 @@ function GrowTransition(props: GrowProps) {
   return <Grow {...props} />;
 }
 
-export const SnackBars = ({
+export const SnackBar = ({
   color,
   open,
   variant,
@@ -175,7 +175,7 @@ export const SnackBars = ({
   );
 };
 
-SnackBars.defaultProps = {
+SnackBar.defaultProps = {
   autoHideDuration: 3000,
   maxsnack: 4,
   slideDirection: "right"
