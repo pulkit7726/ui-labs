@@ -4,9 +4,6 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import HomeIcon from '@mui/icons-material/Home';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import GrainIcon from '@mui/icons-material/Grain';
-import Breadcrumb from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
-import { Typography } from '@mui/material';
 
 export default {
   title: 'Breadcrumbs',
@@ -17,38 +14,87 @@ export default {
 const Template: ComponentStory<typeof Breadcrumbs> = (args) => <Breadcrumbs {...args} />;
 
 export const Basic = Template.bind({});
+const basicBreadCrumbProps = [{
+  BreadcrumbTitle: "Test1",
+  BreadcrumbRef: "#",
+  color: "inherit",
+  underline: "hover"
+
+}, {
+  BreadcrumbTitle: "Test2",
+  BreadcrumbRef: "#",
+  color: "inherit",
+  underline: "hover"
+
+}, {
+  BreadcrumbTitle: "Test3",
+  BreadcrumbRef: "#",
+  color: "inherit",
+  underline: "hover"
+
+}]
 Basic.args = {
-  list: [
-    <Link underline="hover" color="inherit" href="#"><div>Test1</div></Link>, 
-    <Typography color="text.primary"><div>Test2</div></Typography>
-  ]
+  list: basicBreadCrumbProps
 }
 export const CustomSperator = Template.bind({});
+const CustomSperatorBreadCrumbProps = [
+  {
+    BreadcrumbTitle: "Test1",
+    BreadcrumbRef: "#",
+    color: "inherit",
+    underline: "hover",
+
+  }, {
+    BreadcrumbTitle: "Test2",
+    BreadcrumbRef: "#",
+    color: "inherit",
+    underline: "hover"
+
+  }, {
+    BreadcrumbTitle: "Test3",
+    BreadcrumbRef: "#",
+    color: "inherit",
+    underline: "hover"
+
+  }
+]
 CustomSperator.args = {
-  list: [
-    <Link underline="hover" color="inherit" href="#"><div>Test1</div></Link>, 
-    <Link underline="hover" color="inherit" href="#"><div>Test2</div></Link>,
-    <Typography color="text.primary"><div>Test3</div></Typography>
-  ],
+  list: CustomSperatorBreadCrumbProps,
   separator: "&"
 }
 export const IconSperator = Template.bind({});
+const IconSperatorBreadCrumbProps = [
+  {
+    BreadcrumbTitle: "Test1",
+    BreadcrumbRef: "#",
+    color: "inherit",
+    underline: "hover",
+    icon: <HomeIcon sx={{ mr: 0.5 }} />
+
+  }, {
+    BreadcrumbTitle: "Test2",
+    BreadcrumbRef: "#",
+    color: "inherit",
+    underline: "hover",
+    icon: <WhatshotIcon sx={{ mr: 0.5 }} />
+
+  }, {
+    BreadcrumbTitle: "Test3",
+    BreadcrumbRef: "#",
+    color: "text.primary",
+    underline: "hover",
+    icon: <GrainIcon sx={{ mr: 0.5 }} />,
+
+  }
+]
 IconSperator.args = {
-  list: [
-    <Link underline="hover" color="inherit" href="#"><div><HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />Test1</div></Link>, 
-    <Link underline="hover" color="inherit" href="#"><div><WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />Test2</div></Link>, 
-    <Typography color="text.primary"><div><GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />Test3</div></Typography>
-  ],
+  list: IconSperatorBreadCrumbProps,
   separator: "/"
 }
 export const CollapsedBreadcrumbs = Template.bind({});
 CollapsedBreadcrumbs.args = {
-  list: [
-    <Breadcrumb maxItems={2} aria-label="breadcrumb">
-      <Link underline="hover" color="inherit" href="#"><div>Test1</div></Link>, 
-      <Link underline="hover" color="inherit" href="#"><div>Test2</div></Link>,
-      <Link underline="hover" color="inherit" href="#"><div>Test3</div></Link>,
-      <Typography color="text.primary"><div>Test4</div></Typography>
-    </Breadcrumb>],
-  separator: "/"
+  list: IconSperatorBreadCrumbProps,
+  separator: "/",
+  maxItems: 2
+
 }

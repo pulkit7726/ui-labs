@@ -1,16 +1,26 @@
 import React, { ReactElement } from "react";
-import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import { Icon } from "@mui/material";
 
 type BreadcrumbsProps = {
-    list: ReactElement[] | string[];
+    list: ReactElement[] | any[];
     separator?: string;
+    maxItems?: number;
 }
-const Breadcrumbs = ({ list, ...props }: BreadcrumbsProps) => {
+const Breadcrumb = ({ list, separator, maxItems, ...props }: BreadcrumbsProps) => {
+    console.log(list)
     return (
-        <MuiBreadcrumbs data-testid="breadcrumb" aria-label="breadcrumb" {...props}>
-            {list}
-        </MuiBreadcrumbs>
+        <Breadcrumbs maxItems={maxItems} separator={separator} aria-label="breadcrumb">
+            {list.map((item, index) => {
+                return <Link key={index} color={item.color} aria-current={item.activePage} underline={item.underline} sx={{ display: 'flex', alignItems: 'center' }} href={item.BreadcrumbRef}>
+                    {item.icon}
+                    {item.BreadcrumbTitle}
+                </Link>
+            })}
+        </Breadcrumbs>
     )
 }
 
-export default Breadcrumbs
+export default Breadcrumb
