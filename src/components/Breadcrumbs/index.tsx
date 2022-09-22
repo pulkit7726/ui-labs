@@ -14,10 +14,14 @@ const Breadcrumb = ({ list, separator, maxItems, ...props }: BreadcrumbsProps) =
     return (
         <Breadcrumbs maxItems={maxItems} separator={separator} aria-label="breadcrumb">
             {list.map((item, index) => {
-                return <Link key={index} color={item.color} aria-current={item.activePage} underline={item.underline} sx={{ display: 'flex', alignItems: 'center' }} href={item.BreadcrumbRef}>
+                return item.isLink ? <Link key={index} color={item.color} aria-current={item.activePage} underline={item.underline} sx={{ display: 'flex', alignItems: 'center' }} href={item.url}>
                     {item.icon}
-                    {item.BreadcrumbTitle}
-                </Link>
+                    {item.title}
+                </Link> :
+                    <Typography sx={{ display: 'flex', alignItems: 'center' }}>
+                        {item.icon}
+                        {item.title}
+                    </Typography>
             })}
         </Breadcrumbs>
     )

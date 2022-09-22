@@ -15,22 +15,25 @@ const Template: ComponentStory<typeof Breadcrumbs> = (args) => <Breadcrumbs {...
 
 export const Basic = Template.bind({});
 const basicBreadCrumbProps = [{
-  BreadcrumbTitle: "Test1",
-  BreadcrumbRef: "#",
+  title: "Test1",
+  url: "#",
   color: "inherit",
-  underline: "hover"
+  underline: "hover",
+  isLink: true
 
 }, {
-  BreadcrumbTitle: "Test2",
-  BreadcrumbRef: "#",
+  title: "Test2",
+  url: "#",
   color: "inherit",
-  underline: "hover"
+  underline: "hover",
+  isLink: true
 
 }, {
-  BreadcrumbTitle: "Test3",
-  BreadcrumbRef: "#",
+  title: "Test3",
+  url: "#",
   color: "inherit",
-  underline: "hover"
+  underline: "hover",
+  isLink: false
 
 }]
 Basic.args = {
@@ -39,22 +42,25 @@ Basic.args = {
 export const CustomSperator = Template.bind({});
 const CustomSperatorBreadCrumbProps = [
   {
-    BreadcrumbTitle: "Test1",
-    BreadcrumbRef: "#",
+    title: "Test1",
+    url: "#",
     color: "inherit",
     underline: "hover",
+    isLink: true
 
   }, {
-    BreadcrumbTitle: "Test2",
-    BreadcrumbRef: "#",
+    title: "Test2",
+    url: "#",
     color: "inherit",
-    underline: "hover"
+    underline: "hover",
+    isLink: true
 
   }, {
-    BreadcrumbTitle: "Test3",
-    BreadcrumbRef: "#",
+    title: "Test3",
+    url: "#",
     color: "inherit",
-    underline: "hover"
+    underline: "hover",
+    isLink: false
 
   }
 ]
@@ -65,25 +71,28 @@ CustomSperator.args = {
 export const IconSperator = Template.bind({});
 const IconSperatorBreadCrumbProps = [
   {
-    BreadcrumbTitle: "Test1",
-    BreadcrumbRef: "#",
+    title: "Test1",
+    url: "#",
     color: "inherit",
     underline: "hover",
-    icon: <HomeIcon sx={{ mr: 0.5 }} />
+    icon: <HomeIcon sx={{ mr: 0.5 }} />,
+    isLink: true
 
   }, {
-    BreadcrumbTitle: "Test2",
-    BreadcrumbRef: "#",
+    title: "Test2",
+    url: "#",
     color: "inherit",
-    underline: "hover",
-    icon: <WhatshotIcon sx={{ mr: 0.5 }} />
+    underline: "none",
+    icon: <WhatshotIcon sx={{ mr: 0.5 }} />,
+    isLink: true
 
   }, {
-    BreadcrumbTitle: "Test3",
-    BreadcrumbRef: "#",
+    title: "Test3",
+    url: "#",
     color: "text.primary",
     underline: "hover",
     icon: <GrainIcon sx={{ mr: 0.5 }} />,
+    isLink: false
 
   }
 ]
