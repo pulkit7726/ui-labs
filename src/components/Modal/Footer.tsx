@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Toolbar,
-  AppBar,
   Grid,
 } from '@mui/material';
 import { FooterProps } from "./ModalInterface";

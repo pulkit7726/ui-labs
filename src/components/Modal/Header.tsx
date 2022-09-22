@@ -2,14 +2,10 @@ import React from "react";
 import {
   IconButton,
   Toolbar,
-  AppBar,
   Grid,
   Tooltip,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import SettingsIcon from '@mui/icons-material/Settings';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import { HeaderProps } from "./ModalInterface";
 
 function Header({
