@@ -23,9 +23,6 @@ type ModalProps = {
   width?: string;
   height?: string;
   fullScreen?: boolean;
-  notificationIcon?: boolean;
-  settingIcon?: boolean;
-  fullscreenIcon?: boolean;
   transition?: string;
   transitionContent?: boolean;
   transitionDuration?: number;
@@ -81,9 +78,6 @@ Basic.args = {
   title: 'Dialog/Popup Heading',
   children: <span >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>,
   fullScreen: false,
-  notificationIcon: false,
-  settingIcon: false,
-  fullscreenIcon: false,
   footerBackground: '#E0FFFF',
   footerContent: <><Button color='primary'>Disagree</Button>&nbsp;&nbsp;
   <Button variant="contained" color='primary'>agree</Button></>
@@ -95,21 +89,14 @@ keepMounted.args = {
   title: 'Dialog/Popup Heading',
   children: <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </span>,
   keepMounted: true,
-  footerBackground: '#E0FFFF',
-  fullScreen: false,
-  notificationIcon: false,
-  settingIcon: false,
-  fullscreenIcon: false,
+  footerBackground: '#E0FFFF'
 }
 
 export const ScrollableBody = Template.bind({});
 ScrollableBody.args = {
   headerTitle: 'Scrollable Body',
   title: 'Dialog/Popup Heading',
-  notificationIcon: false,
-  settingIcon: false,
   footerBackground: '#E0FFFF',
-  fullscreenIcon: false,
   fullScreen: false,
   children: <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -125,16 +112,13 @@ basicWithInput.args = {
   headerTitle: 'Basic With Input',
   title: 'Dialog/Popup Heading',
   fullScreen: false,
-  notificationIcon: false,
   footerBackground: '#E0FFFF',
-  settingIcon: false,
-  fullscreenIcon: false,
   children: <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>,
-  footerContent: <div><input type="checkbox" /><span >I accept Terms and conditions </span><Button color='primary' variant="contained">Submit</Button></div>,
+  footerContent: <div><input type="checkbox" /><span >I accept Terms and conditions </span><Button color='primary' variant="contained">Submit</Button></div>
 }
 
 export const completeForm = Template.bind({});
@@ -142,10 +126,7 @@ completeForm.args = {
   headerTitle: 'Complete Form',
   title: <><div><InfoIcon /> Contact Information<h6><FormatListBulletedIcon /> Form description</h6></div></>,
   fullScreen: false,
-  notificationIcon: false,
   footerBackground: '#E0FFFF',
-  settingIcon: false,
-  fullscreenIcon: false,
   children:
     <Box
       component="form"
@@ -172,10 +153,7 @@ paymentBox.args = {
   headerTitle: 'Payment Box',
   title: <div><PaymentIcon /> Payment Details</div>,
   fullScreen: false,
-  notificationIcon: false,
   footerBackground: '#E0FFFF',
-  settingIcon: false,
-  fullscreenIcon: false,
   children: <Box
     component="form"
     sx={{
@@ -199,9 +177,6 @@ export const transitionModal = Template.bind({});
 transitionModal.args = {
   headerTitle: 'Modal Transition',
   fullScreen: false,
-  notificationIcon: false,
-  settingIcon: false,
-  fullscreenIcon: false,
   footerBackground: '#E0FFFF',  
   transitionDuration: 3000,
   children: <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.

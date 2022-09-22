@@ -6,26 +6,25 @@ export default interface ModalProps extends FooterProps, HeaderProps, ModalBodyP
     transitionDuration?: number;
 }
 
-export interface FooterProps {
+export interface FooterProps extends DisplaySize {
     footerContent?: ReactElement | string;
     footerBackground?: string;
 }
 
-export interface HeaderProps {
+export interface HeaderProps extends DisplaySize {
     onClose?: () => void;
     headerBackground?: string;
-    notificationIcon?: boolean;
-    settingIcon?: boolean;
-    fullscreenIcon?: boolean;
     headerTitle?: ReactElement | string;
     keepMounted?: boolean;
 }
 
-export interface ModalBodyProps {
-    width?: string;
-    height?: string;
+export interface ModalBodyProps extends DisplaySize {
     transition?: string;
+    height?: string;
     title?: ReactElement | string;
     children?: ReactElement | string;
     background?: string;
+}
+interface DisplaySize {
+    width?: string;
 }

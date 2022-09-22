@@ -30,9 +30,6 @@ const Modal = ({
   width,
   height,
   fullScreen,
-  notificationIcon,
-  settingIcon,
-  fullscreenIcon,
   transition,
   transitionDuration
 }: ModalProps) => {
@@ -71,17 +68,13 @@ const Modal = ({
         {/* Header */}
 
         {(headerTitle) && (
-        <Box sx={{ display: 'flex', background }} className="CssDialog-box" data-testid="test-box">
           <Header
-            notificationIcon={notificationIcon}
-            settingIcon={settingIcon}
-            fullscreenIcon={fullscreenIcon}
             onClose={onClose}
             headerTitle={headerTitle}
             keepMounted={keepMounted}
+            width={width}
             headerBackground={headerBackground}
           />
-        </Box>
         )}
 
         {/* Body */}
@@ -99,7 +92,7 @@ const Modal = ({
 
         {/* Footer */}
 
-        {footerContent && <Footer footerContent={footerContent} footerBackground={footerBackground} />}
+        {footerContent && <Footer footerContent={footerContent} footerBackground={footerBackground} width={width} />}
 
       </CssDialog>
     )}
