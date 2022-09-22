@@ -1,9 +1,10 @@
 import { create } from '@storybook/theming';
+import logo from '../public/logo.png';
 
 export default create({
   base: 'light',
   brandTitle: 'Wavelabs',
   brandUrl: '/',
-  brandImage: 'https://www.wavelabs.ai/wp-content/uploads/2019/09/wavelabs-logo-1-min.png',
+  brandImage: logo,
   brandTarget: '_self',
 });

@@ -3,6 +3,7 @@ import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 type BreadcrumbsProps = {
     list: ReactElement[] | string[];
+    separator?: string;
 }
 const Breadcrumbs = ({ list, ...props }: BreadcrumbsProps) => {
     return (
