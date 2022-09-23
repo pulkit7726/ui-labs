@@ -1,3 +1,6 @@
+.table-container {
+  max-height: 440px !important;
+}
 .paginate {
   display: flex;
   align-items: center;

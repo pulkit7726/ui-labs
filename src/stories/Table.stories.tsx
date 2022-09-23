@@ -105,7 +105,6 @@ const getPaginatedData = (pageNum: number, pageSize: number) => {
 
 const Template: ComponentStory<typeof TableComponent> = (args) => <TableMemo {...args} />;
 
-
 export const Basic = Template.bind({});
 Basic.args = {
   title: "Calories List",
@@ -162,10 +161,25 @@ SearchTable.args = {
 export const ExportData = Template.bind({});
 ExportData.args = {
   title: "Calories List",
-  tableData: fakeData.slice(0, 10),
+  tableData: fakeData.slice(0, 30),
   tableHeader: tableHeader,
   totalRecord: totalRecords,
   tableSize: 'medium',
   search: true,
   exportData: true,
+}
+
+export const TableWithActionsCoulms = Template.bind({});
+TableWithActionsCoulms.args = {
+  title: "Calories List",
+  tableData: fakeData.slice(0, 10),
+  tableHeader: tableHeader,
+}
+
+export const TableWithStickyHeader = Template.bind({});
+TableWithStickyHeader.args = {
+  title: "Calories List",
+  tableData: fakeData.slice(0, 30),
+  tableHeader: tableHeader,
+  stickyHeader: true,
 }

@@ -19,6 +19,10 @@ interface TableHeader {
   disablePadding: boolean,
   label:string
 }
+interface Actions {
+  icon : string,
+  onClick: () => void
+}
 
 interface TableProps {
   title:string,
@@ -35,7 +39,9 @@ interface TableProps {
   getPaginatedDataFn?: Function,
   columnFilter?:boolean,
   tableHeaderBackground?:string,
-  tableHeaderColor?:string
+  tableHeaderColor?:string,
+  actions?:Actions[];
+  stickyHeader?: boolean;
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -91,7 +97,7 @@ function stableSort<T>(array: T[], comparator:(a: T, b: T) => number) {
 
 
 export const TableComponent = (props : TableProps) => {
-  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,exportData, getPaginatedDataFn,columnFilter,tableHeaderColor,tableHeaderBackground} = props;
+  const {title,tableSize, tableData,totalRecord, tableHeader, emptyDataMsg, pagination, stripe, hover,search,exportData, getPaginatedDataFn,columnFilter,tableHeaderColor,tableHeaderBackground, actions, stickyHeader} = props;
 
   const [searchText,setSearchText]=useState<string>('');
   const [order, setOrder] = useState<Order>("asc");
@@ -109,6 +115,13 @@ export const TableComponent = (props : TableProps) => {
   // (page-1)*rowsPerPage + 1;
   const offSetEnd = page* rowsPerPage > totalRecord ? totalRecord : (page*rowsPerPage)+rowsPerPage;
   // page* rowsPerPage;
+
+  // if (actionsColumn) {
+  //   tableHeader = {
+  //     ...tableHeader,
+  //     ...actions
+  //   }
+  // }
 
   const getNewData = async () => {
     if (pagination && getPaginatedDataFn) {
@@ -156,8 +169,8 @@ export const TableComponent = (props : TableProps) => {
     <Box sx={{ width: "100%" }}>
       <ToolbarComponent title={title} tableHeader={tableHeader} filterHead={filterHead} newData={newData} exportData={exportData} pagination={pagination} columnFilter={columnFilter} search={search} searchText={searchText} setSearchText={setSearchText} tableDataSearch={tableDataSearch} selectColumn={selectColumn} checkedValues={checkedValues} />
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <TableContainer>
-          <Table size={tableSize} aria-labelledby="tableTitle">
+        <TableContainer className="table-container">
+          <Table stickyHeader={stickyHeader} size={tableSize} aria-labelledby="tableTitle">
             <TableHead >
               <TableRow>
                 {filterHead?.map((headCell) => {
@@ -309,8 +322,6 @@ export const TableComponent = (props : TableProps) => {
 
 export default memo(TableComponent);
 
-
-// TableComponent.defaultProps = {
-//   downloadCsv : false,
-//   search : false,
-// }
+TableComponent.defaultProps = {
+  totalRecord: 0
+}
