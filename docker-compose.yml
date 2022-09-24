@@ -7,11 +7,11 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./prod/build:/app/build
+      - ./production/build:/app/build
     stdin_open: true
     tty: true
   prod-app:
-    build: ./prod
+    build: ./production
     image: registry.gitlab.com/wavelabs/ui-labs:dev
     container_name: dev-ui-labs
     ports:
