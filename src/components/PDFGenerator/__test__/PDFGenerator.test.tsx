@@ -18,32 +18,10 @@ describe('should render a PDFGenerator', () => {
         expect(title.getElementsByClassName("pdf-paper").length).toBe(0)
     });
 
-    test("should render as PDF Button", () => {
-        render(<PDFGenerator invoiceData={[]}/>);
-        const title = screen.getByTestId("test-button")
-        expect(title.getElementsByClassName("pdf-button").length).toBe(0)
-    });
-
-    test("should render as PDF Button Title", () => {
-        render(<PDFGenerator invoiceData={[]} buttonTitle="Download PDF"/>);
-        const linkElement = screen.getByText("Download PDF");
-        expect(linkElement).toBeInTheDocument();
-    });
-
-    test("should render as PDF Button generatePDF Function", () => {
-        const {getByRole} = render(<PDFGenerator invoiceData={[]} buttonTitle="Download PDF" />);
-        expect(getByRole("button")).toBeInTheDocument();
-    });
-
-    test("should render as objet", () => {
+    test("should render as object", () => {
         render(<PDFGenerator invoiceData={[]}/>);
         expect(typeof onclick).toBe("object");
-    });
+    });  
 
-    test("should render as PDF Div", () => {
-        render(<PDFGenerator invoiceData={[]}/>);
-        const title = screen.getByTestId("test-div")
-        expect(title.getElementsByClassName("pdf-div").length).toBe(0)
-    });
 
 });    
