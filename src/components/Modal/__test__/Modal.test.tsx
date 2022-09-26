@@ -6,7 +6,7 @@ import Modal from '../index';
 
 describe('should render a Modal', () => {
 
-    test("should render as objet", () => {
+    test("should render as object", () => {
         render(<Modal />);
         expect(typeof onclose).toBe("object");
     });
