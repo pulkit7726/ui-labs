@@ -5,8 +5,6 @@ Box,
 import jsPDF from 'jspdf';
 
 
-
-
 type PDFProps = {
     invoiceData?: any;
     generatePDF?: boolean;
@@ -24,7 +22,6 @@ const generatePDFInvoice = () => {
     const el = ref.current;
     doc.html(el, {
         callback: (pdf: any) => {
-
             let pageCount = doc.internal.getNumberOfPages();
             pdf.deletePage(pageCount);
             let min = Math.ceil(1234);
@@ -46,7 +43,7 @@ useEffect(() => {
 return (
     <>
         <Box sx={{ display: 'flex' }} className="pdf-box" data-testid="test-box">
-               { invoiceData }          
+            { invoiceData }          
         </Box>      
     </>
 )
