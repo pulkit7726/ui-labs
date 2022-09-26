@@ -75,6 +75,7 @@
 .LeftArrow {
   border: 3px solid #ccc;
   border-radius: 50%;
+
 }
 
 .RightArrow {
@@ -97,4 +98,5 @@
 
 .hideArrowIcon {
   display: none !important;
+
 }

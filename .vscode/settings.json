@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "*.tsx": "typescriptreact"
+  },
+  "editor.tabSize": 2,
+  "editor.formatOnSave": false,
+  "editor.minimap.maxColumn": 80,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.wordWrap": "wordWrapColumn",
+  "html.format.wrapLineLength": 80,
+}

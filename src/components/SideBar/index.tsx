@@ -25,6 +25,7 @@ type SideBarProps = {
   image?: string;
   backgroundColor?: string;
   color?: string;
+  activeIndicatorClass?: string
 };
 
 export const SideBar = ({
@@ -39,6 +40,7 @@ export const SideBar = ({
   image,
   backgroundColor,
   color,
+  activeIndicatorClass,
   ...props
 }: SideBarProps) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -163,3 +165,7 @@ export const SideBar = ({
     </Box>
   );
 };
+
+SideBar.defaultProps = {
+  activeIndicatorClass: 'activeTab'
+}
