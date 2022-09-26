@@ -38,19 +38,37 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 type UserProfileProps = {
     title?: string;
     idName?: any;
-    designation?: any;
-    department?: any;
     email?: any;
-    personalDetails?: any;
-    professionalDetails?: any;
+    sex?: string;
+    contact?: string;
+    country?: string;
+    state?: string;
+    personalDetails?: string;
+    professionalDetails?: string;
+    companyName?: string;
+    companyTitle?: string;
+    practiceName?: string;
+    practiceTitle?: string;
+    businessUnitName?: string;
+    businessUnitTitle?: string;
+    departmentName?: string;
+    departmentTitle?: string;
+    seatingLocationName?: string;
+    seatingLocationTitle?: string;
+    payrollLocationName?: string;
+    payrollLocationTitle?: string;
+    designationName?: string;
+    designationTitle?: string;
+    employeeTypeName?: string;
+    employeeTypeTitle?: string;
 
 }
 
 const UserProfile = ({
     title,
     idName,
-    designation,
-    department,
+    designationTitle,
+    departmentTitle,
     email,
     personalDetails,
     professionalDetails,
@@ -87,8 +105,8 @@ const UserProfile = ({
                         </Grid>
                         <Grid item xs={12} sx={{ display: 'flex', flexWrap: 'wrap', direction: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                             <Typography sx={{ color: 'white' }}>{idName}</Typography>
-                            <Typography sx={{ color: 'white' }}>{designation}</Typography>
-                            <Typography sx={{ color: 'white' }}>{department}</Typography>
+                            <Typography sx={{ color: 'white' }}>{designationTitle}</Typography>
+                            <Typography sx={{ color: 'white' }}>{departmentTitle}</Typography>
                             <Typography sx={{ color: 'white' }}>{email}</Typography>
                         </Grid>
                     </Box>

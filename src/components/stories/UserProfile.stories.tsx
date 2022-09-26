@@ -5,11 +5,29 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 type UserProfileProps = {
     title?: string;
     idName?: any;
-    designation?: any;
-    department?: any;
     email?: any;
-    personalDetails?: any;
-    professionalDetails?: any;
+    sex?: string;
+    contact?: string;
+    country?: string;
+    state?: string;
+    personalDetails?: string;
+    professionalDetails?: string;
+    companyName?: string;
+    companyTitle?: string;
+    practiceName?: string;
+    practiceTitle?: string;
+    businessUnitName?: string;
+    businessUnitTitle?: string;
+    departmentName?: string;
+    departmentTitle?: string;
+    seatingLocationName?: string;
+    seatingLocationTitle?: string;
+    payrollLocationName?: string;
+    payrollLocationTitle?: string;
+    designationName?: string;
+    designationTitle?: string;
+    employeeTypeName?: string;
+    employeeTypeTitle?: string;
 }
 
 const UserProfileStories = (props: UserProfileProps) => {
@@ -31,7 +49,25 @@ Profile.args = {
   personalDetails: 'About Me',
   professionalDetails: 'Professional Details',
   idName: 'WL12345-James Williams',
-  designation: 'Software Engineer',
-  department: 'Digital',
   email: 'james@wavelabs.ai',
+  sex: 'Male',
+  contact: '+9100011125',
+  country: 'US',
+  state: 'California',
+  companyName: 'Company',
+  companyTitle: 'Wavelabs Technologies',
+  practiceName: ' Practice',
+  practiceTitle: 'Design & Digital',
+  businessUnitName: 'Business Unit',
+  businessUnitTitle: 'Digital',
+  departmentName: 'Department',
+  departmentTitle: 'Digital',
+  seatingLocationName: 'Seating Location',
+  seatingLocationTitle: 'Hyderabad',
+  payrollLocationName: 'Payroll Location',
+  payrollLocationTitle: 'Hyderabad',
+  designationName: 'Designation',
+  designationTitle: 'Software Engineer',
+  employeeTypeName: 'Employee type',
+  employeeTypeTitle: 'Permanent',
 }              
