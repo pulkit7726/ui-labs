@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { SideBar } from "components/SideBar/SideBar";
+import { SideBar } from "components/SideBar";
 import HomeIcon from '@mui/icons-material/Home';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import PagesIcon from '@mui/icons-material/Pages';
