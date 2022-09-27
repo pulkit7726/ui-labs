@@ -33,9 +33,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 4000",
+    "storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 4000",
     "build-storybook": "build-storybook",
-    "build-static-webapp": "expo build:web"
+    "build-static-webapp": "expo build:web",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": [
@@ -66,8 +68,16 @@
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/testing-library": "0.0.13",
     "@storybook/theming": "^6.5.10",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
     "babel-loader": "^8.2.5",
     "chromatic": "^6.10.0",
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.8",
     "jest-watch-typeahead": "^0.6.5"
   },
   "readme": "ERROR: No README data found!",

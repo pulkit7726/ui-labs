@@ -1,15 +1,15 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import MenuItemList from "./MenuItemList";
-import ResponsiveSideBar from "./Responsive";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import MenuItemList from './MenuItemList';
+import ResponsiveSideBar from './Responsive';
 
 const drawerWidth = 240;
 
@@ -18,7 +18,7 @@ type SideBarProps = {
   showArrowIcon: boolean;
   tooltip: boolean;
   Responsive: boolean;
-  position?: "left" | "right";
+  position?: 'left' | 'right';
   showActiveTabs?: boolean;
   window?: () => Window;
   title?: string;
@@ -28,7 +28,7 @@ type SideBarProps = {
   activeIndicatorClass?: string
 };
 
-export const SideBar = ({
+export function SideBar({
   position,
   Responsive,
   showArrowIcon,
@@ -42,12 +42,11 @@ export const SideBar = ({
   color,
   activeIndicatorClass,
   ...props
-}: SideBarProps) => {
+}: SideBarProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState('');
   const [activeSubMenu, setActiveSubMenu] = React.useState('');
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
@@ -62,7 +61,7 @@ export const SideBar = ({
         {MenuItems.map((item: any, index: any, Id: number) => (
           <MenuItemList
             setActiveTab={setActiveTab}
-            className={`${showActiveTabs && (item.Id === activeTab ? "avtiveTab" : "inActiveTab")} hover-List`}
+            className={`${showActiveTabs && (item.Id === activeTab ? 'avtiveTab' : 'inActiveTab')} hover-List`}
             item={item}
             key={item.Id}
             showActiveTabs={showActiveTabs}
@@ -76,16 +75,16 @@ export const SideBar = ({
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar style={{ backgroundColor: "#343A40" }} position="fixed">
+      <AppBar style={{ backgroundColor: '#343A40' }} position="fixed">
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -108,9 +107,9 @@ export const SideBar = ({
               keepMounted: true,
             }}
             sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
+              display: { xs: 'block', sm: 'none' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
                 width: drawerWidth,
               },
             }}
@@ -118,8 +117,8 @@ export const SideBar = ({
               style: {
                 backgroundColor,
                 color,
-                width: "max-content",
-                minWidth: "245px",
+                width: 'max-content',
+                minWidth: '245px',
               },
             }}
           >
@@ -129,9 +128,9 @@ export const SideBar = ({
             anchor={position}
             variant="permanent"
             sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
+              display: { xs: 'none', sm: 'block' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
                 width: drawerWidth,
               },
             }}
@@ -140,8 +139,8 @@ export const SideBar = ({
               style: {
                 backgroundColor,
                 color,
-                width: "max-content",
-                minWidth: "245px",
+                width: 'max-content',
+                minWidth: '245px',
               },
             }}
           >
@@ -151,7 +150,7 @@ export const SideBar = ({
       ) : (
         <ResponsiveSideBar
           MenuItems={MenuItems}
-          position={"left"}
+          position="left"
           showArrowIcon={showArrowIcon}
           title={title}
           image={image}
@@ -164,8 +163,8 @@ export const SideBar = ({
       )}
     </Box>
   );
-};
+}
 
 SideBar.defaultProps = {
-  activeIndicatorClass: 'activeTab'
-}
+  activeIndicatorClass: 'activeTab',
+};

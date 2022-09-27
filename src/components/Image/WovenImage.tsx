@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
@@ -9,14 +9,11 @@ export interface WovenImageProps {
 interface Type {
   img: string;
   title: string;
-  
+
 }
 
-
-
-export const Image: FC<WovenImageProps > = ({ itemData }) => {
-   return (
-    <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}>
+export const Image: FC<WovenImageProps > = ({ itemData }) => (
+  <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}>
     {itemData.map((item) => (
       <ImageListItem key={item.img}>
         <img
@@ -28,5 +25,4 @@ export const Image: FC<WovenImageProps > = ({ itemData }) => {
       </ImageListItem>
     ))}
   </ImageList>
-  );
-};
+);
