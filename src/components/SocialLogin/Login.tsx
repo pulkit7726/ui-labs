@@ -31,7 +31,7 @@ interface GridProps {
   
 }
 
-
+const clientId = '64805035465-7u5vbi8520gfk2v6lq0j8qnemk68imn5.apps.googleusercontent.com';
 
 function Login({
   ImagesData,
@@ -42,15 +42,31 @@ function Login({
 }: GridProps) {
   
 
-  useEffect(()=>{
-  // function Start(){
-  //   gapi.client.init({
+  // useEffect(()=>{
+  // // function Start(){
+  // //   gapi.client.init({
       
-  //     scope:''
-  //   })
-  // };
-  // gapi.load("client:auth2", Start)
-  },[])
+  // //     scope:''
+  // //   })
+  // // };
+  // // gapi.load("client:auth2", Start)
+  // },[])
+  useEffect(() => {
+    const initClient = () => {
+          gapi.client.init({
+          clientId: clientId,
+          scope: ''
+        });
+     };
+     gapi.load('client:auth2', initClient);
+ });
+
+ const onSuccess = (res: any) => {
+  console.log('success:', res);
+};
+const onFailure = (err: any) => {
+  console.log('failed:', err);
+};
   return (
     <React.Fragment>
       <Card className="p-2" sx={{ maxWidth: "50vw", margin: "3rem auto", height: "90vh", }}>
@@ -93,6 +109,14 @@ function Login({
             
                   </Grid>
                 </Button>
+                <GoogleLogin
+                  clientId={clientId}
+                  buttonText="Sign in with Google"
+                  onSuccess={onSuccess}
+                  onFailure={onFailure}
+                  cookiePolicy={'single_host_origin'}
+                  isSignedIn={true}
+               />
              
                 
                 
