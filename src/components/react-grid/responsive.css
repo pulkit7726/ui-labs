@@ -1,0 +1,7 @@
+.bordergrid{
+    border:5px solid pink !important 
+}
+
+.bordergridless{
+    border:0px solid black !important
+}
