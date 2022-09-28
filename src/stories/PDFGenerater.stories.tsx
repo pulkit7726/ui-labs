@@ -13,9 +13,7 @@ type PDFProps = {
   buttonColor?: any;
   buttonSize?: any;
   buttonVariant?: any;
-  invoiceData?: any;
-  mainBox?: any;
-  invoiceContent?: any;
+  mainBox?: string;
   name?: string;
   address?: string;
   fileContent?: string;

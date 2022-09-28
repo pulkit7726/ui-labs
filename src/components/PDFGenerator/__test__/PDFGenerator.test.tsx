@@ -33,7 +33,5 @@ describe('should render a PDFGenerator', () => {
     test("should render as object", () => {
         render(<PDFGenerator invoiceData={[]}/>);
         expect(typeof onclick).toBe("object");
-    });  
-
-
+    }); 
 });    
