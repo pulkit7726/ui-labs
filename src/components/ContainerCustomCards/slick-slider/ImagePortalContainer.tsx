@@ -53,7 +53,7 @@ export default function ImagePortalContainer() {
           component={motion.div}
           variants={variant}
           sx={{
-            zIndex: 1,
+            zIndex: 100,
             position: "absolute",
             display: "inline-block",
             ...(rect && {

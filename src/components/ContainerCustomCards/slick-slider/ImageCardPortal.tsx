@@ -26,7 +26,6 @@ export default function ImageCardModal({
       }}
       sx={{
         width: rect.width * 1.5,
-        // height: rect.height * 2.5,
         height: "100%"
       }}
     >
@@ -65,11 +64,10 @@ export default function ImageCardModal({
       </Box>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {image.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {image.overview}
         </Typography>
         <CardActions>
           <Button size="small" color="primary">

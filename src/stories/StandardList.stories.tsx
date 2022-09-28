@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image } from '../components/Image/ImageList';
+import { Image } from '../components/Image/StandardList';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 
 export default {
-  title: 'Images/Image',
+  title: 'Image',
   component: Image,
 } as ComponentMeta<typeof Image>;
 
@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof Image> = args => {
   return <Image itemData={args.itemData} />;
 };
 
-export const ImageList = Template.bind({});
+export const StandardList = Template.bind({});
 
 const itemData = [
   {
@@ -67,7 +67,7 @@ const itemData = [
   },
 ];
 
-ImageList.args = {
+StandardList.args = {
   itemData: itemData
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import { styled, Theme, useTheme } from "@mui/material/styles";
@@ -7,10 +7,11 @@ import Box from "@mui/material/Box";
 import CustomNavigation from "./CustomNavigation";
 import ImageItemWithHover from "./ImageItemWithHover";
 import { ARROW_MAX_WIDTH } from "../constant";
+import { Grid } from "@mui/material";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
-  overflow: "inherit"
+  overflow: "inherit",
 }));
 
 const StyledSlider = styled(Slider)(
@@ -19,24 +20,25 @@ const StyledSlider = styled(Slider)(
     justifyContent: "center",
     overflow: "initial !important",
     "& > .slick-list": {
-      overflow: "visible"
+      overflow: "visible",
     },
     [theme.breakpoints.up("sm")]: {
       "& > .slick-list": {
-        width: `calc(100% - ${2 * padding}px)`
+        width: `calc(100% - ${2 * padding}px)`,
       },
       "& .slick-list > .slick-track": {
-        margin: "0px !important"
+        margin: "0px !important",
       },
-      "& .slick-list > .slick-track > .slick-current > div > .MuiBox-root > .MuiPaper-root:hover": {
-        transformOrigin: "0% 50% !important"
-      }
+      "& .slick-list > .slick-track > .slick-current > div > .MuiBox-root > .MuiPaper-root:hover":
+        {
+          transformOrigin: "0% 50% !important",
+        },
     },
     [theme.breakpoints.down("sm")]: {
       "& > .slick-list": {
-        width: `calc(100% - ${padding}px)`
-      }
-    }
+        width: `calc(100% - ${padding}px)`,
+      },
+    },
   })
 );
 
@@ -46,7 +48,7 @@ interface SlideItemProps {
 
 function SlideItem({ item }: SlideItemProps) {
   return (
-    <Box sx={{ pr: { xs: 0.5, sm: 1 } }}>
+    <Box sx={{ pr: { xs: 0.5, sm: 0.5 } }}>
       <ImageItemWithHover image={item} />
     </Box>
   );
@@ -54,8 +56,14 @@ function SlideItem({ item }: SlideItemProps) {
 
 interface SlickSliderProps {
   images: any[];
+  cardType: string;
+  cardSize: string;
 }
-export default function SlickSlider({ images }: SlickSliderProps) {
+export default function SlickSlider({
+  images,
+  cardType,
+  cardSize,
+}: SlickSliderProps) {
   const sliderRef = useRef<Slider>(null);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isEnd, setIsEnd] = useState(false);
@@ -89,31 +97,31 @@ export default function SlickSlider({ images }: SlickSliderProps) {
         breakpoint: 1536,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 5
-        }
+          slidesToScroll: 5,
+        },
       },
       {
         breakpoint: 1200,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4
-        }
+          slidesToScroll: 4,
+        },
       },
       {
         breakpoint: 900,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3
-        }
+          slidesToScroll: 3,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      }
-    ]
+          slidesToScroll: 2,
+        },
+      },
+    ],
   };
 
   const handlePrevious = () => {
@@ -124,30 +132,67 @@ export default function SlickSlider({ images }: SlickSliderProps) {
     sliderRef.current?.slickNext();
   };
 
+  console.log("cardSize", cardSize);
+
+  const renderView = () => {
+
+    if (cardType === "Horizontal Slider") {
+      return (
+        <span data-testid="horizontal-container">
+        <CustomNavigation
+          isEnd={isEnd}
+          arrowWidth={ARROW_MAX_WIDTH}
+          onNext={handleNext}
+          onPrevious={handlePrevious}
+          activeSlideIndex={activeSlideIndex}
+        >
+          <StyledSlider
+            ref={sliderRef}
+            {...settings}
+            padding={ARROW_MAX_WIDTH}
+            theme={theme}
+          >
+            {images.map((item, idx) => (
+              <SlideItem key={idx} item={item} />
+            ))}
+          </StyledSlider>
+        </CustomNavigation>
+        </span>
+      );
+    }
+    if (cardType === "Grid Slider") {
+      return (
+        <Box sx={{ flexGrow: 1 }} data-testid="grid-container">
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
+          >
+            {images.map((item, idx) => (
+              <Grid item xs={3} sm={3} md={3} key={idx}>
+                <SlideItem key={idx} item={item} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      );
+    }
+    return (
+      <div style={{ width: 250 }} data-testid="vertical-container">
+        {images.map((item, idx) => (
+          <SlideItem key={idx} item={item} data-testid="item-container" />
+        ))}
+      </div>
+    );
+  };
   return (
-    <Box sx={{ overflow: "hidden", height: "100%", zIndex: 1 }}>
+    <Box
+      sx={{ overflow: "hidden", height: "100%", zIndex: 1 }}
+      data-testid="main-cotainer"
+    >
       {images.length && (
         <>
-          <RootStyle>
-            <CustomNavigation
-              isEnd={isEnd}
-              arrowWidth={ARROW_MAX_WIDTH}
-              onNext={handleNext}
-              onPrevious={handlePrevious}
-              activeSlideIndex={activeSlideIndex}
-            >
-              <StyledSlider
-                ref={sliderRef}
-                {...settings}
-                padding={ARROW_MAX_WIDTH}
-                theme={theme}
-              >
-                {images.map((item, idx) => (
-                  <SlideItem key={idx} item={item} />
-                ))}
-              </StyledSlider>
-            </CustomNavigation>
-          </RootStyle>
+          <RootStyle>{renderView()}</RootStyle>
         </>
       )}
     </Box>

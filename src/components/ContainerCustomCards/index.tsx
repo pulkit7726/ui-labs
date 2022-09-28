@@ -10,33 +10,26 @@ import "slick-carousel/slick/slick-theme.css";
 
 export interface ContainerCustomCardsProps {
   images: Array<Type>;
+  cardType: string;
+  cardSize: string;
 }
 
 interface Type {
-  adult: boolean;
   backdrop_path: string;
-  genre_ids: Array<number>;
   id: number;
-  original_language: string;
   original_title: string;
   overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
   title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
 }
 
 export const ContainerCustomCards: FC<ContainerCustomCardsProps> = ({
-  images = []
+  images = [], cardType, cardSize 
 }) => {
   return (
     <Box pt={10}>
       <PortalProvider>
         <ImagePortalContainer />
-        <SlickSlider images={images} />
+        <SlickSlider images={images} cardType={cardType} cardSize={cardSize} />
       </PortalProvider>
     </Box>
   );

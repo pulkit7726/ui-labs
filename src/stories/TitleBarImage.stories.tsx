@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image } from '../components/Image/TitleBarImageList';
+import { Image } from '../components/Image/TitleBarList';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 
 export default {
-  title: 'Images/Image',
+  title: 'Image',
   component: Image,
 } as ComponentMeta<typeof Image>;
 
@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof Image> = args => {
   return <Image itemData={args.itemData} />;
 };
 
-export const TitleBarImageList = Template.bind({});
+export const TitleBarList = Template.bind({});
 
 const itemData = [
     {
@@ -90,7 +90,7 @@ const itemData = [
     },
   ];
 
-  TitleBarImageList.args = {
+  TitleBarList.args = {
   itemData: itemData
 };
 

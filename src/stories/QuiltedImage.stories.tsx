@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image } from '../components/Image/QuiltedImageList';
+import { Image } from '../components/Image/QuiltedList';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 
 export default {
-  title: 'Images/Image',
+  title: 'Image',
   component: Image,
 } as ComponentMeta<typeof Image>;
 
@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof Image> = args => {
   return <Image itemData={args.itemData} />;
 };
 
-export const QuiltedImageList = Template.bind({});
+export const QuiltedList = Template.bind({});
 
 const itemData = [
     {
@@ -77,7 +77,7 @@ const itemData = [
     },
   ];
 
-  QuiltedImageList.args = {
+  QuiltedList.args = {
   itemData: itemData
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Image } from '../components/Image/WovenImageList';
+import { Image } from '../components/Image/WovenList';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
-  title: 'Images/Image',
+  title: 'Image',
   component: Image,
 } as ComponentMeta<typeof Image>;
 
@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Image> = args => {
   return <Image itemData={args.itemData} />;
 };
 
-export const WovenImageList = Template.bind({});
+export const WovenList = Template.bind({});
 
 const itemData = [
     {
@@ -66,7 +66,7 @@ const itemData = [
     },
   ];
   
-  WovenImageList.args = {
+  WovenList.args = {
   itemData: itemData
 };
 

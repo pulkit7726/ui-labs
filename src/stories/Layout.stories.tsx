@@ -4,7 +4,7 @@ import Sidebar from '../components/MainLayout';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
-  title: 'Layout/MainLayout',
+  title: 'MainLayout',
   component: Sidebar,
 } as ComponentMeta<typeof Sidebar>;
 
