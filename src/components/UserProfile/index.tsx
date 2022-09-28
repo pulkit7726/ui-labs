@@ -1,203 +1,76 @@
+import { Grid, Avatar, Modal, Stack, Box, Typography, Paper } from '@mui/material';
 import React from 'react';
-import {
-    Avatar,
-    Box,
-    Grid,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography
-} from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
-import { Stack } from '@mui/system';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import SideDrawer from './SideDrawer';
+import Footer from './Footer';
+import Header from './Header';
 
-const StyledTypography = styled(Typography)(({ theme }) => ({
-    display: 'flex',
-    justifyContent: 'flex-end'
-
-}));
-
-const StyledAvtar = styled(Avatar)(({ theme }) => ({
-    width: '100px',
-    height: '100px',
-
-}));
-
-const StyledPaper = styled(Paper)(({ theme }) => ({
-    '@media (min-width:600px)': {
-        fontSize: '1.5rem',
-    }
-}));
-
-type UserProfileProps = {
-    title?: string;
-    idName?: any;
-    email?: any;
-    sex?: string;
-    contact?: string;
-    country?: string;
-    state?: string;
-    personalDetails?: string;
-    professionalDetails?: string;
-    companyName?: string;
-    companyTitle?: string;
-    practiceName?: string;
-    practiceTitle?: string;
-    businessUnitName?: string;
-    businessUnitTitle?: string;
-    departmentName?: string;
-    departmentTitle?: string;
-    seatingLocationName?: string;
-    seatingLocationTitle?: string;
-    payrollLocationName?: string;
-    payrollLocationTitle?: string;
-    designationName?: string;
-    designationTitle?: string;
-    employeeTypeName?: string;
-    employeeTypeTitle?: string;
-
+type AvatarProps = {
+    alContent?: 'center';
+    keepMounted?: boolean;
 }
 
-const UserProfile = ({
-    title,
-    idName,
-    designationTitle,
-    departmentTitle,
-    email,
-    personalDetails,
-    professionalDetails,
-}: UserProfileProps) => {
- 
-    const [open, setOpen] = React.useState(false)
-    const matches = useMediaQuery('(min-width:600px)');
+const CssAvatar = ({alContent, keepMounted}: AvatarProps) => {
+    console.log(alContent)
+    return (      
+        <Grid item xs={12}  
+        sx={{ display: 'flex', 
+        justifyContent: alContent === 'center' ? 'center' : 'left' , 
+        backgroundColor: 'white' }}>
+    
+        <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+                marginBottom: '40px',
+                marginTop: '-34px',
+                transform: 'scale(1.8)'
+            }}>
+            <Avatar
+                style={{ height: 70, width: 70 }}
+                src="https://thumbs.dreamstime.com/z/businessman-vector-icon-avatar-sign-man-business-suit-male-face-flat-design-man-avatars-profile-concept-concept-boss-85517342.jpg"
+            />
+        </Stack>
+    </Grid>
+    )
+}
 
-    const handleOpen = () => {
-        setOpen(!open);
-    }
-    const handleClose = () => {
-        setOpen(false);
-    }
-
+const Body = (props) => {
     return (
-        <>
-            <Paper
-                elevation={5}
-                style={{ margin: '10px', padding: '10px' }}
-            >
-                <Grid container>
-                    <Box
-                        sx={{
-                            width: '100%',
-                            backgroundImage: `url("images/background.jpg")`,
-                        }}>
-                        <Grid
-                            item xs={12}
-                            sx={{  display: 'flex', flexWrap: 'wrap', direction: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-                            <Stack direction="row" spacing={2} sx={{ marginTop: '20px', marginBottom: '20px' }}>
-                                <StyledAvtar src="images/background.png" />
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} sx={{ display: 'flex', flexWrap: 'wrap', direction: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                            <Typography sx={{ color: 'white' }}>{idName}</Typography>
-                            <Typography sx={{ color: 'white' }}>{designationTitle}</Typography>
-                            <Typography sx={{ color: 'white' }}>{departmentTitle}</Typography>
-                            <Typography sx={{ color: 'white' }}>{email}</Typography>
-                        </Grid>
-                    </Box>
-                    <Grid xs={12}
-                        sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            justifyContent: 'space-evenly'
-                        }}>
-                        <Paper elevation={5}
-                            style={{ margin: '20px', padding: '10px' }}>
-                            <TableContainer >
-                                <Table aria-label="customized table">
-                                    <TableHead sx={{ backgroundColor: 'gainsboro' }}>
-                                        <TableRow>
-                                            <TableCell><b>{personalDetails}</b></TableCell>
-                                        </TableRow>
-                                    </TableHead><br /><br />
-                                    <TableBody >
-                                        <TableRow>
-                                            <TableCell >WL12345</TableCell>
-                                            <TableCell>James Williams</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell >Software Engineer</TableCell>
-                                            <TableCell>james@wavelabs.ai</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell >Male</TableCell>
-                                            <TableCell>+9100011125</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell >California</TableCell>
-                                            <TableCell>US</TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-                        <Paper elevation={5}
-                            style={{ margin: '20px', padding: '10px', flexBasis: '50%' }}>
-                            <TableContainer >
-                                <Table aria-label="customized table">
-                                    <TableHead sx={{ backgroundColor: 'gainsboro' }}>
-                                        <TableRow>
-                                            <TableCell><b>{professionalDetails}</b></TableCell>
-                                        </TableRow>
-                                    </TableHead><br /><br />
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell ><b>Company</b></TableCell>
-                                            <TableCell>Wavelabs Technologies</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell ><b>Practice</b></TableCell>
-                                            <TableCell>Design & Digital</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell ><b>Business Unit</b></TableCell>
-                                            <TableCell>Department</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell ><b>Department</b></TableCell>
-                                            <TableCell>Department</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell ><b>Seating Location</b></TableCell>
-                                            <TableCell>Hyderabad</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell ><b>Payroll Location</b></TableCell>
-                                            <TableCell>Hyderabad</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell ><b>Designation</b></TableCell>
-                                            <TableCell>Senior Engineer</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell ><b>Employee type</b></TableCell>
-                                            <TableCell>Permanent</TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-                    </Grid>
-                </Grid>
-            </Paper>
-            <button onClick={handleOpen}>show</button>
-            <SideDrawer open={open} handleClose={handleClose}/>
-        </>
+        <Grid item xs={12}
+            style={{ display: 'flex', 
+            justifyContent: 'center',
+            backgroundColor: 'white' }}>
+            <Box>
+                <Typography id="modal-modal-description" >
+                    {props.value}
+                </Typography>
+            </Box>
+        </Grid>
+    )
+}
+
+const Records = (props) => {
+    return <div>
+        <Paper elevation={5} style={{ margin: '20px', padding: '10px' }}>
+            <Header />
+            <CssAvatar />
+            {props.data.map((obj, i) => {
+                return <div key={i}>
+                    <Body value={obj.value} orientation={obj.orientation} />
+                </div>
+            })}
+            <Footer />
+        </Paper>
+    </div>
+}
+
+const UserProfile = ({ ...props }) => {
+    return (
+        <div>
+            {props.display === 'modal' &&
+                <Modal open={true}>
+                        <Records {...props} />
+                </Modal>}
+        </div>
     )
 }
 
