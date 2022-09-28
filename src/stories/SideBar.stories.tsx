@@ -11,7 +11,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 
 export default {
-  title: 'SideBar',
+  title: 'UI/SideBar',
   component: SideBar,
 
   argTypes: {

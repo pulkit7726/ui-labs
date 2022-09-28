@@ -9,7 +9,7 @@ import Link from '@mui/material/Link';
 import { Typography } from '@mui/material';
 
 export default {
-  title: 'Breadcrumbs',
+  title: 'UI/Breadcrumbs',
   show: true,
   onClose: () => { },
 } as ComponentMeta<typeof Breadcrumbs>;
