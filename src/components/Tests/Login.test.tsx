@@ -1,7 +1,7 @@
 import React from "react";
 import {render, screen } from "@testing-library/react";
 import { composeStories } from "@storybook/testing-react";
-import * as Login from 'stories/sociologin.stories'
+import * as Login from '../../stories/sociologin.stories'
 const {List} = composeStories(Login)
 test("should renders List component", () => {
   render(<List {...List.args } /> )
