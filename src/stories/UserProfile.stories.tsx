@@ -7,7 +7,7 @@ type UserProfileProps = {
     type?: string;
     alContent?: string;
     keepMounted?: boolean;
-}
+} 
 const data = [
   {
     id: "avatar",
@@ -65,10 +65,10 @@ CenterProfile.args = {
 
 export const LeftProfile = Template.bind({});
 LeftProfile.args = {
-  alContent: 'right',
+  alContent: 'left',
 }
 
 export const RightProfile = Template.bind({});
 RightProfile.args = {
-  alContent: 'left',
+  alContent: 'right',
 }

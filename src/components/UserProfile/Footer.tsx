@@ -16,19 +16,14 @@ const StyledAvtar = styled(Avatar)(({ theme }) => ({
 
 }));
 
-const Footer = ({
-  userId,
-  userName,
-  email,
-  departmentTitle,
-  designationTitle,
-}: HeaderProps) => {
+const Footer = ({...props}) => {
   return (
     <>
       <Box
         sx={{
           width: '100%',
-          justifyContent: 'center',
+          justifyContent: props.alContent === 'center' ? 'center' :
+          props.alContent === 'right' ? 'right' : 'left',
           display: 'flex',
           marginTop: '20px'
         }}>
