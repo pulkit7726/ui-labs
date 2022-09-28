@@ -62,3 +62,23 @@
 - [ ] Does the code have standard headers - author, date, synopsis, modifications history
 
 - [ ] Comments about special cases
+
+
+Storyboook React SPA code Guidelines:
+•While setting up the project for first time, use yarn install to install dependencies.
+•Use yarn run storybook to run the application.
+•All React components and stories should be in typescript. (file extension should be .tsx)
+•Every component should be added in components folder and stories should be in stories folder.
+Ex: src/components/Button (Button folder should have one index.tsx file)
+src/stories/Button.stories.tsx 
+•Use PascalCase for type names.
+•Prop names should be camelCase.
+•Every component should have react unit test cases.
+•Add type declaration (interfaces and types) for each component's props.
+•Prop names and function names should be meaningful and camelCase.
+•Each prop should have its own description (which will be reflected in story book component docs).
+•Remove consoles and debugger before code is being pushed.
+•Each Component name should be in PascalCase.
+•Mostly avoid using type any (: any) if we know type, otherwise use any.
+•It’s better to follow single pattern for all branches component name hyphen developer name. Ex: dev-kalyani-sidebar
+•Format your files with eslint, prettier before pushing code to remote.
