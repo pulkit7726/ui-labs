@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Image } from '../components/Image/CustomImage';
 
 export default {
-  title: 'Images/Image',
+  title: 'UI/Image',
   component: Image,
 } as ComponentMeta<typeof Image>;
 

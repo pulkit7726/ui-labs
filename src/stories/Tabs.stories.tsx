@@ -7,7 +7,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
 export default {
-	title: 'Tabs',
+	title: 'UI/Tabs',
 	component: Tabs,
 	parameters: {
 		layout: 'fullscreen',

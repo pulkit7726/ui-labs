@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TableMemo, { TableComponent } from '../components/Table/Table';
 
 export default {
-  title: 'Table',
+  title: 'UI/Table',
   component: TableComponent,
 } as ComponentMeta<typeof TableComponent>;
 

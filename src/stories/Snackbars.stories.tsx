@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import { SnackBar } from 'components/Snackbars';
 
 export default {
-  title: 'SnackBars',
+  title: 'UI/SnackBars',
   component: SnackBar,
 } as ComponentMeta<typeof SnackBar>;
 
