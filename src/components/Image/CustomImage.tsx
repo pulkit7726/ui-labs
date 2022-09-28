@@ -5,7 +5,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-function srcset(image: string, width: number, height: number, rows = 1, cols = 1) {
+function srcSet(image: string, width: number, height: number, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
     srcSet: `${image}?w=${width * cols}&h=${
@@ -21,7 +21,6 @@ export interface CustomImageProps {
 interface Type {
   img: string;
   title: string;
-  author:string;
   featured?:boolean;
 }
 
@@ -42,7 +41,7 @@ export const Image: FC<CustomImageProps > = ({ itemData }) => (
       return (
         <ImageListItem key={item.img} cols={cols} rows={rows}>
           <img
-            {...srcset(item.img, 250, 200, rows, cols)}
+            {...srcSet(item.img, 250, 200, rows, cols)}
             alt={item.title}
             loading="lazy"
           />

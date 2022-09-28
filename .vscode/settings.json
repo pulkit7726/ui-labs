@@ -14,8 +14,11 @@
 		"[typescript]": {
 			"editor.formatOnSave": true
 		},
+		"[typescriptreact]": {
+			"editor.formatOnSave": true
+		},
 		"[javascript]": {
-			"editor.formatOnSave": false
+			"editor.formatOnSave": true
 		},
 		"[javascriptreact]": {
 			"editor.formatOnSave": false
