@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Button } from "@mui/material";
-import { SnackBars } from "components/Snackbars";
+import { SnackBar } from "components/Snackbars";
 
 export default {
   title: "SnackBars",
-  component: SnackBars,
-} as ComponentMeta<typeof SnackBars>;
+  component: SnackBar,
+} as ComponentMeta<typeof SnackBar>;
 
-const Template: ComponentStory<typeof SnackBars> = (args) => {
+const Template: ComponentStory<typeof SnackBar> = (args) => {
   const [open, setOpen] = useState(false);
 
-  const toggleNotification = () => setOpen((open) => !open);
+  const toggleNotification = () => {
+    setOpen((open) => !open);
+  }
 
   return (
     <>
       <Button variant="outlined" onClick={toggleNotification}>
-        Open Notification
+
+        Open Notification 
+
       </Button>
-      <SnackBars {...args} open={open} handleClose={() => setOpen(false)} />
+      <SnackBar {...args} open={open} handleClose={() => setOpen(false)} />
     </>
   );
 };
@@ -46,7 +50,7 @@ Position.args = {
 export const Transition = Template.bind({});
 Transition.args = {
   transition: "slide",
-  direction: "right",
+  slideDirection: "right",
   autoHideDuration: 2000,
   message: "you can choose transition of snackbar",
 };
