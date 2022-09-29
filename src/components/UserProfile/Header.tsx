@@ -15,7 +15,7 @@ const StyledAvtar = styled(Avatar)(({ theme }) => ({
 
 }));
 
-const Header = () => {
+const Header = ({...props}) => {
   return (
     <>
       <Box

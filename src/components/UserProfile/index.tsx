@@ -70,8 +70,10 @@ const Records = ({...props}) => {
         </Paper>
     </div>
 }
-
-const UserProfile = ({ ...props }) => {
+type UserProfileProps ={
+    buttonColor: string;
+}
+const UserProfile = ({...props}) => {
     return (
         <div>
             {props.display === 'modal' &&

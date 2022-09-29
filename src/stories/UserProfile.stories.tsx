@@ -7,6 +7,12 @@ type UserProfileProps = {
     type?: string;
     alContent?: string;
     keepMounted?: boolean;
+    myAccountButtonColor?: any;
+    myAccountButtonSize?: any;
+    myAccountButtonVariant?: any;
+    logoutButtonColor?: any;
+    logoutButtonSize?: any;
+    logoutButtonVariant?: any;
 } 
 const data = [
   {
@@ -51,7 +57,45 @@ const UserProfileStories = (props: UserProfileProps) => {
 }
  
 export default {
-    title: 'User Profile',
+  title: 'User Profile',
+  argTypes: {
+    myAccountButtonColor: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary', 'success', 'info', 'warning'],
+      },
+    },
+    myAccountButtonSize: {
+      control: {
+        type: 'select',
+        options: ['small', 'medium', 'large'],
+      },
+    },
+    myAccountButtonVariant: {
+      control: {
+        type: 'select',
+        options: ['contained', 'outlined', 'text'],
+      },
+    },
+    logoutButtonColor: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary', 'success', 'info', 'warning'],
+      },
+    },
+    logoutButtonSize: {
+      control: {
+        type: 'select',
+        options: ['small', 'medium', 'large'],
+      },
+    },
+    logoutButtonVariant: {
+      control: {
+        type: 'select',
+        options: ['contained', 'outlined', 'text'],
+      },
+    },
+  }
    
 } as ComponentMeta<typeof UserProfileStories>;
 

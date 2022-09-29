@@ -27,8 +27,20 @@ const Footer = ({...props}) => {
           display: 'flex',
           marginTop: '20px'
         }}>
-          <Button color="primary" variant="outlined">My Account</Button>&nbsp;&nbsp;&nbsp;&nbsp;
-          <Button color="primary" variant="outlined" >Logout</Button>
+          <Button 
+            color={props.myAccountButtonColor} 
+            variant={props.myAccountButtonVariant}
+            size={props.myAccountButtonSize}
+            >
+                My Account
+          </Button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button 
+            color={props.logoutButtonColor} 
+            variant={props.logoutButtonVariant}
+            size={props.logoutButtonSize} 
+            >
+              Logout
+          </Button>
       </Box>
     </>
   )

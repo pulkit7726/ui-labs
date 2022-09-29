@@ -6,7 +6,6 @@ import {
 } from '@mui/material';
 
 const ProfileBody = ({ ...props }) => {
-  console.log(props.value)
   return (
     <>
       <Grid container style={{
