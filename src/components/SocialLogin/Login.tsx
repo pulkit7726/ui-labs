@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
+import './login.css'
 
 import {
   Button,
@@ -52,6 +53,10 @@ function Login({ ImagesData, size, logo, backgroundColor, color }: GridProps) {
   const md = {
     width:"45px", height:"45px", padding:"0"
   }
+
+  // const box 
+
+
   return (
     <React.Fragment>
       <Card
@@ -94,17 +99,21 @@ function Login({ ImagesData, size, logo, backgroundColor, color }: GridProps) {
                         size="medium"
                         
                         style={size==="large"? lg:md}
-                        sx={{ width:"45px", height:"45px", padding:"0"}}
+                        sx={{ width:"45px", height:"45px", padding:"0", display:"inline-flex",boxShadow:"none !important"}}
                       >
+                        
                         <GoogleLogin
+                        className="box"
                           clientId={clientId}
-                          style={{color:"#1976D2"}}
+                          // style={{display:'flex !important'}}
                           buttonText={size === "large" ? "Google" : ""}
                           onSuccess={onSuccess}
                           onFailure={onFailure}
                           cookiePolicy={"single_host_origin"}
                           isSignedIn={true}
                         />
+                        
+                      
                       </Button>
                     ) : (
                       <Button
@@ -112,6 +121,7 @@ function Login({ ImagesData, size, logo, backgroundColor, color }: GridProps) {
                         variant="outlined"
                         fullWidth
                         size="medium"
+                      
                       >
                         <Grid container justifyContent="center">
                           <Grid
@@ -132,6 +142,7 @@ function Login({ ImagesData, size, logo, backgroundColor, color }: GridProps) {
                                   textAlign: "center",
                                   alignSelf: "center",
                                   marginLeft: "0.3rem",
+                                  color:"#0000008A"
                                 }}
                               >
                                 {image.alt}
@@ -147,23 +158,8 @@ function Login({ ImagesData, size, logo, backgroundColor, color }: GridProps) {
             );
           })}
 
-          {/* <Button onClick={() => alert("Hello")}>
-            <MoreHorizIcon style={{ width: "auto", height: "40px" }} />
-          </Button>
-           */}
         </Grid>
 
-        {/* </div> */}
-
-        {/* <Button>
-            <Icon>
-              <img
-                src="https://image.similarpng.com/very-thumbnail/2020/06/Black-icon-Twitter-logo-transparent-PNG.png"
-                alt="abc"
-              />
-            </Icon>
-            <h1>hi</h1>
-          </Button> */}
         <div style={{ width: "50%", margin: "auto" }}>
           <Button
             style={{ backgroundColor: backgroundColor, color: color }}
