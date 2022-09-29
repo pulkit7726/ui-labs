@@ -17,7 +17,7 @@ describe('should render a PDFGenerator', () => {
         const linkElement = screen.getByText(/Wavelabs Technologies India/i);
         expect(linkElement).toBeInTheDocument();    
     });
-
+ 
     test("should render as Address", () => {
         render(<PDFGenerator invoiceData={'Hyderabad, Telangana 500081'}/>);
         const linkElement = screen.getByText(/Hyderabad, Telangana 500081/i);

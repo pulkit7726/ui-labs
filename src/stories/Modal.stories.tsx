@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import InfoIcon from '@mui/icons-material/Info';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import PaymentIcon from '@mui/icons-material/Payment';
- 
+  
 type ModalProps = {
   headerTitle?: ReactElement | string;
   title?: ReactElement | string;

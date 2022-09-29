@@ -10,9 +10,9 @@ import {
 
 type PDFProps = {
   buttonTitle?: string;
-  buttonColor?: any;
-  buttonSize?: any;
-  buttonVariant?: any;
+  buttonColor?: number;
+  buttonSize?: number;
+  buttonVariant?: number;
   mainBox?: string;
   name?: string;
   address?: string;
