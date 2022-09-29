@@ -1,5 +1,4 @@
-import CustomThemeProvider from './../src/themeing/CustomeThemeProvider';
-import { CssBaseline } from "@mui/material";
+import { wrapTheme } from "./decorators";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -11,13 +10,4 @@ export const parameters = {
   },
 }
 
-export const decorators = [
-  (Story) => {
-    return (
-      <CustomThemeProvider>
-        <CssBaseline enableColorScheme/>
-        <Story />
-      </CustomThemeProvider>
-    );
-  }
-];
+export const decorators = [wrapTheme];
