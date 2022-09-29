@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   ListItem,
   ListItemText,
@@ -6,10 +6,10 @@ import {
   Collapse,
   Divider,
   ListItemIcon,
-} from "@mui/material";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import "./sidebar.css";
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import './sidebar.css';
 
 interface ListItemProps {
   item: any;
@@ -23,7 +23,7 @@ interface ListItemProps {
   responsive?: boolean;
 }
 
-const MenuItemList = ({
+function MenuItemList({
   item,
   drawerOpen,
   showActiveTabs,
@@ -34,7 +34,7 @@ const MenuItemList = ({
   setActiveSubMenu,
   responsive,
   ...props
-}: ListItemProps) => {
+}: ListItemProps) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -59,8 +59,8 @@ const MenuItemList = ({
           item.icon && <ListItemIcon>{item.icon}</ListItemIcon>
         }
         <ListItemText primary={item.Name} />
-        {item?.SubMenu?.length &&
-          (open && drawerOpen ? <ExpandLess /> : <ExpandMore />)}
+        {item?.SubMenu?.length
+          && (open && drawerOpen ? <ExpandLess /> : <ExpandMore />)}
       </ListItem>
       <Divider />
       {
@@ -70,29 +70,27 @@ const MenuItemList = ({
               {item.SubMenu?.map(
                 (
                   subItems: any,
-                  index: any
-                ) => {
-                  return (
-                    <ListItem
-                      button
-                      key={subItems.Id}
-                      onClick={() => {
-                        setActiveTab('');
-                        setActiveSubMenu(subItems.Id);
-                      }}
-                      className={`${showActiveTabs && (subItems.Id === activeSubMenu ? "avtiveTab" : "inActiveTab")}`}
-                    >
-                      {
-                        subItems.icon && <ListItemIcon className='child-Icon'>{subItems.icon}</ListItemIcon>
+                  index: any,
+                ) => (
+                  <ListItem
+                    button
+                    key={subItems.Id}
+                    onClick={() => {
+                      setActiveTab('');
+                      setActiveSubMenu(subItems.Id);
+                    }}
+                    className={`${showActiveTabs && (subItems.Id === activeSubMenu ? 'avtiveTab' : 'inActiveTab')}`}
+                  >
+                    {
+                        subItems.icon && <ListItemIcon className="child-Icon">{subItems.icon}</ListItemIcon>
                       }
-                      <ListItemText
-                        key={subItems.Id}
-                        primary={subItems.Name}
-                        style={{ marginLeft: "45px" }}
-                      />
-                    </ListItem>
-                  );
-                }
+                    <ListItemText
+                      key={subItems.Id}
+                      primary={subItems.Name}
+                      style={{ marginLeft: '45px' }}
+                    />
+                  </ListItem>
+                ),
               )}
               <Divider />
             </List>
@@ -102,6 +100,6 @@ const MenuItemList = ({
       <Divider />
     </div>
   );
-};
+}
 
 export default MenuItemList;

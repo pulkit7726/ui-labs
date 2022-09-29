@@ -1,29 +1,29 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { SideBar } from "components/SideBar";
-import HomeIcon from "@mui/icons-material/Home";
-import ContentPasteIcon from "@mui/icons-material/ContentPaste";
-import PagesIcon from "@mui/icons-material/Pages";
-import SettingsIcon from "@mui/icons-material/Settings";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import PersonIcon from "@mui/icons-material/Person";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import FolderCopyIcon from "@mui/icons-material/FolderCopy";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { SideBar } from 'components/SideBar';
+import HomeIcon from '@mui/icons-material/Home';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import PagesIcon from '@mui/icons-material/Pages';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import PersonIcon from '@mui/icons-material/Person';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 
 export default {
-  title: "SideBar",
+  title: 'UI/SideBar',
   component: SideBar,
 
   argTypes: {
-    backgroundColor: { control: "color" },
-    color: { control: "color" },
+    backgroundColor: { control: 'color' },
+    color: { control: 'color' },
   },
 } as ComponentMeta<typeof SideBar>;
 
 const MenuItems = [
   {
     Id: 1,
-    Name: "Home",
+    Name: 'Home',
     icon: (
       <div>
         <HomeIcon />
@@ -32,7 +32,7 @@ const MenuItems = [
   },
   {
     Id: 2,
-    Name: "Content",
+    Name: 'Content',
     icon: (
       <div>
         <ContentPasteIcon />
@@ -42,7 +42,7 @@ const MenuItems = [
     SubMenu: [
       {
         Id: 3,
-        Name: "New Content Sync",
+        Name: 'New Content Sync',
         icon: (
           <div>
             <AddCircleOutlineIcon />
@@ -51,7 +51,7 @@ const MenuItems = [
       },
       {
         Id: 4,
-        Name: "Existing Content",
+        Name: 'Existing Content',
         icon: (
           <div>
             <FolderCopyIcon />
@@ -63,7 +63,7 @@ const MenuItems = [
 
   {
     Id: 5,
-    Name: "Pages",
+    Name: 'Pages',
     icon: (
       <div>
         <PagesIcon />
@@ -72,7 +72,7 @@ const MenuItems = [
   },
   {
     Id: 6,
-    Name: "Settings",
+    Name: 'Settings',
     icon: (
       <div>
         <SettingsIcon />
@@ -82,7 +82,7 @@ const MenuItems = [
     SubMenu: [
       {
         Id: 7,
-        Name: "Notification",
+        Name: 'Notification',
         icon: (
           <div>
             <NotificationsIcon />
@@ -92,7 +92,7 @@ const MenuItems = [
 
       {
         Id: 8,
-        Name: "Account",
+        Name: 'Account',
         icon: (
           <div>
             <PersonIcon />
@@ -110,68 +110,67 @@ const Template: ComponentStory<typeof SideBar> = (args) => (
 export const Basic = Template.bind({});
 Basic.args = {
   MenuItems: [
-    { Id: 1, Name: "Home" },
+    { Id: 1, Name: 'Home' },
     {
       Id: 2,
-      Name: "Content",
+      Name: 'Content',
 
       SubMenu: [
-        { Id: 1, Name: "New Content Sync" },
-        { Id: 2, Name: "Existing Content" },
+        { Id: 1, Name: 'New Content Sync' },
+        { Id: 2, Name: 'Existing Content' },
       ],
     },
 
-    { Id: 3, Name: "Pages" },
+    { Id: 3, Name: 'Pages' },
     {
       Id: 4,
-      Name: "Settings",
+      Name: 'Settings',
 
       SubMenu: [
-        { Id: 3, Name: "Notification" },
-        { Id: 4, Name: "Account" },
+        { Id: 3, Name: 'Notification' },
+        { Id: 4, Name: 'Account' },
       ],
     },
   ],
-  title: "MyLogo",
+  title: 'MyLogo',
   image:
-    "https://audimediacenter-a.akamaihd.net/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_full.jpg?1581961854",
+    'https://audimediacenter-a.akamaihd.net/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_full.jpg?1581961854',
 };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  MenuItems: MenuItems,
-  title: "MyLogo",
+  MenuItems,
+  title: 'MyLogo',
   image:
-    "https://audimediacenter-a.akamaihd.net/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_full.jpg?1581961854",
+    'https://audimediacenter-a.akamaihd.net/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_full.jpg?1581961854',
 };
 
 export const CustomizeTheme = Template.bind({});
 CustomizeTheme.args = {
-  MenuItems: MenuItems,
-  backgroundColor: "#464952",
-  color: "#c1d5ce",
+  MenuItems,
+  backgroundColor: '#464952',
+  color: '#c1d5ce',
 };
 
 export const ActiveIndicator = Template.bind({});
 ActiveIndicator.args = {
-  MenuItems: MenuItems,
-  showActiveTabs: true
+  MenuItems,
+  showActiveTabs: true,
 };
 
 export const Responsive = Template.bind({});
 
 Responsive.args = {
-  MenuItems: MenuItems,
+  MenuItems,
   Responsive: true,
   showArrowIcon: true,
   tooltip: false,
 };
 
-
 export const WithIconTooltip = Template.bind({});
 
 WithIconTooltip.args = {
-  MenuItems: MenuItems,
+  MenuItems,
   showArrowIcon: false,
   tooltip: true,
   Responsive: true,

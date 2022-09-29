@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import DropzoneComponent from "../components/Dropzone"
 
 export default {
-    title: 'DropzoneComponent',
+    title: 'Functional/DropzoneComponent',
     component: DropzoneComponent,
     parameters: {
       layout: 'fullscreen',

@@ -39,13 +39,14 @@ export const Image: FC<CustomImageProps > = ({ itemData }) => {
       }}
       rowHeight={200}
       gap={1}
+      data-testid="main-cotainer"
     >
       {itemData.map((item) => {
         const cols = item.featured ? 2 : 1;
         const rows = item.featured ? 2 : 1;
 
         return (
-          <ImageListItem key={item.img} cols={cols} rows={rows}>
+          <ImageListItem key={item.img} cols={cols} rows={rows} data-testid="item-container">
             <img
               {...srcset(item.img, 250, 200, rows, cols)}
               alt={item.title}

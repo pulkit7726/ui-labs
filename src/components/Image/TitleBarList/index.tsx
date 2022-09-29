@@ -6,30 +6,27 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
-export interface LittleBarsImageProps {
+export interface TitleBarImageProps {
   itemData: Array<Type>;
 }
 
 interface Type {
   img: string;
   title: string;
-  subtitle?:string;
+  featured?:boolean;
   author:string;
   cols?:number;
   rows?:number;
 }
 
-
-
-
-export const Image: FC<LittleBarsImageProps > = ({ itemData }) => {
+export const Image: FC<TitleBarImageProps > = ({ itemData }) => {
     return (
-        <ImageList sx={{ width: 500, height: 450 }}>
+        <ImageList sx={{ width: 500, height: 450 }} data-testid="main-cotainer">
           <ImageListItem key="Subheader" cols={2}>
             <ListSubheader component="div">December</ListSubheader>
           </ImageListItem>
           {itemData.map((item) => (
-            <ImageListItem key={item.img}>
+            <ImageListItem key={item.img} data-testid="item-container">
               <img
                 src={`${item.img}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
