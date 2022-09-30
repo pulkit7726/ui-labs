@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { SnackBar } from "components/Snackbars";
-import { Button } from "@mui/material";
+import React, { useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { SnackBar } from 'components/Snackbars';
+import { Button } from '@mui/material';
 
 export default {
-  title: "SnackBars",
+  title: 'UI/SnackBars',
   component: SnackBar,
 } as ComponentMeta<typeof SnackBar>;
 
@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof SnackBar> = (args) => {
 
   const toggleNotification = () => {
     setOpen((open) => !open);
-  }
+  };
 
   return (
     <>
@@ -25,10 +25,10 @@ const Template: ComponentStory<typeof SnackBar> = (args) => {
   );
 };
 
-export const Stacked= Template.bind({});
+export const Stacked = Template.bind({});
 Stacked.args = {
   maxsnack: 4,
   notistack: true,
   autoHideDuration: 3000,
-  message: "this is Notistack",
+  message: 'this is Notistack',
 };
