@@ -30,9 +30,10 @@ export const Image: FC<QuiltedImageProps > = ({ itemData }) => {
       variant="quilted"
       cols={4}
       rowHeight={121}
+      data-testid="main-cotainer"
     >
       {itemData.map((item) => (
-        <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+        <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}  data-testid="item-container">
           <img
             {...srcset(item.img, 121, item.rows, item.cols)}
             alt={item.title}
