@@ -6,9 +6,9 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 type PDFProps = {
 	buttonTitle?: string;
-	buttonColor?: number;
-	buttonSize?: number;
-	buttonVariant?: number;
+	buttonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
+	buttonSize?: 'small' | 'medium' | 'large';
+	buttonVariant?: 'contained' | 'outlined' | 'text';
 	mainBox?: string;
 	name?: string;
 	address?: string;

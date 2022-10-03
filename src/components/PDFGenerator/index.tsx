@@ -5,7 +5,7 @@ import jsPDF from 'jspdf';
 type PDFProps = {
 	invoiceData?: ReactElement | string;
 	generatePDF?: boolean;
-	setGeneratePDF?: Function;
+	setGeneratePDF?: any;
 };
 
 const PDFGenerator = React.forwardRef(
