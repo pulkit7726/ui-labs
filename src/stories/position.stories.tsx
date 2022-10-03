@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { SideBar } from 'components/SideBar';
+import { SideBar } from 'components/Sidebar';
 import HomeIcon from '@mui/icons-material/Home';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import PagesIcon from '@mui/icons-material/Pages';
@@ -11,7 +11,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 
 export default {
-  title: 'UI/SideBar',
+  title: 'UI/Sidebar',
   component: SideBar,
 
   argTypes: {

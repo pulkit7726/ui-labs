@@ -28,7 +28,7 @@ type ModalProps = {
   transitionDuration?: number;
 };
 
-function ModalStoriesComponent(props: ModalProps) {
+const ModalStoriesComponent = (props: ModalProps) => {
   const [show, setShow] = React.useState(false);
 
   return (
@@ -47,7 +47,7 @@ function ModalStoriesComponent(props: ModalProps) {
       <Modal onClose={() => setShow(false)} show={show} {...props} />
     </>
   );
-}
+};
 
 export default {
   headerTitle: '',
@@ -93,7 +93,7 @@ Basic.args = {
     <Button color="primary">Disagree</Button>
 &nbsp;&nbsp;
     <Button variant="contained" color="primary">agree</Button>
-  </>,
+                 </>,
 };
 
 export const keepMounted = Template.bind({});
@@ -117,11 +117,11 @@ ScrollableBody.args = {
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </span>,
+  </span>,
   footerContent: <>
     <Button>Disagree</Button>
     <Button variant="contained" color="primary">agree</Button>
-                 </>,
+  </>,
 };
 
 export const basicWithInput = Template.bind({});
@@ -136,12 +136,12 @@ basicWithInput.args = {
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </span>,
+  </span>,
   footerContent: <div>
     <input type="checkbox" />
     <span>I accept Terms and conditions </span>
     <Button color="primary" variant="contained">Submit</Button>
-  </div>,
+                 </div>,
 };
 
 export const completeForm = Template.bind({});
@@ -156,7 +156,7 @@ completeForm.args = {
       {' '}
       Form description
     </h6>
-         </div>,
+  </div>,
   fullScreen: false,
   footerBackground: '#E0FFFF',
   children:
@@ -180,7 +180,7 @@ completeForm.args = {
   footerContent: <>
     <Button onClick={() => { }}>cancel</Button>
     <Button color="primary" variant="contained">Submit</Button>
-                 </>,
+  </>,
 };
 
 export const paymentBox = Template.bind({});
@@ -190,7 +190,7 @@ paymentBox.args = {
     <PaymentIcon />
     {' '}
     Payment Details
-  </div>,
+         </div>,
   fullScreen: false,
   footerBackground: '#E0FFFF',
   children: <Box
@@ -208,11 +208,11 @@ paymentBox.args = {
       <TextField required id="outlined-required" label="Expiry" defaultValue="" />
       <TextField required id="outlined-required" label="CVV" defaultValue="" />
     </div>
-  </Box>,
+            </Box>,
   footerContent: <>
     <Button onClick={() => { }}>cancel</Button>
     <Button variant="contained" color="primary">Pay Now</Button>
-                 </>,
+  </>,
 };
 
 export const transitionModal = Template.bind({});
@@ -225,5 +225,5 @@ transitionModal.args = {
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
     when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-  </span>,
+            </span>,
 };

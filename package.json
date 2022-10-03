@@ -38,11 +38,12 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 4000",
+		"storybook": "start-storybook -p 4000",
 		"build-storybook": "build-storybook",
 		"build-static-webapp": "expo build:web",
 		"lint": "eslint .",
-		"lint-fix": "eslint --fix ."
+		"lint-fix": "eslint --fix .",
+		"linux-storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 4000"
 	},
 	"eslintConfig": {
 		"extends": [
