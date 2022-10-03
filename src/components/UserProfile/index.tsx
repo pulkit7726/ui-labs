@@ -1,87 +1,145 @@
-import { Scale } from '@mui/icons-material';
-import { Grid, Avatar, Modal, Stack, Box, Typography, Paper } from '@mui/material';
+import {
+  Box, Drawer, Grid, Paper, Typography, Button,
+} from '@mui/material';
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import Footer from './Footer';
-import Header from './Header';
-import ProfileBody from './ProfileBody';
+import CssAvatar from './Avatar';
+import Body from './Body';
 
-// type AvatarProps = {
-//     alContent?: string;
-//     keepMounted?: boolean;
-// }
- 
-const CssAvatar = ({...props}) => { 
-    return (      
-        <Grid item xs={12}  
-        sx={{ display: 'flex', 
-        // justifyContent: 'center',
-        justifyContent: props.alContent === 'center' ? 'center' :
-        props.alContent === 'right' ? 'right' : 'left',
-        backgroundColor: 'white' }}>
-    
-        <Stack
-            direction="row"
-            spacing={2}
-            sx={{
-                marginBottom: '40px',
-                marginTop: '-34px',
-                transform:  'scale(1.8)',
-                marginLeft: props.alContent === 'left' ? '100px' : null,
-                marginRight: props.alContent === 'right' ? '100px' : null
-            }}>
-            <Avatar
-                style={{ height: 70, width: 70 }}
-                src="https://thumbs.dreamstime.com/z/businessman-vector-icon-avatar-sign-man-business-suit-male-face-flat-design-man-avatars-profile-concept-concept-boss-85517342.jpg"
-            />
-        </Stack>
+const StyledBox = styled(Box)(({ theme }) => ({
+  width: '235px',
+  '@media (min-width:600px)': {
+    width: '300px',
+  },
+}));
+
+const CssBox = styled(Box)(({ theme }) => ({
+  width: '100%',
+  '@media (min-width:850px)': {
+    width: '60%',
+  },
+}));
+
+const CustomMainBox = styled(Box)(({ theme }) => ({
+  backgroundColor: 'lightgray',
+  height: '30px',
+  display: 'flex',
+  alignItems: 'center',
+
+}));
+
+const CustomParentBox = styled(Box)(({ theme }) => ({
+  backgroundColor: 'lightgray',
+  height: '300px',
+  width: '300px',
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+type UserProfileProps = {
+  alContent?: string;
+  myAccountButtonColor?: number;
+  myAccountButtonSize?: number;
+  myAccountButtonVariant?: number;
+  logoutButtonColor?: number;
+  logoutButtonSize?: number;
+  logoutButtonVariant?: number;
+  display?: string;
+  avatarImage?: { avatarImg: string, avatarTitle: string };
+  data?: Array<Object>;
+  profileHeading?: string;
+};
+
+const BasicProfile = ({ ...props }) => (
+  <Paper
+    elevation={3}
+    style={{ margin: '10px', padding: '10px' }}
+  >
+    <Box>
+      <CssAvatar {...props} />
+      <br />
+      {props.data.map((obj) => (
+        <Grid item xs={12} key={obj.id}>
+          <Typography>{obj.userName}</Typography>
+          <Typography>{obj.email}</Typography>
+        </Grid>
+      ))}
+      <Body {...props} />
+      <Footer />
+    </Box>
+  </Paper>
+);
+
+const CenterProfile = ({ ...props }) => (
+  <Paper elevation={5} style={{ margin: '10px', padding: '10px' }}>
+    <Box
+      sx={{
+        width: '100%',
+        height: '100px',
+        backgroundColor: 'cadetblue',
+      }}
+    />
+    <CssAvatar {...props} />
+    <Body {...props} />
+    <Footer {...props} />
+  </Paper>
+);
+
+const Custom = ({ ...props }) => (
+  <>
+    <CustomMainBox data-testid="custom-main-box">
+      <Typography style={{ marginLeft: '10px' }}>
+        <b>{props.profileHeading}</b>
+      </Typography>
+    </CustomMainBox>
+    <Grid container marginTop={5}>
+      <CustomParentBox>
+        <CssAvatar {...props} />
+      </CustomParentBox>
+      <CssBox>
+        <Body {...props} />
+      </CssBox>
     </Grid>
-    )
-}
+    <Footer />
+  </>
+);
 
-// const Body = (props) => {
-//     return (
-//         <Grid item xs={12}
-//             style={{ display: 'flex', 
-//             justifyContent: 'center',
-//             // justifyContent: props.alContent === 'center' ? 'center' :
-//             // props.alContent === 'right' ? 'right' : 'left',
-//             backgroundColor: 'white',
-//             border: '1px solid' }}>
-//             <Box>
-//                 <Typography id="modal-modal-description" >
-//                     {props.value}
-//                 </Typography>
-//             </Box>
-//         </Grid>
-//     )
-// }
+const SideDrawer = ({ ...props }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button
+        color="primary"
+        variant="contained"
+        size="medium"
+        onClick={() => setOpen(!open)}
+      >
+        Open Drawer
+      </Button>
+      <Drawer
+        anchor={props.alContent}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <StyledBox p={2}>
+          <CssAvatar {...props} />
+          <br />
+          <Body {...props} />
+          <Footer />
+        </StyledBox>
+      </Drawer>
+    </>
+  );
+};
 
-const Records = ({...props}) => {
-    return <div>
-        <Paper elevation={5} style={{ margin: '20px', padding: '10px' }}>
-            <Header />
-            <CssAvatar {...props}/>
-            {props.data.map((obj: any, i: any) => {
-                return <div key={i}>
-                    <ProfileBody value={obj.value} {...props} />
-                </div>
-            })}
-            <Footer {...props}/>
-        </Paper>
-    </div>
-}
-type UserProfileProps ={
-    buttonColor: string;
-}
-const UserProfile = ({...props}) => {
-    return (
-        <div>
-            {props.display === 'modal' &&
-                <Modal open={true}>
-                        <Records {...props} />
-                </Modal>}
-        </div>
-    )
-}
+const UserProfile = ({ ...props }: UserProfileProps) => (
+  <div className="user-profile-class" data-testid="user-profile">
+    {props.display === 'center' ? <CenterProfile {...props} />
+      : props.display === 'drawer' ? <SideDrawer {...props} />
+        : props.display === 'basic' ? <BasicProfile {...props} />
+          : <Custom {...props} />}
+  </div>
+);
 
 export default UserProfile;
