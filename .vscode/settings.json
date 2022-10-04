@@ -26,7 +26,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  	"[json]": {
+  "[json]": {
     "editor.formatOnSave": true
   },
   "eslint.alwaysShowStatus": true,
@@ -37,9 +37,12 @@
     "typescriptreact"
   ],
   // START: Settings for Prettier
-  "prettier.useTabs": true,
-  "prettier.jsxSingleQuote": false,
+  "prettier.useTabs": false,
   "prettier.tabWidth": 2,
   "prettier.arrowParens": "avoid",
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.trailingComma": "none",
+  "prettier.bracketSpacing": true,
+  "prettier.endOfLine": "auto",
 }
