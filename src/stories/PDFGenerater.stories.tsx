@@ -25,7 +25,7 @@ const PDFGeneraterStories = (props: PDFProps) => {
 	const [generatePDF, setGeneratePDF] = React.useState(false);
 	const inputElement: any = useRef();
 
-	const invoiceData = (
+	const documentContent = (
 		<Box style={{ width: '595px', height: '852px' }} ref={inputElement}>
 			<div style={{ margin: '10px' }}>
 				<Grid container>
@@ -69,7 +69,7 @@ const PDFGeneraterStories = (props: PDFProps) => {
 			</Button>
 			<PDFGenerator
 				ref={inputElement}
-				invoiceData={invoiceData}
+				documentContent={documentContent}
 				{...props}
 				generatePDF={generatePDF}
 				setGeneratePDF={setGeneratePDF}

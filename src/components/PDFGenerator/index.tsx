@@ -3,13 +3,13 @@ import { Box } from '@mui/material';
 import jsPDF from 'jspdf';
 
 type PDFProps = {
-	invoiceData?: ReactElement | string;
+	documentContent?: ReactElement | string;
 	generatePDF?: boolean;
 	setGeneratePDF?: any;
 };
 
 const PDFGenerator = React.forwardRef(
-	({ invoiceData, generatePDF, setGeneratePDF }: PDFProps, ref: any) => {
+	({ documentContent, generatePDF, setGeneratePDF }: PDFProps, ref: any) => {
 		const generatePDFInvoice = () => {
 			const doc = new jsPDF('p', 'pt', 'a4');
 			const el = ref.current;
@@ -35,7 +35,7 @@ const PDFGenerator = React.forwardRef(
 
 		return (
 			<Box sx={{ display: 'flex' }} className="pdf-box" data-testid="test-box">
-				{invoiceData}
+				{documentContent}
 			</Box>
 		);
 	}
