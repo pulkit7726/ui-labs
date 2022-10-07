@@ -42,7 +42,6 @@
   "prettier.arrowParens": "avoid",
   "prettier.singleQuote": true,
   "prettier.semi": true,
-  "prettier.trailingComma": "none",
   "prettier.bracketSpacing": true,
-  "prettier.endOfLine": "auto",
+  "prettier.endOfLine": "auto"
 }

@@ -38,7 +38,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"storybook": "start-storybook -p 4000",
+		"storybook": "set DISABLE_ESLINT_PLUGIN=true && start-storybook -p 4000",
 		"build-storybook": "build-storybook",
 		"build-static-webapp": "expo build:web",
 		"lint": "eslint .",
