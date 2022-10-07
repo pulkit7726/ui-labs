@@ -5,7 +5,7 @@ import PDFGenerator from '../index';
 
 describe('should render a PDFGenerator', () => {
 	test('should render as PDF Box', () => {
-		render(<PDFGenerator documentContent={[]} />);
+		render(<PDFGenerator documentContent={''} />);
 		const title = screen.getByTestId('test-box');
 		// eslint-disable-next-line testing-library/no-node-access
 		expect(title.getElementsByClassName('pdf-box').length).toBe(0);
@@ -30,7 +30,7 @@ describe('should render a PDFGenerator', () => {
 	});
 
 	test('should render as object', () => {
-		render(<PDFGenerator documentContent={[]} />);
+		render(<PDFGenerator documentContent={''} />);
 		expect(typeof onclick).toBe('object');
 	});
 });
