@@ -3,7 +3,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import Footer from './Footer';
+import UserProfileButton from './UserProfileButton';
 import CssAvatar from './Avatar';
 import Body from './Body';
 
@@ -37,18 +37,26 @@ const CustomParentBox = styled(Box)(({ theme }) => ({
   alignItems: 'center',
 }));
 
+const CenterProfileBox = styled(Box)(({ theme }) => ({
+  width: '100%',
+  height: '100px',
+  backgroundColor: 'cadetblue',
+}));
+
 type UserProfileProps = {
   alContent?: string;
-  myAccountButtonColor?: number;
-  myAccountButtonSize?: number;
-  myAccountButtonVariant?: number;
-  logoutButtonColor?: number;
-  logoutButtonSize?: number;
-  logoutButtonVariant?: number;
+  myAccountButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
+  myAccountButtonSize?: 'small' | 'medium' | 'large';
+  myAccountButtonVariant?: 'contained' | 'outlined' | 'text';
+  logoutButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
+  logoutButtonSize?: 'small' | 'medium' | 'large';
+  logoutButtonVariant?: 'contained' | 'outlined' | 'text';
   display?: string;
   avatarImage?: { avatarImg: string, avatarTitle: string };
   data?: Array<Object>;
   profileHeading?: string;
+  width?: string;
+  fontSize?: number;
 };
 
 const BasicProfile = ({ ...props }) => (
@@ -58,7 +66,6 @@ const BasicProfile = ({ ...props }) => (
   >
     <Box>
       <CssAvatar {...props} />
-      <br />
       {props.data.map((obj) => (
         <Grid item xs={12} key={obj.id}>
           <Typography>{obj.userName}</Typography>
@@ -66,23 +73,17 @@ const BasicProfile = ({ ...props }) => (
         </Grid>
       ))}
       <Body {...props} />
-      <Footer />
+      <UserProfileButton />
     </Box>
   </Paper>
 );
 
 const CenterProfile = ({ ...props }) => (
   <Paper elevation={5} style={{ margin: '10px', padding: '10px' }}>
-    <Box
-      sx={{
-        width: '100%',
-        height: '100px',
-        backgroundColor: 'cadetblue',
-      }}
-    />
+    <CenterProfileBox />
     <CssAvatar {...props} />
     <Body {...props} />
-    <Footer {...props} />
+    <UserProfileButton {...props} />
   </Paper>
 );
 
@@ -90,7 +91,7 @@ const Custom = ({ ...props }) => (
   <>
     <CustomMainBox data-testid="custom-main-box">
       <Typography style={{ marginLeft: '10px' }}>
-        <b>{props.profileHeading}</b>
+        {props.profileHeading}
       </Typography>
     </CustomMainBox>
     <Grid container marginTop={5}>
@@ -101,7 +102,7 @@ const Custom = ({ ...props }) => (
         <Body {...props} />
       </CssBox>
     </Grid>
-    <Footer />
+    <UserProfileButton />
   </>
 );
 
@@ -124,9 +125,8 @@ const SideDrawer = ({ ...props }) => {
       >
         <StyledBox p={2}>
           <CssAvatar {...props} />
-          <br />
           <Body {...props} />
-          <Footer />
+          <UserProfileButton />
         </StyledBox>
       </Drawer>
     </>

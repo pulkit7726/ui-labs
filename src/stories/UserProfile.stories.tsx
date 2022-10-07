@@ -1,58 +1,24 @@
 import React from 'react';
 import UserProfile from 'components/UserProfile';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { data, avatarImage } from '../Data/UserProfile.json'
 
 type UserProfileProps = {
   alContent?: string;
-  myAccountButtonColor?: number;
-  myAccountButtonSize?: number;
-  myAccountButtonVariant?: number;
-  logoutButtonColor?: number;
-  logoutButtonSize?: number;
-  logoutButtonVariant?: number;
+  myAccountButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
+  myAccountButtonSize?: 'small' | 'medium' | 'large';
+  myAccountButtonVariant?: 'contained' | 'outlined' | 'text';
+  logoutButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
+  logoutButtonSize?: 'small' | 'medium' | 'large';
+  logoutButtonVariant?: 'contained' | 'outlined' | 'text';
   display?: string;
   avatarImage?: { avatarImg: string, avatarTitle: string };
   data?: Array<Object>;
   profileHeading?: string;
+  width?: string;
+  fontSize?: number;
 };
 
-const avatarImage = {
-  avatarImg: 'https://png.pngtree.com/png-clipart/20190924/original/pngtree-business-user-profile-vector-png-image_4830519.jpg',
-  avatarTitle: 'Profile Image',
-};
-
-const data = [
-  {
-    id: 'userName',
-    label: 'Name',
-    userName: 'William James',
-    value: 'William James',
-  },
-  {
-    id: 'phoneNo',
-    label: 'Contact',
-    contact: '+9112340000',
-    value: '+9112340000',
-  },
-  {
-    id: 'email',
-    label: 'Email',
-    email: 'abc@wavelabs.ai',
-    value: 'abc@wavelabs.ai',
-  },
-  {
-    id: 'designation',
-    label: 'Designation',
-    value: 'Software Engineer',
-    designation: 'Software Engineer',
-  },
-  {
-    id: 'company',
-    label: 'Company',
-    value: 'Wavelabs Technologies',
-    company: 'Wavelabs Technologies',
-  },
-];
 
 const UserProfileStories = (props: UserProfileProps) => (
   <div>
@@ -99,6 +65,11 @@ export default {
         options: ['contained', 'outlined', 'text'],
       },
     },
+    width: {
+      control: {
+        type: 'range', min: 200, max: 1200, step: 50,
+      },
+    },
   },
 
 } as ComponentMeta<typeof UserProfileStories>;
@@ -109,6 +80,7 @@ export const BasicProfile = Template.bind({});
 
 BasicProfile.args = {
   display: 'basic',
+  fontSize: 12,
   avatarImage,
   data,
 };
@@ -123,6 +95,7 @@ CenterProfile.args = {
 export const LeftAlignmentAvatar = Template.bind({});
 LeftAlignmentAvatar.args = {
   display: 'custom',
+  fontSize: 12,
   avatarImage,
   data,
   profileHeading: 'View User Profile',
@@ -132,6 +105,7 @@ export const LeftProfileWithDrawer = Template.bind({});
 LeftProfileWithDrawer.args = {
   alContent: 'left',
   display: 'drawer',
+  fontSize: 12,
   avatarImage,
   data,
 };
@@ -140,6 +114,7 @@ export const RightProfileWithDrawer = Template.bind({});
 RightProfileWithDrawer.args = {
   alContent: 'right',
   display: 'drawer',
+  fontSize: 12,
   avatarImage,
   data,
 };

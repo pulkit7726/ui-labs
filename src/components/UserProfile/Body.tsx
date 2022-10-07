@@ -7,7 +7,14 @@ import {
     TableCell,
     TableContainer,
     TableRow,
+    styled,
 } from '@mui/material';
+
+
+const CssTypography = styled(Typography)(({ theme }) => ({
+    justifyContent: 'center',
+    display: 'flex'
+}));
 
 const Body = ({ ...props }) => (
     <>
@@ -15,22 +22,22 @@ const Body = ({ ...props }) => (
             <>
                 {props.data.map((obj) => (
                     <Box key={obj.id}>
-                        <Typography sx={{ justifyContent: 'center', display: 'flex' }}>
+                        <CssTypography>
                             {obj.value}
-                        </Typography>
+                        </CssTypography>
                     </Box>
                 ))}
             </>
         ) : (
             <>
                 {props.data.map((obj) => (
-                    <TableContainer style={{ width: '100%' }} key={obj.id}>
+                    <TableContainer style={{ width: props.width }} key={obj.id}>
                         <Table aria-label="customized table">
                             <TableBody>
                                 <TableRow>
                                     <TableCell width={props.display === 'drawer' ? '40%' : '50%'}>
-                                        <Typography fontSize={12}>
-                                            <b>{obj.label}</b>
+                                        <Typography fontSize={props.fontSize}>
+                                            {obj.label}
                                         </Typography>
                                     </TableCell>
                                     <TableCell width={props.display === 'drawer' ? '60%' : '50%'}>

@@ -2,19 +2,21 @@ import React from 'react';
 import {
   Box,
   Button,
+  styled,
 } from '@mui/material';
 
+const CssBox = styled(Box)(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  marginTop: '20px',
+}));
 
-const Footer = ({ ...props }) => {
+const UserProfileButton = ({ ...props }) => {
   return (
     <>
-      <Box
+      <CssBox
         sx={{
-          width: '100%',
-          justifyContent: props.display === 'center' ? 'center' :
-            props.display === 'right' ? 'right' : 'left',
-          display: 'flex',
-          marginTop: '20px'
+          justifyContent: props.display || 'left',
         }}>
         <Button
           color={props.myAccountButtonColor || 'primary'}
@@ -22,17 +24,17 @@ const Footer = ({ ...props }) => {
           size={props.myAccountButtonSize || 'medium'}
         >
           My Account
-        </Button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <Button
+        </Button>
+        <Button style={{ marginLeft: '10px' }}
           color={props.logoutButtonColor || 'secondary'}
           variant={props.logoutButtonVariant || 'outlined'}
           size={props.logoutButtonSize || 'medium'}
         >
           Logout
         </Button>
-      </Box>
+      </CssBox>
     </>
   )
 }
 
-export default Footer;
+export default UserProfileButton;
