@@ -1,5 +1,5 @@
 import {
-  Box, Drawer, Grid, Paper, Typography, Button,
+  Box, Drawer, Grid, Paper, Typography, Button
 } from '@mui/material';
 import React from 'react';
 import { styled } from '@mui/material/styles';
@@ -9,14 +9,14 @@ import Body from './Body';
 
 const StyledBox = styled(Box)(({ theme }) => ({
   width: '235px',
-  '@media (min-width:600px)': {
+  [theme.breakpoints.up(600)]: {
     width: '300px',
   },
 }));
 
 const CssBox = styled(Box)(({ theme }) => ({
   width: '100%',
-  '@media (min-width:850px)': {
+  [theme.breakpoints.up(850)]: {
     width: '60%',
   },
 }));
@@ -119,6 +119,7 @@ const SideDrawer = ({ ...props }) => {
         variant="contained"
         size="medium"
         onClick={() => setOpen(!open)}
+        role="button"
       >
         Open Drawer
       </Button>
