@@ -62,9 +62,9 @@ const PDFGeneraterStories = (props: PDFProps) => {
 				size={props.buttonSize}
 				variant={props.buttonVariant}
 				onClick={() => setGeneratePDF(!generatePDF)}
+				data-testid="button"
 			>
 				<PictureAsPdfIcon />
-				&nbsp;
 				{props.buttonTitle}
 			</Button>
 			<PDFGenerator

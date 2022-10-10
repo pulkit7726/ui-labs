@@ -22,15 +22,4 @@ describe('should render a PDFGenerator', () => {
 		const linkElement = screen.getByText(/Hyderabad, Telangana 500081/i);
 		expect(linkElement).toBeInTheDocument();
 	});
-
-	test('should render as logo', () => {
-		render(<PDFGenerator documentContent={'images/logopdf.png'} />);
-		const linkElement = screen.getByText(/images/i);
-		expect(linkElement).toBeInTheDocument();
-	});
-
-	test('should render as object', () => {
-		render(<PDFGenerator documentContent={''} />);
-		expect(typeof onclick).toBe('object');
-	});
 });
