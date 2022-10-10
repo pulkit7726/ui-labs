@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import PDFGenerator from '../index';
 
 describe('should render a PDFGenerator', () => {
-	test('should render as PDF Box', () => {
+	test('should render as ClassName', () => {
 		render(<PDFGenerator documentContent={''} />);
 		const title = screen.getByTestId('test-box');
 		// eslint-disable-next-line testing-library/no-node-access
