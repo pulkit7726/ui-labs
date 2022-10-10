@@ -15,8 +15,8 @@ const PDFGenerator = React.forwardRef(
 			const el = ref.current;
 			doc.html(el, {
 				callback: (pdf: any) => {
-					const pageCount = doc.internal.getNumberOfPages();
-					pdf.deletePage(pageCount);
+					const pageCount = doc.internal.pages;
+					pdf.deletePage(pageCount.length - 1);
 					const min = Math.ceil(1234);
 					const max = Math.floor(5678);
 					const str = Math.floor(Math.random() * (max - min + 1)) + min;
