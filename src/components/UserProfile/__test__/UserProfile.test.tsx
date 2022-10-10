@@ -11,6 +11,7 @@ test("should render as Data & Avatar", () => {
         avatarImage={avatarImage}
     />);
     expect(screen.getByTestId("user-profile")).toBeInTheDocument();
+    expect(screen.getAllByTestId("user-profile").length).toBe(1);
 });
 
 test("should render as Button Text Value", () => {
