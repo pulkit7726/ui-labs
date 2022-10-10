@@ -1,27 +1,33 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
-import { composeStories } from "@storybook/testing-react";
 import UserProfile from '../index';
-//import * as UserProfile from '../../../stories/UserProfile.stories';
-//const { BasicProfile } = composeStories(UserProfile)
+import { data, avatarImage } from '../../../Data/UserProfile.json'
 
-const avatarImage = {
-    avatarImg: ""
-}
 
-test("should render as Avatar Image", () => {
-    render(<UserProfile data={[]} avatarImage={avatarImage.avatarImg} />);
+test("should render as Json Data & Avatar", () => {
+    render(<UserProfile
+        data={data}
+        avatarImage={avatarImage}
+    />);
     expect(screen.getByTestId("user-profile")).toBeInTheDocument();
 });
 
 test("should render as Button Text Value", () => {
-    render(<UserProfile data={[]} avatarImage={avatarImage.avatarImg} myAccount={'My Account'} />);
+    render(<UserProfile
+        data={data}
+        avatarImage={avatarImage}
+        myAccount={'My Account'}
+    />);
     expect(screen.getByTestId('user-profile')).toHaveTextContent("My Account");
 });
 
-test("should render as InnerClassName", () => {
-    render(<UserProfile data={[]} avatarImage={avatarImage.avatarImg} profileHeading='View User Profile' />);
+test("should render as Profile Heading", () => {
+    render(<UserProfile
+        data={data}
+        avatarImage={avatarImage}
+        profileHeading='View User Profile'
+    />);
     const title = screen.getByTestId('custom-main-box');
     expect(title).toBeTruthy();
 });
