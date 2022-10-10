@@ -34,7 +34,7 @@ const PDFGenerator = React.forwardRef(
 		}, [generatePDF]);
 
 		return (
-			<Box sx={{ display: 'flex' }} className="pdf-box" data-testid="test-box">
+			<Box className="pdf-box" data-testid="test-box">
 				{documentContent}
 			</Box>
 		);
