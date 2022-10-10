@@ -7,7 +7,7 @@ import { data, avatarImage } from '../../../Data/UserProfile.json';
 const handleClick = jest.fn();
 const handleClose = jest.fn();
 
-test('user profile should render a Button', () => {
+test('should render a Side Drawer Button', () => {
     const button = render(<UserProfile
         display='drawer'
         data={data}
@@ -16,7 +16,7 @@ test('user profile should render a Button', () => {
     expect(button.getByRole('button')).toBeInTheDocument();
 });
 
-test("should render as click event on button", () => {
+test("should render as click event on Side Drawer Button", () => {
     render(<UserProfile
         display='drawer'
         data={data}
@@ -46,7 +46,7 @@ test("should render as My Account Button Text Value", () => {
     expect(screen.getByTestId('user-profile')).toHaveTextContent("My Account");
 });
 
-test("should render as Profile Heading", () => {
+test("should render as Basic Profile Heading", () => {
     render(<UserProfile
         data={data}
         avatarImage={avatarImage}
