@@ -23,14 +23,14 @@ const UserProfileButton = ({ ...props }) => {
           variant={props.myAccountButtonVariant || 'contained'}
           size={props.myAccountButtonSize || 'medium'}
         >
-          My Account
+          {props.myAccount}
         </Button>
         <Button style={{ marginLeft: '10px' }}
           color={props.logoutButtonColor || 'secondary'}
           variant={props.logoutButtonVariant || 'outlined'}
           size={props.logoutButtonSize || 'medium'}
         >
-          Logout
+          {props.logout}
         </Button>
       </CssBox>
     </>

@@ -16,7 +16,7 @@ test("should render as Avatar Image", () => {
 });
 
 test("should render as Button Text Value", () => {
-    render(<UserProfile data={[]} avatarImage={avatarImage.avatarImg} />);
+    render(<UserProfile data={[]} avatarImage={avatarImage.avatarImg} myAccount={'My Account'} />);
     expect(screen.getByTestId('user-profile')).toHaveTextContent("My Account");
 });
 

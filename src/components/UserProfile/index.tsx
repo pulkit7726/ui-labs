@@ -43,6 +43,11 @@ const CenterProfileBox = styled(Box)(({ theme }) => ({
   backgroundColor: 'cadetblue',
 }));
 
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  margin: '10px',
+  padding: '10px'
+}));
+
 type UserProfileProps = {
   alContent?: string;
   myAccountButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
@@ -57,13 +62,12 @@ type UserProfileProps = {
   profileHeading?: string;
   width?: string;
   fontSize?: number;
+  myAccount?: string;
+  logout?: string;
 };
 
 const BasicProfile = ({ ...props }) => (
-  <Paper
-    elevation={3}
-    style={{ margin: '10px', padding: '10px' }}
-  >
+  <StyledPaper elevation={3}>
     <Box>
       <CssAvatar {...props} />
       {props.data.map((obj) => (
@@ -73,18 +77,18 @@ const BasicProfile = ({ ...props }) => (
         </Grid>
       ))}
       <Body {...props} />
-      <UserProfileButton />
+      <UserProfileButton {...props} />
     </Box>
-  </Paper>
+  </StyledPaper>
 );
 
 const CenterProfile = ({ ...props }) => (
-  <Paper elevation={5} style={{ margin: '10px', padding: '10px' }}>
+  <StyledPaper elevation={5}>
     <CenterProfileBox />
     <CssAvatar {...props} />
     <Body {...props} />
     <UserProfileButton {...props} />
-  </Paper>
+  </StyledPaper>
 );
 
 const Custom = ({ ...props }) => (
@@ -102,7 +106,7 @@ const Custom = ({ ...props }) => (
         <Body {...props} />
       </CssBox>
     </Grid>
-    <UserProfileButton />
+    <UserProfileButton {...props} />
   </>
 );
 
@@ -126,7 +130,7 @@ const SideDrawer = ({ ...props }) => {
         <StyledBox p={2}>
           <CssAvatar {...props} />
           <Body {...props} />
-          <UserProfileButton />
+          <UserProfileButton {...props} />
         </StyledBox>
       </Drawer>
     </>

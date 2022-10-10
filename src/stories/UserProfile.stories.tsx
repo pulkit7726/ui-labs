@@ -17,6 +17,8 @@ type UserProfileProps = {
   profileHeading?: string;
   width?: string;
   fontSize?: number;
+  myAccount?: string;
+  logout?: string;
 };
 
 
@@ -80,6 +82,8 @@ export const BasicProfile = Template.bind({});
 
 BasicProfile.args = {
   display: 'basic',
+  myAccount: 'My Account',
+  logout: 'Logout',
   fontSize: 12,
   avatarImage,
   data,
@@ -88,6 +92,8 @@ BasicProfile.args = {
 export const CenterProfile = Template.bind({});
 CenterProfile.args = {
   display: 'center',
+  myAccount: 'My Account',
+  logout: 'Logout',
   avatarImage,
   data,
 };
@@ -95,6 +101,8 @@ CenterProfile.args = {
 export const LeftAlignmentAvatar = Template.bind({});
 LeftAlignmentAvatar.args = {
   display: 'custom',
+  myAccount: 'My Account',
+  logout: 'Logout',
   fontSize: 12,
   avatarImage,
   data,
@@ -105,6 +113,8 @@ export const LeftProfileWithDrawer = Template.bind({});
 LeftProfileWithDrawer.args = {
   alContent: 'left',
   display: 'drawer',
+  myAccount: 'My Account',
+  logout: 'Logout',
   fontSize: 12,
   avatarImage,
   data,
@@ -114,6 +124,8 @@ export const RightProfileWithDrawer = Template.bind({});
 RightProfileWithDrawer.args = {
   alContent: 'right',
   display: 'drawer',
+  myAccount: 'My Account',
+  logout: 'Logout',
   fontSize: 12,
   avatarImage,
   data,

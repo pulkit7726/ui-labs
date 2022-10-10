@@ -10,11 +10,16 @@ import {
     styled,
 } from '@mui/material';
 
-
 const CssTypography = styled(Typography)(({ theme }) => ({
     justifyContent: 'center',
     display: 'flex'
 }));
+const StyledTableCellLabel = styled(TableCell)`
+  width: ${({ width }) => width === 'drawer' ? '40%' : '50%'}
+`;
+const StyledTableCellValue = styled(TableCell)`
+  width: ${({ width }) => width === 'drawer' ? '60%' : '50%'}
+`;
 
 const Body = ({ ...props }) => (
     <>
@@ -35,14 +40,14 @@ const Body = ({ ...props }) => (
                         <Table aria-label="customized table">
                             <TableBody>
                                 <TableRow>
-                                    <TableCell width={props.display === 'drawer' ? '40%' : '50%'}>
+                                    <StyledTableCellLabel width={props.display}>
                                         <Typography fontSize={props.fontSize}>
                                             {obj.label}
                                         </Typography>
-                                    </TableCell>
-                                    <TableCell width={props.display === 'drawer' ? '60%' : '50%'}>
+                                    </StyledTableCellLabel>
+                                    <StyledTableCellValue width={props.display}>
                                         <Typography>{obj.value}</Typography>
-                                    </TableCell>
+                                    </StyledTableCellValue>
                                 </TableRow>
                             </TableBody>
                         </Table>
