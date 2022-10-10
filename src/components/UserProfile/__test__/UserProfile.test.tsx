@@ -5,7 +5,7 @@ import UserProfile from '../index';
 import { data, avatarImage } from '../../../Data/UserProfile.json'
 
 
-test("should render as Json Data & Avatar", () => {
+test("should render as Data & Avatar", () => {
     render(<UserProfile
         data={data}
         avatarImage={avatarImage}
