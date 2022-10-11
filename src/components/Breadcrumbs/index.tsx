@@ -9,9 +9,9 @@ type BreadcrumbsProps = {
   separator?: string;
   maxItems?: number;
 };
-function Breadcrumb({
+const Breadcrumb = ({
   list, separator, maxItems, ...props
-}: BreadcrumbsProps) {
+}: BreadcrumbsProps) => {
   console.log(list);
   return (
     <Breadcrumbs maxItems={maxItems} separator={separator} aria-label="breadcrumb">
@@ -28,6 +28,6 @@ function Breadcrumb({
       )))}
     </Breadcrumbs>
   );
-}
+};
 
 export default Breadcrumb;
