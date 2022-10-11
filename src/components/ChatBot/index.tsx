@@ -58,7 +58,6 @@ function ChatBot({title,config,onLoadMessage}:ChatBotProps) {
 
     const [showBot, toggleBot] = useState(false);
     const classes = useStyles();
-    console.log(title,onLoadMessage)
   return (
     <div>
       <TypedReact onLoadMessage={onLoadMessage}/>

@@ -8,7 +8,6 @@ export class MessageParser {
   
     parse(message:any) {
       message = message.toLowerCase();
-      console.log(message);
   
       if (
         message.includes("options") ||

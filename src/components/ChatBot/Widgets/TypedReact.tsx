@@ -3,10 +3,9 @@ import Typed from "typed.js";
 
 const TypedReact = (props) => {
   // Create reference to store the DOM element containing the animation
-  const el = React.useRef(null);
+  const el:any = React.useRef(null);
   // Create reference to store the Typed instance itself
-  const typed = React.useRef(null);
-console.log(props.onLoadMessage)
+  const typed:any = React.useRef(null);
   useEffect(() => {
     setTimeout(() => {
       const options = {

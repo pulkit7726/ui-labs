@@ -40,7 +40,7 @@ function Infy(props: any) {
 	]);
 
 	const [end, setEnd] = useState(false);
-	const testData = [];
+	const testData:any = [];
 	for (let i = 0; i < data.length; i++) {
 		testData.push(
 			<Box sx={{ minWidth: 275, height: 100 }}>

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const LocalStatistics = () => {
+const GlobalStatistics = () => {
   const [stats, setStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const classes = useStyles();
@@ -34,8 +34,9 @@ const LocalStatistics = () => {
         `https://www.hpb.health.gov.lk/api/get-current-statistical`
       );
       data = await data.json();
+      // const filteredFlights = flights.filter((item) => item.Status === null);
 
-      setStats(data.data);
+      setStats(data["data"]);
       setLoading(false);
     };
     getStats();
@@ -47,21 +48,18 @@ const LocalStatistics = () => {
         <p> Total Cases :</p>
         <p> New Cases :</p>
         <p> Recovered :</p>
-        <p> Total Deaths :</p>
-        <p> New Deaths :</p>
-        <p> Hospitalized :</p>
+        <p> Deaths :</p>
       </div>
+
       <div className={classes.columnRight}>
         <ClipLoader color={"#fff"} loading={loading} />
-        <p>{stats.local_total_cases}</p>
-        <p>{stats.local_new_cases}</p>
-        <p>{stats.local_recovered}</p>
-        <p>{stats.local_deaths}</p>
-        <p>{stats.local_new_deaths}</p>
-        <p>{stats.local_active_cases}</p>
+        <p>{stats["global_total_cases"]}</p>
+        <p>{stats["global_new_cases"]}</p>
+        <p>{stats["global_recovered"]}</p>
+        <p>{stats["global_deaths"]}</p>
       </div>
     </div>
   );
 };
 
-export default LocalStatistics;
+export default GlobalStatistics;
