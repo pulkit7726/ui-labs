@@ -18,12 +18,12 @@ test('should render a Side Drawer Button', () => {
 
 test("should render as click event on Side Drawer Button", () => {
     render(<UserProfile
-        display='drawer'
+        display={'drawer'}
         data={data}
         avatarImage={avatarImage}
     />)
-    const title = screen.getByRole('button');
-    fireEvent.click(title);
+    const submitBtn = screen.getByRole('button');
+    fireEvent.click(submitBtn);
     expect(handleClick).toHaveBeenCalledTimes(0);
     expect(handleClose).toHaveBeenCalledTimes(0);
 })
