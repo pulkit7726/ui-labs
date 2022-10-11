@@ -1,7 +1,7 @@
 import React from 'react';
 import UserProfile from 'components/UserProfile';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { data, avatarImage } from '../Data/UserProfile.json'
+import { data, avatarImage } from '../data/UserProfile.json'
 
 type UserProfileProps = {
   alContent?: string;

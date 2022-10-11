@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
 import UserProfile from '../index';
-import { data, avatarImage } from '../../../Data/UserProfile.json';
+import { data, avatarImage } from '../../../data/UserProfile.json';
 
 const handleClick = jest.fn();
 const handleClose = jest.fn();
