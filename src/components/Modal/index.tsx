@@ -1,11 +1,13 @@
-import React, { ReactElement } from "react";
-import { Dialog, Collapse, Fade, Grow, Slide, Zoom, Box } from '@mui/material';
+import React, { ReactElement } from 'react';
+import {
+  Dialog, Collapse, Fade, Grow, Slide, Zoom, Box,
+} from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { styled } from '@mui/material/styles';
-import ModalProps from "./ModalInterface";
+import ModalProps from './ModalInterface';
 import Header from './Header';
-import Footer from "./Footer";
-import ModalBody from "./ModalBody";
+import Footer from './Footer';
+import ModalBody from './ModalBody';
 
 const CssDialog = styled(Dialog)`
  & .MuiDialog-paper {
@@ -17,7 +19,7 @@ const CssDialog = styled(Dialog)`
   -webkit-transition: box-sha
  }`;
 
-const Modal = ({
+function Modal({
   headerTitle,
   footerContent,
   onClose,
@@ -31,39 +33,40 @@ const Modal = ({
   height,
   fullScreen,
   transition,
-  transitionDuration
-}: ModalProps) => {
-
-  const Transition = React.forwardRef(function Transition(
+  transitionDuration,
+}: ModalProps) {
+  const Transition = React.forwardRef((
     props: TransitionProps & {
       children: React.ReactElement;
     },
     ref: React.Ref<unknown>,
-  ) {
-    return <>
+  ) => (
+    <>
       {transition === 'collapse' ? (
-        <Collapse in={true} style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
+        <Collapse in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
       ) : transition === 'grow' ? (
-        <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
+        <Grow in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
       ) : transition === 'slide' ? (
-        <Slide in={true} direction="up" ref={ref} {...(transitionDuration ? { timeout: transitionDuration } : {})} {...props} />
+        <Slide in direction="up" ref={ref} {...(transitionDuration ? { timeout: transitionDuration } : {})} {...props} />
       ) : transition === 'zoom' ? (
-        <Zoom in={true} style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
-      ) : <Fade in={true} style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />}
+        <Zoom in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
+      ) : <Fade in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />}
     </>
-  });
+  ));
 
-  return (<>
-    {Boolean((keepMounted || show)) && (
+  return (
+    <>
+      {Boolean((keepMounted || show)) && (
       <CssDialog
         open={Boolean((keepMounted || show))}
-        fullScreen={fullScreen ? true : false}
+        fullScreen={!!fullScreen}
         onClose={onClose}
         data-testid="CssDialog-fullScreen"
         className="CssDialog"
         aria-labelledby="customized-dialog-title"
         TransitionComponent={Transition}
-        style={{ width, height }}>
+        style={{ width, height }}
+      >
 
         {/* Header */}
 
@@ -95,10 +98,10 @@ const Modal = ({
         {footerContent && <Footer footerContent={footerContent} footerBackground={footerBackground} width={width} />}
 
       </CssDialog>
-    )}
+      )}
 
-  </>
-  )
+    </>
+  );
 }
 
 export default Modal;
