@@ -1,0 +1,37 @@
+.container {
+  height: 400px;
+  overflow: auto;
+}
+.basic::-webkit-scrollbar {
+  width: 10px;
+}
+.basic::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.basic::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.basic::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* mac os */
+/* total width */
+.mac-os::-webkit-scrollbar {
+  background-color: #fff;
+  width: 8px;
+}
+/* background of the scrollbar except button or resizer */
+.mac-os::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+/* scrollbar itself */
+.mac-os::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 16px;
+  border: 0px solid #fff;
+}
+/* set button(top and bottom of the scrollbar) */
+.mac-os::-webkit-scrollbar-button {
+  display: none;
+}
