@@ -55,8 +55,8 @@ export const SideBar = ({
   ...props
 }: SideBarProps) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [activeTab, setActiveTab] = React.useState('');
-  const [activeSubMenu, setActiveSubMenu] = React.useState('');
+  const [activeTab, setActiveTab] = React.useState("");
+  const [activeSubMenu, setActiveSubMenu] = React.useState("");
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -73,7 +73,10 @@ export const SideBar = ({
         {MenuItems.map((item: any, index: any, Id: number) => (
           <MenuItemList
             setActiveTab={setActiveTab}
-            className={`${showActiveTabs && (item.Id === activeTab ? "avtiveTab" : "inActiveTab")} hover-List`}
+            className={`${
+              showActiveTabs &&
+              (item.Id === activeTab ? "avtiveTab" : "inActiveTab")
+            } hover-List`}
             item={item}
             key={item.Id}
             showActiveTabs={showActiveTabs}
@@ -178,5 +181,5 @@ export const SideBar = ({
 };
 
 SideBar.defaultProps = {
-  activeIndicatorClass: 'activeTab'
-}
+  activeIndicatorClass: "activeTab",
+};
