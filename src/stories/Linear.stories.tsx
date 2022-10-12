@@ -1,29 +1,26 @@
-import { CircularProgress } from '@mui/material';
+
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from 'react';
-import Loader from './Loader';
-
+import Linear from "../components/ProgressBar/Linear";
 
 export default {
-  title: 'Progress/Circle',
-  component: Loader,
+  title: 'Progress/Linear',
+  component: Linear,
  
-} as ComponentMeta<typeof Loader>;
+} as ComponentMeta<typeof Linear>;
 
-const Template: ComponentStory<typeof Loader> = (args) => (
-  <Loader {...args} />
+const Template: ComponentStory<typeof Linear> = (args) => (
+  <Linear {...args} />
 );
 
 export const Indeterminate = Template.bind({});
 Indeterminate.args={
-  size: 40,
   color:"secondary",
 
 }
 
 export const Determinate = Template.bind({});
 Determinate.args={
-  size: 40,
   color:"secondary",
   variant:"determinate",
   value:90,
@@ -31,9 +28,14 @@ Determinate.args={
 
 export const WithLabel = Template.bind({});
 WithLabel.args={
-  size: 40,
   color:"secondary",
   variant:"determinate",
+  value:101,
+}
+export const WithBuffer = Template.bind({});
+WithBuffer.args={
+  color:"secondary",
+  variant:"buffer",
   value:101,
 }
 

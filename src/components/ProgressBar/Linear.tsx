@@ -45,6 +45,7 @@ type LoderProps={
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Box sx={{ width: '100%', mr: 1 }}>
       <LinearProgress 
+      data-testid="linear-progress"
       color={color} 
       variant= {variant}
       value ={value===101?progress:value} 

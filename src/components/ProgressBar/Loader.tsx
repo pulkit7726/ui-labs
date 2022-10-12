@@ -26,6 +26,7 @@ type LoderProps={
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress 
+      data-testid="circle-progress"
       size = {size} 
       color={color} 
       variant= {variant}
