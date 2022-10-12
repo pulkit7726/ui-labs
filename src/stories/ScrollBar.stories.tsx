@@ -7,10 +7,9 @@ export default {
   component: ScrollBar,
 } as ComponentMeta<typeof ScrollBar>;
 
-const Template: ComponentStory<typeof ScrollBar> = args => (
+const Template: ComponentStory<typeof ScrollBar> = (args) => (
   <ScrollBar {...args} />
 );
-
 export const Basic = Template.bind({});
 Basic.args = {
   variant: 'basic',
