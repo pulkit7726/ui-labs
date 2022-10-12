@@ -1,14 +1,14 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { SideBar } from 'components/Sidebar';
-import HomeIcon from '@mui/icons-material/Home';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import PagesIcon from '@mui/icons-material/Pages';
-import SettingsIcon from '@mui/icons-material/Settings';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import PersonIcon from '@mui/icons-material/Person';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import FolderCopyIcon from '@mui/icons-material/FolderCopy';
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import HomeIcon from "@mui/icons-material/Home";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
+import PagesIcon from "@mui/icons-material/Pages";
+import SettingsIcon from "@mui/icons-material/Settings";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import PersonIcon from "@mui/icons-material/Person";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import FolderCopyIcon from "@mui/icons-material/FolderCopy";
+import { SideBar } from "../components/SideBar/index";
 
 export default {
   title: 'UI/Sidebar',
