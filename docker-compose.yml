@@ -3,19 +3,19 @@ services:
   dev-app:
     build: .
     image: ui-labs:dev
-    command: npm storybook
+    command: npm run storybook
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
-      - ./production/build:/app/build
+      - ./prod/build:/app/build
     stdin_open: true
     tty: true
   prod-app:
-    build: ./production
+    build: ./prod
     image: registry.gitlab.com/wavelabs/ui-labs:dev
     container_name: dev-ui-labs
     ports:
-      - "8084:80"
+      - '8084:80'
     restart: always
     stdin_open: true
     tty: true

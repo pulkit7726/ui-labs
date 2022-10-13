@@ -44,15 +44,15 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build",
+		"build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"storybook": "set DISABLE_ESLINT_PLUGIN=true && start-storybook -p 4000",
+		"window-storybook": "set DISABLE_ESLINT_PLUGIN=true && start-storybook -p 4000",
 		"build-storybook": "build-storybook",
 		"build-static-webapp": "expo build:web",
 		"lint": "eslint .",
 		"lint-fix": "eslint --fix .",
-		"linux-storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 4000"
+		"storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 4000"
 	},
 	"eslintConfig": {
 		"extends": [
