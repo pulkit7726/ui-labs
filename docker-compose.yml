@@ -7,7 +7,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./prod/build:/app/build
+      - ./prod/build:/app/storybook-static
     stdin_open: true
     tty: true
   prod-app:

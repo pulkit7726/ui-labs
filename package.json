@@ -49,7 +49,7 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"window-storybook": "set DISABLE_ESLINT_PLUGIN=true && start-storybook -p 4000",
-		"build-storybook": "build-storybook",
+		"build-storybook": "DISABLE_ESLINT_PLUGIN=true build-storybook",
 		"build-static-webapp": "expo build:web",
 		"lint": "eslint .",
 		"lint-fix": "eslint --fix .",
