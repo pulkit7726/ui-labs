@@ -14,8 +14,7 @@
 .basic::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
-/* mac os */
+/* for mac os */
 /* total width */
 .mac-os::-webkit-scrollbar {
   background-color: #fff;
