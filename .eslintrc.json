@@ -29,6 +29,8 @@
       }
     ],
     "react/require-default-props": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "linebreak-style": 0,
+    "no-plusplus": "off"
   }
 }
