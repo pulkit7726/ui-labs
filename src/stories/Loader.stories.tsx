@@ -1,40 +1,32 @@
-import { CircularProgress } from '@mui/material';
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 import Loader from '../components/ProgressBar/Loader';
 
-
 export default {
-  title: 'Progress/Circle',
+  title: 'UI/Progress/Circle',
   component: Loader,
- 
 } as ComponentMeta<typeof Loader>;
 
-const Template: ComponentStory<typeof Loader> = (args) => (
-  <Loader {...args} />
-);
+const Template: ComponentStory<typeof Loader> = args => <Loader {...args} />;
 
 export const Indeterminate = Template.bind({});
-Indeterminate.args={
+Indeterminate.args = {
   size: 40,
-  color:"secondary",
-
-}
+  color: 'secondary',
+};
 
 export const Determinate = Template.bind({});
-Determinate.args={
+Determinate.args = {
   size: 40,
-  color:"secondary",
-  variant:"determinate",
-  value:90,
-}
+  color: 'secondary',
+  variant: 'determinate',
+  value: 90,
+};
 
 export const WithLabel = Template.bind({});
-WithLabel.args={
+WithLabel.args = {
   size: 40,
-  color:"secondary",
-  variant:"determinate",
-  value:101,
-}
-
-
+  color: 'secondary',
+  variant: 'determinate',
+  value: 101,
+};

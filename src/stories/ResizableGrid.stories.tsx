@@ -53,3 +53,9 @@ MultipleElementWithGrid.args = {
   card,
   imageData,
 };
+export const ResizableGridWithFullscreen = Template.bind({});
+ResizableGridWithFullscreen.args = {
+  display: 'fullscreen',
+  data,
+  dataLabel,
+};

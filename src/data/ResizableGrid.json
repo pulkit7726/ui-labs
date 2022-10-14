@@ -3,35 +3,35 @@
     {
       "id": 1,
       "email": "james@wavelabs.ai",
-      "value": "William James",
+      "value": "James",
       "contact": "+9112340000",
       "designation": "Software Engineer"
     },
     {
       "id": 2,
       "email": "mark@wavelabs.ai",
-      "value": "Mark William",
+      "value": "Mark",
       "contact": "+9112341100",
       "designation": "Senior Engineer"
     },
     {
       "id": 3,
       "email": "jhon@wavelabs.ai",
-      "value": "Jhon Evans",
+      "value": "Jhon",
       "contact": "+9112340022",
       "designation": "Testing Engineer"
     },
     {
       "id": 4,
       "email": "peeter@wavelabs.ai",
-      "value": "Peeter Parker",
+      "value": "Peeter",
       "contact": "+9112340340",
       "designation": "Senior Engineer"
     },
     {
       "id": 5,
       "email": "abc@wavelabs.ai",
-      "value": "Robert D'souza",
+      "value": "Robert",
       "contact": "+9119840000",
       "designation": "Traniee"
     },

@@ -11,17 +11,6 @@ const Root = styled(Grid)(({ theme }) => ({
 
 const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(
   ({ gridBackground }) => ({
-    '& .react-grid-layout': {
-      position: 'relative',
-      transition: 'height 200ms ease',
-    },
-    '& .react-grid-item': {
-      transition: 'all 200ms ease',
-      transitionProperty: 'left, top',
-    },
-    '& .react-grid-item.cssTransforms': {
-      transitionProperty: 'transform',
-    },
     '& .react-grid-item > .react-resizable-handle': {
       position: 'absolute',
       bottom: 0,
@@ -65,6 +54,25 @@ const ResizableGrid = ({ ...props }: ResizableGridProps) => {
         gridBackground={props.gridBackground}
       >
         <Grid key="1" data-testid="resize-grid">
+          <BodyTable {...props} />
+        </Grid>
+      </StyledResponsiveGridLayout>
+    );
+  };
+
+  const ResizableGridWithFullscreen = ({ ...props }) => {
+    const layout = [{ i: '1', x: 0, y: 0, w: 12, h: 4 }];
+    return (
+      <StyledResponsiveGridLayout
+        layouts={{ lg: layout }}
+        measureBeforeMount={true}
+        isDragable={true}
+        isResizable={true}
+        margin={[20, 20]}
+        gridBackground={props.gridBackground}
+        sx={{ margin: '-35px' }}
+      >
+        <Grid key="1">
           <BodyTable {...props} />
         </Grid>
       </StyledResponsiveGridLayout>
@@ -149,6 +157,8 @@ const ResizableGrid = ({ ...props }: ResizableGridProps) => {
     <>
       {props.display === 'table' ? (
         <ResizableGridWithTable {...props} />
+      ) : props.display === 'fullscreen' ? (
+        <ResizableGridWithFullscreen {...props} />
       ) : props.display === 'card' ? (
         <ResizableGridWithCard {...props} />
       ) : props.display === 'image' ? (
