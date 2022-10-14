@@ -4,12 +4,12 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { data, dataLabel, card, imageData } from 'data/ResizableGrid.json';
 
 type ResizableGridProps = {
-  title?: string;
   data?: Array<Object>;
   dataLabel?: object;
   display?: string;
   card?: object;
   imageData?: Array<Object>;
+  gridBackground?: string;
 };
 
 const ResizableGridStories = (props: ResizableGridProps) => (
@@ -20,6 +20,9 @@ const ResizableGridStories = (props: ResizableGridProps) => (
 
 export default {
   title: 'UI/Resizable Grid',
+  argTypes: {
+    gridBackground: { control: 'color' },
+  },
 } as ComponentMeta<typeof ResizableGridStories>;
 
 const Template: ComponentStory<typeof ResizableGridStories> = args => (
@@ -28,26 +31,22 @@ const Template: ComponentStory<typeof ResizableGridStories> = args => (
 
 export const ResizableGridWithTable = Template.bind({});
 ResizableGridWithTable.args = {
-  title: 'Resizable Grids',
   display: 'table',
   data,
   dataLabel,
 };
 export const ResizableGridWithCard = Template.bind({});
 ResizableGridWithCard.args = {
-  title: 'Resizable Grids',
   display: 'card',
   card,
 };
 export const ResizableGridWithImage = Template.bind({});
 ResizableGridWithImage.args = {
-  title: 'Resizable Grids',
   display: 'image',
   imageData,
 };
 export const MultipleElementWithGrid = Template.bind({});
 MultipleElementWithGrid.args = {
-  title: 'Resizable Grids',
   display: 'multiple',
   data,
   dataLabel,

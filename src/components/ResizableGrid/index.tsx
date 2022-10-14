@@ -5,8 +5,12 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
+const Root = styled(Grid)(({ theme }) => ({
+  padding: '16px',
+}));
+
 const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(
-  ({ theme }) => ({
+  ({ gridBackground }) => ({
     '& .react-grid-layout': {
       position: 'relative',
       transition: 'height 200ms ease',
@@ -20,8 +24,6 @@ const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(
     },
     '& .react-grid-item > .react-resizable-handle': {
       position: 'absolute',
-      width: '20px',
-      height: '20px',
       bottom: 0,
       right: 0,
       cursor: 'se-resize',
@@ -37,17 +39,17 @@ const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(
       borderBottom: '2px solid rgba(0, 0, 0, 0.4)',
     },
     '& .react-grid-item:not(.react-grid-placeholder)': {
-      background: 'lightgray',
+      background: gridBackground || 'lightgray',
     },
   })
 );
 
 type ResizableGridProps = {
-  title?: string;
   dataLabel?: object;
   card?: object;
   display?: string;
   imageData?: Array<Object>;
+  gridBackground?: string;
 };
 
 const ResizableGrid = ({ ...props }: ResizableGridProps) => {
@@ -60,6 +62,7 @@ const ResizableGrid = ({ ...props }: ResizableGridProps) => {
         isDragable={true}
         isResizable={true}
         margin={[20, 20]}
+        gridBackground={props.gridBackground}
       >
         <Grid key="1" data-testid="resize-grid">
           <BodyTable {...props} />
@@ -77,8 +80,9 @@ const ResizableGrid = ({ ...props }: ResizableGridProps) => {
         isDragable={true}
         isResizable={true}
         margin={[20, 20]}
+        gridBackground={props.gridBackground}
       >
-        <Grid key="1" className="grid-item">
+        <Grid key="1">
           <BodyCard {...props} />
         </Grid>
       </StyledResponsiveGridLayout>
@@ -94,38 +98,50 @@ const ResizableGrid = ({ ...props }: ResizableGridProps) => {
         isDragable={true}
         isResizable={true}
         margin={[20, 20]}
+        gridBackground={props.gridBackground}
       >
-        <Grid key="1" className="grid-item">
+        <Grid key="1">
           <BodyImage {...props} />
         </Grid>
       </StyledResponsiveGridLayout>
     );
   };
 
-  const MultipleGrid = ({ ...props }) => {
+  const MultipleGridWithPersistingData = ({ ...props }) => {
     const layout = [
       { i: '1', x: 0, y: 3, w: 8, h: 2 },
       { i: '2', x: 5, y: 0, w: 3, h: 2 },
       { i: '3', x: 0, y: 0, w: 5, h: 2 },
     ];
+    const getLayouts = () => {
+      const savedLayouts = localStorage.getItem('grid-layout');
+      return savedLayouts ? JSON.parse(savedLayouts) : { lg: layout };
+    };
+    const handleLayoutChange = (layout, layouts) => {
+      localStorage.setItem('grid-layout', JSON.stringify(layouts));
+    };
     return (
-      <StyledResponsiveGridLayout
-        layouts={{ lg: layout }}
-        measureBeforeMount={true}
-        isDragable={true}
-        isResizable={true}
-        margin={[20, 20]}
-      >
-        <Grid key="1" className="grid-item">
-          <BodyTable {...props} />
-        </Grid>
-        <Grid key="2" className="grid-item">
-          <BodyCard {...props} />
-        </Grid>
-        <Grid key="3" className="grid-item">
-          <BodyImage {...props} />
-        </Grid>
-      </StyledResponsiveGridLayout>
+      <Root>
+        <StyledResponsiveGridLayout
+          layouts={getLayouts()}
+          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+          cols={{ lg: 5, md: 4, sm: 3, xs: 2, xxs: 1 }}
+          rowHeight={300}
+          width={1000}
+          onLayoutChange={handleLayoutChange}
+          gridBackground={props.gridBackground}
+        >
+          <Grid key="1">
+            <BodyTable {...props} />
+          </Grid>
+          <Grid key="2">
+            <BodyCard {...props} />
+          </Grid>
+          <Grid key="3">
+            <BodyImage {...props} />
+          </Grid>
+        </StyledResponsiveGridLayout>
+      </Root>
     );
   };
 
@@ -138,7 +154,7 @@ const ResizableGrid = ({ ...props }: ResizableGridProps) => {
       ) : props.display === 'image' ? (
         <ResizableGridWithImage {...props} />
       ) : (
-        <MultipleGrid {...props} />
+        <MultipleGridWithPersistingData {...props} />
       )}
     </>
   );
