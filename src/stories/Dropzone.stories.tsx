@@ -10,10 +10,12 @@ export default {
   },
 } as ComponentMeta<typeof DropzoneComponent>;
 const img = ['.jpg', '.png', '.xls', '.zip', '.mp4'];
-const Template: ComponentStory<typeof DropzoneComponent> = (args) => <DropzoneComponent {...args} />;
+const Template: ComponentStory<typeof DropzoneComponent> = args => (
+  <DropzoneComponent {...args} />
+);
 export const DropzoneList = Template.bind({});
 DropzoneList.args = {
   fileTypes: img,
-  fileSize: 1e+7,
+  fileSize: 1e7,
   backgroundColor: '#CFD8DC',
 };
