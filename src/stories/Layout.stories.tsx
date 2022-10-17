@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { MainLayout } from '../components/MainLayout';

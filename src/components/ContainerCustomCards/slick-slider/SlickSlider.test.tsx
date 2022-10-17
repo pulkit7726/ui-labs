@@ -5,7 +5,7 @@ import PortalProvider from '../providers/PortalProvider';
 
 describe('Component: SlickSlider::Card Slider', () => {
   test('should render Card image Slider', () => {
-    render(<SlickSlider images={[]} cardType="" cardSize="" />);
+    render(<SlickSlider images={[]} cardType="" />);
     expect(screen.getByTestId('main-cotainer')).toBeInTheDocument();
   });
   test('With 2 Cards', () => {
@@ -29,9 +29,8 @@ describe('Component: SlickSlider::Card Slider', () => {
             },
           ]}
           cardType=""
-          cardSize=""
         />
-      </PortalProvider>
+      </PortalProvider>,
     );
     expect(screen.getByTestId('main-cotainer')).toBeInTheDocument();
   });
@@ -57,9 +56,8 @@ describe('Component: SlickSlider::Card Slider', () => {
             },
           ]}
           cardType="Grid Slider"
-          cardSize=""
         />
-      </PortalProvider>
+      </PortalProvider>,
     );
     expect(screen.getByTestId('grid-container')).toBeInTheDocument();
   });
@@ -84,9 +82,8 @@ describe('Component: SlickSlider::Card Slider', () => {
             },
           ]}
           cardType="Vertical Slider"
-          cardSize=""
         />
-      </PortalProvider>
+      </PortalProvider>,
     );
     expect(screen.getByTestId('vertical-container')).toBeInTheDocument();
   });
@@ -111,9 +108,8 @@ describe('Component: SlickSlider::Card Slider', () => {
             },
           ]}
           cardType="Horizontal Slider"
-          cardSize=""
         />
-      </PortalProvider>
+      </PortalProvider>,
     );
     expect(screen.getByTestId('horizontal-container')).toBeInTheDocument();
   });

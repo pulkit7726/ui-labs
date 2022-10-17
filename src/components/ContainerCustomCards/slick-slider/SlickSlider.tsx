@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
-
 import Slider, { Settings } from 'react-slick';
 import { styled, Theme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-
 import { Grid } from '@mui/material';
 import CustomNavigation from './CustomNavigation';
 import ImageItemWithHover from './ImageItemWithHover';
@@ -55,13 +53,8 @@ const SlideItem = ({ item }: SlideItemProps) => (
 interface SlickSliderProps {
   images: any[];
   cardType: string;
-  cardSize: string;
 }
-export default function SlickSlider({
-  images,
-  cardType,
-  cardSize,
-}: SlickSliderProps) {
+export default function SlickSlider({ images, cardType }: SlickSliderProps) {
   const sliderRef = useRef<Slider>(null);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isEnd, setIsEnd] = useState(false);
@@ -83,13 +76,7 @@ export default function SlickSlider({
     lazyLoad: 'ondemand',
     slidesToShow: 6,
     slidesToScroll: 6,
-    // afterChange: (current) => {
-    //   console.log("After Change", current);
-    // },
     beforeChange,
-    // onEdge: (direction) => {
-    //   console.log("Edge: ", direction);
-    // },
     responsive: [
       {
         breakpoint: 1536,
@@ -129,8 +116,6 @@ export default function SlickSlider({
   const handleNext = () => {
     sliderRef.current?.slickNext();
   };
-
-  console.log('cardSize', cardSize);
 
   const renderView = () => {
     if (cardType === 'Horizontal Slider') {

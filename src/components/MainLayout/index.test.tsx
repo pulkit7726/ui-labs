@@ -5,7 +5,11 @@ import { MainLayout } from '.';
 describe('Component: Main Layout::MainLayout', () => {
   test('should render component with blank list', () => {
     render(
-      <MainLayout drawer={false} authenticate={false} containerBgColor="#ccc" />
+      <MainLayout
+        drawer={false}
+        authenticate={false}
+        containerBgColor="#ccc"
+      />,
     );
     expect(screen.getByTestId('main-container')).toBeInTheDocument();
   });

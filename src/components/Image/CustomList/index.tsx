@@ -5,20 +5,18 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-function srcset(
+const srcset = (
   image: string,
   width: number,
   height: number,
   rows = 1,
   cols = 1,
-) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
+) => ({
+  src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+  srcSet: `${image}?w=${width * cols}&h=${
+    height * rows
+  }&fit=crop&auto=format&dpr=2 2x`,
+});
 
 export interface CustomImageProps {
   itemData: Array<Type>;

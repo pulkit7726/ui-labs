@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
-import SwiperCore, { Virtual, Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useRef, useState } from 'react';
+import SwiperCore, { Virtual, Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-import "./styles.css";
-import { Card } from "./Card";
+import './styles.css';
+import { Card } from './Card';
 
 // install Virtual module
 SwiperCore.use([Virtual, Navigation, Pagination]);
@@ -19,22 +19,21 @@ export default function SliderCard() {
   const prependNumber = useRef(1);
   // Create array with 500 slides
   const [slides, setSlides] = useState(
-    Array.from({ length: 5 }).map((_, index) => `Slide ${index + 1}`)
+    Array.from({ length: 5 }).map((_, index) => `Slide ${index + 1}`),
   );
-  console.log(slides);
 
   const prepend = () => {
     setSlides([
       `Slide ${prependNumber.current - 2}`,
       `Slide ${prependNumber.current - 1}`,
-      ...slides
+      ...slides,
     ]);
-    prependNumber.current = prependNumber.current - 2;
+    prependNumber.current -= 2;
     swiperRef.slideTo(swiperRef.activeIndex + 2, 0);
   };
 
   const append = () => {
-    setSlides([...slides, "Slide " + ++appendNumber.current]);
+    setSlides([...slides, `Slide ${++appendNumber.current}`]);
   };
 
   const slideTo = (index) => {
@@ -46,17 +45,17 @@ export default function SliderCard() {
       <Swiper
         onSwiper={setSwiperRef}
         slidesPerView={3}
-        centeredSlides={true}
+        centeredSlides
         spaceBetween={30}
         pagination={{
-          type: "fraction"
+          type: 'fraction',
         }}
-        navigation={true}
+        navigation
         virtual
       >
         {slides.map((slideContent, index) => (
           <SwiperSlide key={slideContent} virtualIndex={index}>
-            <Card/>
+            <Card />
           </SwiperSlide>
         ))}
       </Swiper>
