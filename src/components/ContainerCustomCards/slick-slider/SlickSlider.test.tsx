@@ -1,120 +1,116 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import  SlickSlider  from "./SlickSlider";
-import PortalProvider from "../providers/PortalProvider";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import SlickSlider from './SlickSlider';
+import PortalProvider from '../providers/PortalProvider';
 
-describe("Component: SlickSlider::Card Slider", () => {
-  test("should render Card image Slider", () => {
-    render(<SlickSlider images={[]} cardType="" cardSize="" />);
-    expect(screen.getByTestId("main-cotainer")).toBeInTheDocument();
+describe('Component: SlickSlider::Card Slider', () => {
+  test('should render Card image Slider', () => {
+    render(<SlickSlider images={[]} cardType="" />);
+    expect(screen.getByTestId('main-cotainer')).toBeInTheDocument();
   });
-  test("With 2 Cards", () => {
+  test('With 2 Cards', () => {
     render(
       <PortalProvider>
-      <SlickSlider
-      images={[
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-        ]}
-        cardType=""
-        cardSize=""
-      />
-      </PortalProvider>
+        <SlickSlider
+          images={[
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+          ]}
+          cardType=""
+        />
+      </PortalProvider>,
     );
-    expect(screen.getByTestId("main-cotainer")).toBeInTheDocument();
+    expect(screen.getByTestId('main-cotainer')).toBeInTheDocument();
   });
 
-  test("With 2 cards Grid Slider", () => {
+  test('With 2 cards Grid Slider', () => {
     render(
       <PortalProvider>
-      <SlickSlider
-      images={[
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-        ]}
-        cardType="Grid Slider"
-        cardSize=""
-      />
-      </PortalProvider>
+        <SlickSlider
+          images={[
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+          ]}
+          cardType="Grid Slider"
+        />
+      </PortalProvider>,
     );
-    expect(screen.getByTestId("grid-container")).toBeInTheDocument();
+    expect(screen.getByTestId('grid-container')).toBeInTheDocument();
   });
-  test("With 2 cards Vertical Slider", () => {
+  test('With 2 cards Vertical Slider', () => {
     render(
       <PortalProvider>
-      <SlickSlider
-      images={[
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-        ]}
-        cardType="Vertical Slider"
-        cardSize=""
-      />
-      </PortalProvider>
+        <SlickSlider
+          images={[
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+          ]}
+          cardType="Vertical Slider"
+        />
+      </PortalProvider>,
     );
-    expect(screen.getByTestId("vertical-container")).toBeInTheDocument();
+    expect(screen.getByTestId('vertical-container')).toBeInTheDocument();
   });
-  test("With 2 cards Horizontal Slider", () => {
+  test('With 2 cards Horizontal Slider', () => {
     render(
       <PortalProvider>
-      <SlickSlider
-      images={[
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-          {
-            backdrop_path: "backdrop_path",
-            id: 1,
-            original_title: "original_title",
-            overview: "overview",
-            title: "title",
-          },
-        ]}
-        cardType="Horizontal Slider"
-        cardSize=""
-      />
-      </PortalProvider>
+        <SlickSlider
+          images={[
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+            {
+              backdrop_path: 'backdrop_path',
+              id: 1,
+              original_title: 'original_title',
+              overview: 'overview',
+              title: 'title',
+            },
+          ]}
+          cardType="Horizontal Slider"
+        />
+      </PortalProvider>,
     );
-    expect(screen.getByTestId("horizontal-container")).toBeInTheDocument();
+    expect(screen.getByTestId('horizontal-container')).toBeInTheDocument();
   });
 });

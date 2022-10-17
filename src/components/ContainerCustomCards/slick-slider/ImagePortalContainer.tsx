@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import Box from "@mui/material/Box";
-import Portal from "@mui/material/Portal";
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import Box from '@mui/material/Box';
+import Portal from '@mui/material/Portal';
 
-import ImageCardPortal from "./ImageCardPortal";
-import MotionContainer from "../animate/MotionContainer";
+import ImageCardPortal from './ImageCardPortal';
+import MotionContainer from '../animate/MotionContainer';
 import {
   varZoomIn,
   varZoomInLeft,
-  varZoomInRight
-} from "../animate/variants/zoom/ZoomIn";
-import { usePortal } from "../providers/PortalProvider";
+  varZoomInRight,
+} from '../animate/variants/zoom/ZoomIn';
+import { usePortal } from '../providers/PortalProvider';
 
 export default function ImagePortalContainer() {
   const { miniModalMediaData, anchorElement } = usePortal();
@@ -22,15 +22,15 @@ export default function ImagePortalContainer() {
   let isLastElement = false;
   let variant = varZoomIn;
   if (anchorElement) {
-    const parentElement = anchorElement?.closest(".slick-active");
+    const parentElement = anchorElement?.closest('.slick-active');
     const nextSiblingOfParentElement = parentElement?.nextElementSibling;
     const previousSiblingOfParentElement =
       parentElement?.previousElementSibling;
-    if (!previousSiblingOfParentElement?.classList.contains("slick-active")) {
+    if (!previousSiblingOfParentElement?.classList.contains('slick-active')) {
       isFirstElement = true;
       variant = varZoomInLeft;
     } else if (
-      !nextSiblingOfParentElement?.classList.contains("slick-active")
+      !nextSiblingOfParentElement?.classList.contains('slick-active')
     ) {
       isLastElement = true;
       variant = varZoomInRight;
@@ -54,20 +54,20 @@ export default function ImagePortalContainer() {
           variants={variant}
           sx={{
             zIndex: 100,
-            position: "absolute",
-            display: "inline-block",
+            position: 'absolute',
+            display: 'inline-block',
             ...(rect && {
               top: rect.top + window.pageYOffset - 0.75 * rect.height,
               ...(isLastElement
                 ? {
-                    right: document.documentElement.clientWidth - rect.right
+                    right: document.documentElement.clientWidth - rect.right,
                   }
                 : {
                     left: isFirstElement
                       ? rect.left
-                      : rect.left - 0.25 * rect.width
-                  })
-            })
+                      : rect.left - 0.25 * rect.width,
+                  }),
+            }),
           }}
         />
       </MotionContainer>
