@@ -14,6 +14,7 @@ import {
   ImageListItem,
 } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import { data, dataLabel, card, imageData } from 'data/ResizableGrid.json';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -25,28 +26,31 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-export const BodyTable = ({ ...props }) => (
+const StyledImageList = styled(ImageList)(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexWrap: 'wrap',
+}));
+
+export const BodyTable = () => (
   <>
     <TableContainer sx={{ height: '100%' }}>
       <Table stickyHeader aria-label="sticky table">
         <TableHead>
           <TableRow>
+            <StyledTableCell align="center">{dataLabel.name}</StyledTableCell>
+            <StyledTableCell align="center">{dataLabel.email}</StyledTableCell>
             <StyledTableCell align="center">
-              {props.dataLabel.name}
+              {dataLabel.contact}
             </StyledTableCell>
             <StyledTableCell align="center">
-              {props.dataLabel.email}
-            </StyledTableCell>
-            <StyledTableCell align="center">
-              {props.dataLabel.contact}
-            </StyledTableCell>
-            <StyledTableCell align="center">
-              {props.dataLabel.designation}
+              {dataLabel.designation}
             </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.data.map(obj => (
+          {data.map(obj => (
             <TableRow key={obj.id}>
               <StyledTableCell align="center">
                 <Typography>{obj.value}</Typography>
@@ -67,40 +71,35 @@ export const BodyTable = ({ ...props }) => (
     </TableContainer>
   </>
 );
-export const BodyCard = ({ ...props }) => (
+export const BodyCard = () => (
   <>
     <Card sx={{ width: '100%', height: '100%' }}>
       <CardMedia
         component="img"
         height="140"
-        image={props.card.imageurl}
+        image={card.imageurl}
         alt="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.card.title}
+          {card.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.card.content}
+          {card.content}
         </Typography>
       </CardContent>
     </Card>
   </>
 );
 
-export const BodyImage = ({ ...props }) => {
+export const BodyImage = () => {
   return (
-    <ImageList
-      sx={{ width: '100%', height: '100%' }}
-      variant="quilted"
-      cols={4}
-      rowHeight={121}
-    >
-      {props.imageData.map((item, i) => (
+    <StyledImageList variant="quilted" cols={4} rowHeight={121}>
+      {imageData.map((item, i) => (
         <ImageListItem key={i} cols={item.cols || 1} rows={item.rows || 1}>
           <img src={item.img} alt={item.title} loading="lazy" />
         </ImageListItem>
       ))}
-    </ImageList>
+    </StyledImageList>
   );
 };
