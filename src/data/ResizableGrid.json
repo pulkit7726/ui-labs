@@ -73,7 +73,7 @@
   ],
   "dataLabel": {
     "name": "Name",
-    "email": "email",
+    "email": "Email",
     "contact": "Contact",
     "designation": "Designation"
   },

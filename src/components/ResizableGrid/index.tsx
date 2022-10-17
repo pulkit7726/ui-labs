@@ -34,6 +34,7 @@ const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(
 );
 
 type ResizableGridProps = {
+  data?: Array<Object>;
   dataLabel?: object;
   card?: object;
   display?: string;
