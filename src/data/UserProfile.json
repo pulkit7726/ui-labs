@@ -1,0 +1,38 @@
+{
+	"data": [
+		{
+			"id": "userName",
+			"label": "Name",
+			"userName": "William James",
+			"value": "William James"
+		},
+		{
+			"id": "phoneNo",
+			"label": "Contact",
+			"contact": "+9112340000",
+			"value": "+9112340000"
+		},
+		{
+			"id": "email",
+			"label": "Email",
+			"email": "abc@wavelabs.ai",
+			"value": "abc@wavelabs.ai"
+		},
+		{
+			"id": "designation",
+			"label": "Designation",
+			"value": "Software Engineer",
+			"designation": "Software Engineer"
+		},
+		{
+			"id": "company",
+			"label": "Company",
+			"value": "Wavelabs Technologies",
+			"company": "Wavelabs Technologies"
+		}
+	],
+	"avatarImage": {
+		"avatarImg": "https://png.pngtree.com/png-clipart/20190924/original/pngtree-business-user-profile-vector-png-image_4830519.jpg",
+		"avatarTitle": "Profile Image"
+	}
+}

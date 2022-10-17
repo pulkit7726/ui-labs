@@ -8,8 +8,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.wordWrap": "wordWrapColumn",
   "html.format.wrapLineLength": 80,
-
-  // START: Settings for Eslint and Prettier
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[typescript]": {
     "editor.formatOnSave": true
@@ -26,6 +24,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
   "eslint.alwaysShowStatus": true,
   "eslint.validate": [
     "javascript",
@@ -33,10 +34,11 @@
     "typescript",
     "typescriptreact"
   ],
-  // START: Settings for Prettier
-  // "prettier.useTabs": true,
-  "prettier.jsxSingleQuote": false,
+  "prettier.useTabs": false,
   "prettier.tabWidth": 2,
   "prettier.arrowParens": "avoid",
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.bracketSpacing": true,
+  "prettier.endOfLine": "auto"
 }
