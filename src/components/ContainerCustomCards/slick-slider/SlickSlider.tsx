@@ -39,7 +39,7 @@ const StyledSlider = styled(Slider)(
         width: `calc(100% - ${padding}px)`,
       },
     },
-  })
+  }),
 );
 
 interface SlideItemProps {
