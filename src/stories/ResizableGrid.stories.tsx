@@ -1,22 +1,34 @@
 import React, { ReactElement } from 'react';
 import ResizableGrid from 'components/ResizableGrid';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { BodyTable, BodyCard, BodyImage } from 'components/ResizableGrid/Body';
-import { data, dataLabel, card, imageData } from 'data/ResizableGrid.json';
+import {
+  BodyTable,
+  BodyCard,
+  BodyImage,
+  BodyAppBar,
+} from 'components/ResizableGrid/Body';
+import {
+  data,
+  dataLabel,
+  card,
+  imageData,
+  appBar,
+} from 'data/ResizableGrid.json';
 import { Grid } from '@mui/material';
 
 type ResizableGridProps = {
   children?: ReactElement | string;
   childrenOne?: ReactElement | string;
   childrenTwo?: ReactElement | string;
+  childrenThree?: ReactElement | string;
   layout?: any;
-  data?: Array<Object>;
+  data?: Array<object>;
   dataLabel?: object;
   display?: string;
   card?: object;
-  imageData?: Array<Object>;
+  imageData?: Array<object>;
   gridBackground?: string;
-  alignContent?: any;
+  appBar?: object;
 };
 
 const ResizableGridStories = (props: ResizableGridProps) => (
@@ -45,6 +57,17 @@ ResizableGridWithTable.args = {
   children: (
     <Grid key="1" data-testid="resize-grid">
       <BodyTable data={data} dataLabel={dataLabel} />
+    </Grid>
+  ),
+};
+export const ResizableGridWithAppBar = Template.bind({});
+ResizableGridWithAppBar.args = {
+  display: 'table',
+  appBar,
+  layout: [{ i: '1', x: 0, y: 3, w: 5, h: 2 }],
+  children: (
+    <Grid key="1">
+      <BodyAppBar appBar={appBar} />
     </Grid>
   ),
 };
@@ -77,10 +100,12 @@ MultipleElementWithGrid.args = {
   dataLabel,
   card,
   imageData,
+  appBar,
   layout: [
-    { i: '1', x: 0, y: 3, w: 8, h: 2 },
+    { i: '1', x: 0, y: 0, w: 5, h: 2 },
     { i: '2', x: 5, y: 0, w: 3, h: 2 },
     { i: '3', x: 0, y: 0, w: 5, h: 2 },
+    { i: '4', x: 5, y: 0, w: 3, h: 2 },
   ],
   children: (
     <Grid key="1">
@@ -95,6 +120,11 @@ MultipleElementWithGrid.args = {
   childrenTwo: (
     <Grid key="3">
       <BodyImage imageData={imageData} />
+    </Grid>
+  ),
+  childrenThree: (
+    <Grid key="4">
+      <BodyAppBar appBar={appBar} />
     </Grid>
   ),
 };

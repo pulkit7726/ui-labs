@@ -12,7 +12,12 @@ import {
   CardContent,
   ImageList,
   ImageListItem,
+  Box,
+  AppBar,
+  Toolbar,
+  IconButton,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -37,6 +42,20 @@ const StyledImageList = styled(ImageList)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   overflow: 'auto',
+}));
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  overflow: 'auto',
+  backgroundColor: 'white',
+  border: '1px outset',
+}));
+
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  marginTop: '80px',
+  marginLeft: '25px',
+  marginRight: '25px',
 }));
 
 export const BodyTable = ({ ...props }) => {
@@ -112,5 +131,29 @@ export const BodyImage = ({ ...props }) => {
         </ImageListItem>
       ))}
     </StyledImageList>
+  );
+};
+
+export const BodyAppBar = ({ ...props }) => {
+  return (
+    <StyledBox component="main">
+      <AppBar position="fixed">
+        <Toolbar variant="dense">
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" component="div">
+            {props.appBar.title}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      {/* <Toolbar /> */}
+      <StyledTypography>{props.appBar.content}</StyledTypography>
+    </StyledBox>
   );
 };

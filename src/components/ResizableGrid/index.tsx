@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { Grid, styled } from '@mui/material';
-import { BodyTable, BodyCard, BodyImage } from './Body';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -37,17 +36,18 @@ type ResizableGridProps = {
   children?: ReactElement | string;
   childrenOne?: ReactElement | string;
   childrenTwo?: ReactElement | string;
+  childrenThree?: ReactElement | string;
   layout?: any;
-  data?: Array<Object>;
+  data?: Array<object>;
   dataLabel?: object;
   card?: object;
   display?: string;
-  imageData?: Array<Object>;
+  imageData?: Array<object>;
   gridBackground?: string;
+  appBar?: object;
 };
 
 const ResizableGrid = ({ ...props }: ResizableGridProps) => {
-  console.log(1111, props);
   return (
     <>
       <StyledResponsiveGridLayout
@@ -62,6 +62,7 @@ const ResizableGrid = ({ ...props }: ResizableGridProps) => {
         {props.children}
         {props.childrenOne}
         {props.childrenTwo}
+        {props.childrenThree}
       </StyledResponsiveGridLayout>
     </>
   );
