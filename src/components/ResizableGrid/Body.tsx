@@ -14,7 +14,6 @@ import {
   ImageListItem,
 } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import { data, dataLabel, card, imageData } from 'data/ResizableGrid.json';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,78 +25,90 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
+const StyledCard = styled(Card)(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  overflow: 'auto',
+}));
+
 const StyledImageList = styled(ImageList)(({ theme }) => ({
   width: '100%',
   height: '100%',
   display: 'flex',
   flexWrap: 'wrap',
+  overflow: 'auto',
 }));
 
-export const BodyTable = () => (
-  <>
-    <TableContainer sx={{ height: '100%' }}>
-      <Table stickyHeader aria-label="sticky table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">{dataLabel.name}</StyledTableCell>
-            <StyledTableCell align="center">{dataLabel.email}</StyledTableCell>
-            <StyledTableCell align="center">
-              {dataLabel.contact}
-            </StyledTableCell>
-            <StyledTableCell align="center">
-              {dataLabel.designation}
-            </StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(obj => (
-            <TableRow key={obj.id}>
+export const BodyTable = ({ ...props }) => {
+  return (
+    <>
+      <TableContainer sx={{ height: '100%' }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
               <StyledTableCell align="center">
-                <Typography>{obj.value}</Typography>
+                {props.dataLabel.name}
               </StyledTableCell>
               <StyledTableCell align="center">
-                <Typography>{obj.email}</Typography>
+                {props.dataLabel.email}
               </StyledTableCell>
               <StyledTableCell align="center">
-                <Typography>{obj.contact}</Typography>
+                {props.dataLabel.contact}
               </StyledTableCell>
               <StyledTableCell align="center">
-                <Typography>{obj.designation}</Typography>
+                {props.dataLabel.designation}
               </StyledTableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </>
-);
-export const BodyCard = () => (
+          </TableHead>
+          <TableBody>
+            {props.data.map(obj => (
+              <TableRow key={obj.id}>
+                <StyledTableCell align="center">
+                  <Typography>{obj.value}</Typography>
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <Typography>{obj.email}</Typography>
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <Typography>{obj.contact}</Typography>
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <Typography>{obj.designation}</Typography>
+                </StyledTableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
+  );
+};
+export const BodyCard = ({ ...props }) => (
   <>
-    <Card sx={{ width: '100%', height: '100%' }}>
+    <StyledCard>
       <CardMedia
         component="img"
-        height="140"
-        image={card.imageurl}
+        image={props.card.imageurl}
         alt="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {card.title}
+          {props.card.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {card.content}
+          {props.card.content}
         </Typography>
       </CardContent>
-    </Card>
+    </StyledCard>
   </>
 );
 
-export const BodyImage = () => {
+export const BodyImage = ({ ...props }) => {
   return (
     <StyledImageList variant="quilted" cols={4} rowHeight={121}>
-      {imageData.map((item, i) => (
+      {props.imageData.map((item, i) => (
         <ImageListItem key={i} cols={item.cols || 1} rows={item.rows || 1}>
-          <img src={item.img} alt={item.title} loading="lazy" />
+          <img src={item.img} alt={item.title} />
         </ImageListItem>
       ))}
     </StyledImageList>

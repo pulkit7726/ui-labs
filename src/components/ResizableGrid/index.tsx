@@ -30,7 +30,7 @@ const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(
     '& .react-grid-item:not(.react-grid-placeholder)': {
       background: gridBackground || 'lightgray',
     },
-  })
+  }),
 );
 
 type ResizableGridProps = {
@@ -47,6 +47,7 @@ type ResizableGridProps = {
 };
 
 const ResizableGrid = ({ ...props }: ResizableGridProps) => {
+  console.log(1111, props);
   return (
     <>
       <StyledResponsiveGridLayout

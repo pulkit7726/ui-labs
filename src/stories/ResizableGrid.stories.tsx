@@ -16,6 +16,7 @@ type ResizableGridProps = {
   card?: object;
   imageData?: Array<Object>;
   gridBackground?: string;
+  alignContent?: any;
 };
 
 const ResizableGridStories = (props: ResizableGridProps) => (
@@ -43,7 +44,7 @@ ResizableGridWithTable.args = {
   layout: [{ i: '1', x: 0, y: 3, w: 8, h: 2 }],
   children: (
     <Grid key="1" data-testid="resize-grid">
-      <BodyTable />
+      <BodyTable data={data} dataLabel={dataLabel} />
     </Grid>
   ),
 };
@@ -51,10 +52,10 @@ export const ResizableGridWithCard = Template.bind({});
 ResizableGridWithCard.args = {
   display: 'card',
   card,
-  layout: [{ i: '1', x: 0, y: 0, w: 3, h: 2 }],
+  layout: [{ i: '1', x: 0, y: 0, w: 3, h: 2.5 }],
   children: (
     <Grid key="1">
-      <BodyCard />
+      <BodyCard card={card} />
     </Grid>
   ),
 };
@@ -65,7 +66,7 @@ ResizableGridWithImage.args = {
   layout: [{ i: '1', x: 0, y: 3, w: 5, h: 2 }],
   children: (
     <Grid key="1">
-      <BodyImage />
+      <BodyImage imageData={imageData} />
     </Grid>
   ),
 };
@@ -83,17 +84,17 @@ MultipleElementWithGrid.args = {
   ],
   children: (
     <Grid key="1">
-      <BodyTable />
+      <BodyTable data={data} dataLabel={dataLabel} />
     </Grid>
   ),
   childrenOne: (
     <Grid key="2">
-      <BodyCard />
+      <BodyCard card={card} />
     </Grid>
   ),
   childrenTwo: (
     <Grid key="3">
-      <BodyImage />
+      <BodyImage imageData={imageData} />
     </Grid>
   ),
 };
@@ -105,7 +106,7 @@ ResizableGridWithFullscreen.args = {
   layout: [{ i: '1', x: 0, y: 0, w: 12, h: 4 }],
   children: (
     <Grid key="1">
-      <BodyTable />
+      <BodyTable data={data} dataLabel={dataLabel} />
     </Grid>
   ),
 };
