@@ -103,9 +103,7 @@ const MenuItems = [
   },
 ];
 
-const Template: ComponentStory<typeof SideBar> = (args) => (
-  <SideBar {...args} />
-);
+const Template: ComponentStory<typeof SideBar> = args => <SideBar {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {

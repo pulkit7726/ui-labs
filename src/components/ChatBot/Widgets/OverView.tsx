@@ -1,28 +1,28 @@
-import Options from "./Options";
 import React from 'react';
+import Options from './Options';
 
-const GeneralOptions = (props:any) => {
+const GeneralOptions = (props: any) => {
   const options = [
     {
-      name: "Show global statistics",
+      name: 'Show global statistics',
       handler: props.actionProvider.handleGlobalStats,
-      id: 1
+      id: 1,
     },
     {
-      name: "Show local statistics",
+      name: 'Show local statistics',
       handler: props.actionProvider.handleLocalStats,
-      id: 2
+      id: 2,
     },
     {
-      name: "Emergency contact",
+      name: 'Emergency contact',
       handler: props.actionProvider.handleContact,
-      id: 3
+      id: 3,
     },
     {
-      name: "Clinical medicine delivery",
+      name: 'Clinical medicine delivery',
       handler: props.actionProvider.handleMedicine,
-      id: 4
-    }
+      id: 4,
+    },
   ];
   return <Options options={options} title="Options" {...props} />;
 };
