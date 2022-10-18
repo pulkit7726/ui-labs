@@ -17,41 +17,92 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
     color: { control: 'color' },
-
   },
 } as ComponentMeta<typeof SideBar>;
 
 const MenuItems = [
-
-  { Id: 1, Name: 'Home', icon: <div><HomeIcon /></div> },
+  {
+    Id: 1,
+    Name: 'Home',
+    icon: (
+      <div>
+        <HomeIcon />
+      </div>
+    ),
+  },
   {
     Id: 2,
     Name: 'Content',
-    icon: <div><ContentPasteIcon /></div>,
+    icon: (
+      <div>
+        <ContentPasteIcon />
+      </div>
+    ),
 
     SubMenu: [
-      { Id: 1, Name: 'New Content Sync', icon: <div><AddCircleOutlineIcon /></div> },
-      { Id: 2, Name: 'Existing Content', icon: <div><FolderCopyIcon /></div> },
+      {
+        Id: 1,
+        Name: 'New Content Sync',
+        icon: (
+          <div>
+            <AddCircleOutlineIcon />
+          </div>
+        ),
+      },
+      {
+        Id: 2,
+        Name: 'Existing Content',
+        icon: (
+          <div>
+            <FolderCopyIcon />
+          </div>
+        ),
+      },
     ],
   },
 
-  { Id: 3, Name: 'Pages', icon: <div><PagesIcon /></div> },
+  {
+    Id: 3,
+    Name: 'Pages',
+    icon: (
+      <div>
+        <PagesIcon />
+      </div>
+    ),
+  },
   {
     Id: 4,
     Name: 'Settings',
-    icon: <div><SettingsIcon /></div>,
+    icon: (
+      <div>
+        <SettingsIcon />
+      </div>
+    ),
 
     SubMenu: [
-      { Id: 3, Name: 'Notification', icon: <div><NotificationsIcon /></div> },
-      { Id: 4, Name: 'Account', icon: <div><PersonIcon /></div> },
+      {
+        Id: 3,
+        Name: 'Notification',
+        icon: (
+          <div>
+            <NotificationsIcon />
+          </div>
+        ),
+      },
+      {
+        Id: 4,
+        Name: 'Account',
+        icon: (
+          <div>
+            <PersonIcon />
+          </div>
+        ),
+      },
     ],
   },
-
 ];
 
-const Template: ComponentStory<typeof SideBar> = (args) => (
-  <SideBar {...args} />
-);
+const Template: ComponentStory<typeof SideBar> = args => <SideBar {...args} />;
 
 export const Position = Template.bind({});
 Position.args = {

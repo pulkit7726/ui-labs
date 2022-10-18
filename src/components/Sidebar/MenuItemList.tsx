@@ -55,48 +55,44 @@ function MenuItemList({
           setActiveSubMenu('');
         }}
       >
-        {
-          item.icon && <ListItemIcon>{item.icon}</ListItemIcon>
-        }
+        {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
         <ListItemText primary={item.Name} />
-        {item?.SubMenu?.length
-          && (open && drawerOpen ? <ExpandLess /> : <ExpandMore />)}
+        {item?.SubMenu?.length &&
+          (open && drawerOpen ? <ExpandLess /> : <ExpandMore />)}
       </ListItem>
       <Divider />
-      {
-        (!responsive || (responsive && drawerOpen)) && (
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="li" disablePadding key={item.Id}>
-              {item.SubMenu?.map(
-                (
-                  subItems: any,
-                  index: any,
-                ) => (
-                  <ListItem
-                    button
-                    key={subItems.Id}
-                    onClick={() => {
-                      setActiveTab('');
-                      setActiveSubMenu(subItems.Id);
-                    }}
-                    className={`${showActiveTabs && (subItems.Id === activeSubMenu ? 'avtiveTab' : 'inActiveTab')}`}
-                  >
-                    {
-                        subItems.icon && <ListItemIcon className="child-Icon">{subItems.icon}</ListItemIcon>
-                      }
-                    <ListItemText
-                      key={subItems.Id}
-                      primary={subItems.Name}
-                      style={{ marginLeft: '45px' }}
-                    />
-                  </ListItem>
-                ),
-              )}
-              <Divider />
-            </List>
-          </Collapse>
-        )
-      }
+      {(!responsive || (responsive && drawerOpen)) && (
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="li" disablePadding key={item.Id}>
+            {item.SubMenu?.map((subItems: any, index: any) => (
+              <ListItem
+                button
+                key={subItems.Id}
+                onClick={() => {
+                  setActiveTab('');
+                  setActiveSubMenu(subItems.Id);
+                }}
+                className={`${
+                  showActiveTabs &&
+                  (subItems.Id === activeSubMenu ? 'avtiveTab' : 'inActiveTab')
+                }`}
+              >
+                {subItems.icon && (
+                  <ListItemIcon className="child-Icon">
+                    {subItems.icon}
+                  </ListItemIcon>
+                )}
+                <ListItemText
+                  key={subItems.Id}
+                  primary={subItems.Name}
+                  style={{ marginLeft: '45px' }}
+                />
+              </ListItem>
+            ))}
+            <Divider />
+          </List>
+        </Collapse>
+      )}
       <Divider />
     </div>
   );
