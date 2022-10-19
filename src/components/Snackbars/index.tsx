@@ -1,27 +1,26 @@
-import React, { useCallback } from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import { AlertTitle, Box, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-
-import Fade from '@mui/material/Fade';
-import Slide, { SlideProps } from '@mui/material/Slide';
-import { SnackbarProvider, useSnackbar } from 'notistack';
-import Grow, { GrowProps } from '@mui/material/Grow';
+import React, { useCallback } from "react";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import { AlertTitle, Box, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import Fade from "@mui/material/Fade";
+import Slide, { SlideProps } from "@mui/material/Slide";
+import Grow, { GrowProps } from "@mui/material/Grow";
+import { SnackbarProvider, useSnackbar } from "notistack";
 
 type SnackbarProps = {
   /** open is a state  */
   open: boolean;
   /** To change the type of Notification */
-  color?: 'error' | 'info' | 'success' | 'warning';
+  color?: "error" | "info" | "success" | "warning";
   /** To change the type of variant */
-  variant?: 'filled' | 'outlined' | 'standard';
+  variant?: "filled" | "outlined" | "standard";
   /** To display the message */
   message?: string;
   /** To change the type of Notistack */
-  notistackVariant?: 'error' | 'info' | 'success' | 'warning';
+  notistackVariant?: "error" | "info" | "success" | "warning";
   /** To display the title */
   title?: string;
   /** If Basic is true basic notification is display else Customize */
@@ -30,15 +29,15 @@ type SnackbarProps = {
   /** To change the number of Notification */
   maxsnack?: number;
   /** To change the direction of slide */
-  slideDirection?: 'down' | 'left' | 'right' | 'up';
+  slideDirection?: "down" | "left" | "right" | "up";
   /** The number of milliseconds to wait before dismissing after user interaction. */
   autoHideDuration?: number;
   /** Can Choose any type of transition */
-  transition?: 'slide' | 'grow' | 'fade';
+  transition?: "slide" | "grow" | "fade";
   /** The anchor of the Snackbar. On smaller screens, the component grows to occupy all the available width, the horizontal alignment is ignored. */
   position?: {
-    horizontal: 'center' | 'left' | 'right';
-    vertical: 'bottom' | 'top';
+    horizontal: "center" | "left" | "right";
+    vertical: "bottom" | "top";
   };
   /** callback function which fires when we click on cross icon inside snackbar */
   handleClose: () => void;
@@ -70,7 +69,9 @@ export function SnackBar({
   showUndo,
   handleUndo,
 }: SnackbarProps) {
-  const SlideTransitionCallback = useCallback(SlideTransition, [slideDirection]);
+  const SlideTransitionCallback = useCallback(SlideTransition, [
+    slideDirection,
+  ]);
 
   function SlideTransition(props: SlideProps) {
     return <Slide {...props} direction={slideDirection} />;
@@ -78,13 +79,11 @@ export function SnackBar({
 
   const action = (
     <>
-      {
-        showUndo && (
+      {showUndo && (
         <Button color="secondary" size="small" onClick={handleUndo}>
           UNDO
         </Button>
-        )
-      }
+      )}
       <IconButton
         size="small"
         aria-label="close"
@@ -99,71 +98,71 @@ export function SnackBar({
   function NotiStackComp() {
     const { enqueueSnackbar } = useSnackbar();
 
-    const handleNotisClick = (variant: any) => !enqueueSnackbar(`${message}`, { variant });
+    const handleNotisClick = (variant: any) =>
+      !enqueueSnackbar(`${message}`, { variant });
 
-    return (
-      <>
-        {open && handleNotisClick(notistackVariant)}
-      </>
-    );
+    return <>{open && handleNotisClick(notistackVariant)}</>;
   }
 
   return (
-    <Stack spacing={2} sx={{ width: '50px' }}>
+    <Stack spacing={2} sx={{ width: "50px" }}>
       {basic && (
-      <Snackbar
-        open={open}
-        message={message}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        action={action}
-      />
+        <Snackbar
+          open={open}
+          message={message}
+          autoHideDuration={autoHideDuration}
+          onClose={handleClose}
+          action={action}
+        />
       )}
 
       {transition && (
-      <Snackbar
-        open={open}
-        message={message}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        action={action}
-        TransitionComponent={transition === 'slide' ? SlideTransitionCallback : transition === 'grow' ? GrowTransition : Fade}
-      />
+        <Snackbar
+          open={open}
+          message={message}
+          autoHideDuration={autoHideDuration}
+          onClose={handleClose}
+          action={action}
+          TransitionComponent={
+            transition === "slide"
+              ? SlideTransitionCallback
+              : transition === "grow"
+              ? GrowTransition
+              : Fade
+          }
+        />
       )}
 
       {notistack && (
-      <SnackbarProvider
-        maxSnack={maxsnack}
-        autoHideDuration={autoHideDuration}
-      >
-        <NotiStackComp />
-      </SnackbarProvider>
+        <SnackbarProvider
+          maxSnack={maxsnack}
+          autoHideDuration={autoHideDuration}
+        >
+          <NotiStackComp />
+        </SnackbarProvider>
       )}
       {!basic && !transition && !notistack && (
-      <Snackbar
-        onClose={handleClose}
-        open={open}
-        action={action}
-        autoHideDuration={autoHideDuration}
-        anchorOrigin={{
-          horizontal: position?.horizontal || 'left',
-          vertical: position?.vertical || 'bottom',
-        }}
-      >
-        <Alert
+        <Snackbar
           onClose={handleClose}
-          color={color}
-          severity={color}
-          variant={variant}
-          sx={{ width: '100%' }}
+          open={open}
+          action={action}
+          autoHideDuration={autoHideDuration}
+          anchorOrigin={{
+            horizontal: position?.horizontal || "left",
+            vertical: position?.vertical || "bottom",
+          }}
         >
-          <AlertTitle>
-            {' '}
-            {title}
-          </AlertTitle>
-          {message}
-        </Alert>
-      </Snackbar>
+          <Alert
+            onClose={handleClose}
+            color={color}
+            severity={color}
+            variant={variant}
+            sx={{ width: "100%" }}
+          >
+            <AlertTitle> {title}</AlertTitle>
+            {message}
+          </Alert>
+        </Snackbar>
       )}
     </Stack>
   );
@@ -172,5 +171,5 @@ export function SnackBar({
 SnackBar.defaultProps = {
   autoHideDuration: 3000,
   maxsnack: 4,
-  slideDirection: 'right',
+  slideDirection: "right",
 };

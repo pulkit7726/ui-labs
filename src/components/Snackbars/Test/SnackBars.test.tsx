@@ -57,3 +57,5 @@ test("should render parent element ", () => {
   const { container } = render(<SnackBar open={true} handleClose={()=>{}} />);
   expect(container.getElementsByClassName("MuiStack-root").length).toBe(0);
 });
+
+

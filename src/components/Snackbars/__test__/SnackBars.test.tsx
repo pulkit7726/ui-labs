@@ -35,10 +35,6 @@ test('in SnackBar component should render Button', () => {
   expect(Button.getByRole('button')).toBeInTheDocument();
 });
 
-test('in SnackBar component should render ButtonText', () => {
-  const Button = render(<SnackBar open handleClose={() => {}} />);
-  expect(Button.getByText('click')).toBeInTheDocument();
-});
 
 test('renders buttons', async () => {
   render(<SnackBar open handleClose={() => {}} />);
