@@ -37,7 +37,7 @@ type ResizableGridProps = {
   childrenOne?: ReactElement | string;
   childrenTwo?: ReactElement | string;
   childrenThree?: ReactElement | string;
-  layout?: any;
+  layout?: Array<object>;
   data?: Array<object>;
   dataLabel?: object;
   card?: object;
