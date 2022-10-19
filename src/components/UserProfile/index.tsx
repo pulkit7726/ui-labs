@@ -1,6 +1,4 @@
-import {
-  Box, Drawer, Grid, Paper, Typography, Button
-} from '@mui/material';
+import { Box, Drawer, Grid, Paper, Typography, Button } from '@mui/material';
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import UserProfileButton from './UserProfileButton';
@@ -26,7 +24,6 @@ const CustomMainBox = styled(Box)(({ theme }) => ({
   height: '30px',
   display: 'flex',
   alignItems: 'center',
-
 }));
 
 const CustomParentBox = styled(Box)(({ theme }) => ({
@@ -45,19 +42,24 @@ const CenterProfileBox = styled(Box)(({ theme }) => ({
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   margin: '10px',
-  padding: '10px'
+  padding: '10px',
 }));
 
 type UserProfileProps = {
   alContent?: string;
-  myAccountButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
+  myAccountButtonColor?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'info'
+    | 'warning';
   myAccountButtonSize?: 'small' | 'medium' | 'large';
   myAccountButtonVariant?: 'contained' | 'outlined' | 'text';
   logoutButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
   logoutButtonSize?: 'small' | 'medium' | 'large';
   logoutButtonVariant?: 'contained' | 'outlined' | 'text';
   display?: string;
-  avatarImage?: { avatarImg: string, avatarTitle: string };
+  avatarImage?: { avatarImg: string; avatarTitle: string };
   data?: Array<Object>;
   profileHeading?: string;
   width?: string;
@@ -70,7 +72,7 @@ const BasicProfile = ({ ...props }) => (
   <StyledPaper elevation={3}>
     <Box>
       <CssAvatar {...props} />
-      {props.data.map((obj) => (
+      {props.data.map(obj => (
         <Grid item xs={12} key={obj.id}>
           <Typography>{obj.userName}</Typography>
           <Typography>{obj.email}</Typography>
@@ -140,10 +142,15 @@ const SideDrawer = ({ ...props }) => {
 
 const UserProfile = ({ ...props }: UserProfileProps) => (
   <div className="user-profile-class" data-testid="user-profile">
-    {props.display === 'center' ? <CenterProfile {...props} />
-      : props.display === 'drawer' ? <SideDrawer {...props} />
-        : props.display === 'basic' ? <BasicProfile {...props} />
-          : <Custom {...props} />}
+    {props.display === 'center' ? (
+      <CenterProfile {...props} />
+    ) : props.display === 'drawer' ? (
+      <SideDrawer {...props} />
+    ) : props.display === 'basic' ? (
+      <BasicProfile {...props} />
+    ) : (
+      <Custom {...props} />
+    )}
   </div>
 );
 

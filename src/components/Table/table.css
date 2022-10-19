@@ -1,10 +1,10 @@
 .paginate {
   display: flex;
   align-items: center;
-  justify-content:space-between ;
+  justify-content: space-between;
   overflow: auto;
 }
-.pagination{
+.pagination {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -20,16 +20,16 @@
   font-weight: 400;
 }
 .pagination .page-num:hover {
-  background-color: #5AB1BB;
+  background-color: #5ab1bb;
   color: #fff;
 }
-.pagination>li.disabled a:hover {
+.pagination > li.disabled a:hover {
   cursor: not-allowed;
   background: none;
   color: inherit;
 }
 .pagination .active {
-  background-color: #5AB1BB;
+  background-color: #5ab1bb;
 }
 
 .menuItem {
@@ -39,53 +39,53 @@
   font-size: 1.1rem;
 }
 .main {
-    display: flex;
-    flex: 1 0 auto;
-    align-items: center;
-  };
-.searchIcon {
-    margin-right: 8px;
-  };
-.searchText {
-    flex: 0.8 0;
-};
-.clearIcon:hover {
-     
-};
-.toolbar {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-content: center !important;
-    flex-direction: row !important;
-    padding: 0 !important;
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
 }
-.paper{
+.searchIcon {
+  margin-right: 8px;
+}
+.searchText {
+  flex: 0.8 0;
+}
+.clearIcon:hover {
+}
+.toolbar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-content: center !important;
+  flex-direction: row !important;
+  padding: 0 !important;
+}
+.paper {
   margin-top: 12;
   margin-left: 4;
   overflow: inherit;
-  box-shadow: 0 0 2px 0 rgb(145 158 171 / 24%), 0 7px 2px -11px rgb(145 158 171 / 24%);
+  box-shadow: 0 0 2px 0 rgb(145 158 171 / 24%),
+    0 7px 2px -11px rgb(145 158 171 / 24%);
 }
-.wrapper{
+.wrapper {
   margin-top: -8px !important;
   margin-bottom: -8px !important;
 }
-.popOverMenu{
+.popOverMenu {
   box-shadow: -1px 10px 20px lightgrey;
-    width: 200px;
-    overflow-y: scroll;
-    max-height: 23rem;
-    margin-top: -0.5rem;
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-}
-.tablePopupContainer{
+  width: 200px;
+  overflow-y: scroll;
+  max-height: 23rem;
+  margin-top: -0.5rem;
+  z-index: 10000;
   display: flex;
-    align-items: center;
-    cursor: pointer;
+  flex-direction: column;
 }
-.filterHeads{
+.tablePopupContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.filterHeads {
   width: 100%;
-    margin: 2px 5px 0 5px;
-    padding: 0px 3px;
+  margin: 2px 5px 0 5px;
+  padding: 0px 3px;
 }

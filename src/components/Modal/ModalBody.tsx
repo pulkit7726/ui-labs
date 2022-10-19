@@ -2,20 +2,15 @@ import { DialogContent, DialogTitle, Typography } from '@mui/material';
 import React from 'react';
 import { ModalBodyProps } from './ModalInterface';
 
-function ModalBody({
-  background, width, height, children,
-}: ModalBodyProps) {
+function ModalBody({ background, width, height, children }: ModalBodyProps) {
   return (
     <DialogContent
       className="CssDialog-content"
       data-testid="test-content"
-      onClick={(e) => e.stopPropagation()}
+      onClick={e => e.stopPropagation()}
       style={{ background, width, height }}
     >
-      <DialogContent
-        className="CssDialog-body"
-        data-testid="test-body"
-      >
+      <DialogContent className="CssDialog-body" data-testid="test-body">
         <Typography
           className="CssDialog-typography"
           data-testid="test-typography"

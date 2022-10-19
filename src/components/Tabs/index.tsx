@@ -59,14 +59,19 @@ function Tabs(props: TabsProps) {
           borderBottom: 1,
           borderColor: 'divider',
           maxWidth: {
-            xs: 320, sm: 480, md: 900, lg: 1200,
+            xs: 320,
+            sm: 480,
+            md: 900,
+            lg: 1200,
           },
         }}
         style={props.orientation === 'vertical' ? vertical : horizontal}
       >
         <TabList
           style={props.orientation === 'vertical' ? tabWidth : nmWidth}
-          orientation={props.orientation === 'vertical' ? 'vertical' : 'horizontal'}
+          orientation={
+            props.orientation === 'vertical' ? 'vertical' : 'horizontal'
+          }
           aria-label="tabs example"
           onChange={handleChange}
           variant={isXs ? 'scrollable' : 'fullWidth'}

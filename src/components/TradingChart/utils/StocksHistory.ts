@@ -4,10 +4,10 @@ export default class StocksHistory {
   public static async getMultipleStocks(): Promise<any[]> {
     // getting prices of multiples stocks asynchronously
     const dataSources: any[] = [
-      //await this.getAmazonStock(),
+      // await this.getAmazonStock(),
       await this.getGoogleStock(),
       await this.getMicrosoftStock(),
-      //await this.getTeslaStock()
+      // await this.getTeslaStock()
     ];
 
     return new Promise<any[]>((resolve, reject) => {
@@ -17,13 +17,14 @@ export default class StocksHistory {
 
   /** gets Amazon stock OHLC prices from a .JSON file */
   public static async getAmazonStock(): Promise<StockItem[]> {
-    let url = "https://static.infragistics.com/xplatform/data/stocks/stockAmazon.json";
-    let response = await fetch(url);
-    let jsonData = await response.json();
-    let stockData = this.convertData(jsonData);
+    const url =
+      'https://static.infragistics.com/xplatform/data/stocks/stockAmazon.json';
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    const stockData = this.convertData(jsonData);
     // setting data intent for Series Title, e.g. FinancialChart usage
     (stockData as any).__dataIntents = {
-      close: ["SeriesTitle/Amazon"]
+      close: ['SeriesTitle/Amazon'],
     };
     // console.log("fetchAmazonStock: ", stockData.length);
 
@@ -34,13 +35,14 @@ export default class StocksHistory {
 
   /** gets Tesla stock OHLC prices from a .JSON file */
   public static async getTeslaStock(): Promise<StockItem[]> {
-    let url = "https://static.infragistics.com/xplatform/data/stocks/stockTesla.json";
-    let response = await fetch(url);
-    let jsonData = await response.json();
-    let stockData = this.convertData(jsonData);
+    const url =
+      'https://static.infragistics.com/xplatform/data/stocks/stockTesla.json';
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    const stockData = this.convertData(jsonData);
     // setting data intent for Series Title, e.g. FinancialChart usage
     (stockData as any).__dataIntents = {
-      close: ["SeriesTitle/Tesla"]
+      close: ['SeriesTitle/Tesla'],
     };
     return new Promise<StockItem[]>((resolve, reject) => {
       resolve(stockData);
@@ -49,13 +51,14 @@ export default class StocksHistory {
 
   /** gets Microsoft stock OHLC prices from a .JSON file */
   public static async getMicrosoftStock(): Promise<StockItem[]> {
-    let url = "https://static.infragistics.com/xplatform/data/stocks/stockMicrosoft.json";
-    let response = await fetch(url);
-    let jsonData = await response.json();
-    let stockData = this.convertData(jsonData);
+    const url =
+      'https://static.infragistics.com/xplatform/data/stocks/stockMicrosoft.json';
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    const stockData = this.convertData(jsonData);
     // setting data intent for Series Title, e.g. FinancialChart usage
     (stockData as any).__dataIntents = {
-      close: ["SeriesTitle/Microsoft"]
+      close: ['SeriesTitle/Microsoft'],
     };
     return new Promise<StockItem[]>((resolve, reject) => {
       resolve(stockData);
@@ -64,13 +67,14 @@ export default class StocksHistory {
 
   /** gets Google stock OHLC prices from a .JSON file */
   public static async getGoogleStock(): Promise<StockItem[]> {
-    let url = "https://static.infragistics.com/xplatform/data/stocks/stockGoogle.json";
-    let response = await fetch(url);
-    let jsonData = await response.json();
-    let stockData = this.convertData(jsonData);
+    const url =
+      'https://static.infragistics.com/xplatform/data/stocks/stockGoogle.json';
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    const stockData = this.convertData(jsonData);
     // setting data intent for Series Title, e.g. FinancialChart usage
     (stockData as any).__dataIntents = {
-      close: ["SeriesTitle/Google"]
+      close: ['SeriesTitle/Google'],
     };
     return new Promise<StockItem[]>((resolve, reject) => {
       resolve(stockData);
@@ -78,11 +82,11 @@ export default class StocksHistory {
   }
 
   public static convertData(jsonData: any[]): StockItem[] {
-    let stockItems: StockItem[] = [];
+    const stockItems: StockItem[] = [];
 
-    for (let json of jsonData) {
-      let parts = json.date.split("-"); // "2020-01-01"
-      let item = new StockItem();
+    for (const json of jsonData) {
+      const parts = json.date.split('-'); // "2020-01-01"
+      const item = new StockItem();
       item.date = new Date(parts[0], parts[1], parts[2]);
       item.open = json.open;
       item.high = json.high;
@@ -90,7 +94,6 @@ export default class StocksHistory {
       item.close = json.close;
       item.volume = json.volume;
       stockItems.push(item);
-
     }
 
     return stockItems;
@@ -99,11 +102,14 @@ export default class StocksHistory {
 
 export class StockItem {
   public open?: number;
+
   public close?: number;
+
   public high?: number;
+
   public low?: number;
+
   public volume?: number;
 
   public date?: Date;
-
 }

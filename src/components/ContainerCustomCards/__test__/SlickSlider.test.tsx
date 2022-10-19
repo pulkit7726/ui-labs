@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import SlickSlider from './SlickSlider';
+import SlickSlider from '../slick-slider/SlickSlider';
 import PortalProvider from '../providers/PortalProvider';
 
 describe('Component: SlickSlider::Card Slider', () => {

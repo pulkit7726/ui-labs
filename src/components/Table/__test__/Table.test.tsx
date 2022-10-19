@@ -4,19 +4,34 @@ import Table from '../Table';
 
 const tableHeader = [
   {
-    id: 'name', numeric: false, disablePadding: false, label: 'Dessert (100g serving)',
+    id: 'name',
+    numeric: false,
+    disablePadding: false,
+    label: 'Dessert (100g serving)',
   },
   {
-    id: 'calories', numeric: false, disablePadding: false, label: 'Calories',
+    id: 'calories',
+    numeric: false,
+    disablePadding: false,
+    label: 'Calories',
   },
   {
-    id: 'fat', numeric: false, disablePadding: false, label: 'Fat (g)',
+    id: 'fat',
+    numeric: false,
+    disablePadding: false,
+    label: 'Fat (g)',
   },
   {
-    id: 'carbs', numeric: false, disablePadding: false, label: 'Carbs (g)',
+    id: 'carbs',
+    numeric: false,
+    disablePadding: false,
+    label: 'Carbs (g)',
   },
   {
-    id: 'protein', numeric: false, disablePadding: false, label: 'Protein (g)',
+    id: 'protein',
+    numeric: false,
+    disablePadding: false,
+    label: 'Protein (g)',
   },
 ];
 

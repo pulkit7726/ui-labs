@@ -1,5 +1,5 @@
 .storybook-SideBar {
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   width: 250px;
   border-radius: 5px;
@@ -16,7 +16,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: "#ccc";
+  background-color: '#ccc';
   outline: 1px solid rgb(35, 36, 37);
 }
 
@@ -35,7 +35,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: "#ccc";
+  background-color: '#ccc';
   outline: 1px solid rgb(35, 36, 37);
 }
 
@@ -75,7 +75,6 @@
 .LeftArrow {
   border: 3px solid #ccc;
   border-radius: 50%;
-
 }
 
 .RightArrow {
@@ -98,5 +97,4 @@
 
 .hideArrowIcon {
   display: none !important;
-
 }

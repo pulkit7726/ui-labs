@@ -1,10 +1,16 @@
-import { Box, Card, CircularProgress, Grid, IconButton, LinearProgress } from "@mui/material";
-import React, { useCallback, useState } from "react";
-import { memo } from "react";
-import { Accept, useDropzone } from "react-dropzone";
-import "./Dropzone.css";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  Box,
+  Card,
+  CircularProgress,
+  Grid,
+  IconButton,
+  LinearProgress,
+} from '@mui/material';
+import React, { useCallback, useState, memo } from 'react';
+import { Accept, useDropzone } from 'react-dropzone';
+import './Dropzone.css';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type DropZoneProps = {
   fileTypes: string[];
@@ -31,7 +37,7 @@ function DropZoneComponent(props: DropZoneProps) {
       setIsFileSelected(true);
     }
     const timer = setInterval(() => {
-      setProgress((oldProgress) => {
+      setProgress(oldProgress => {
         if (oldProgress === 100) {
           setIsProgressComplete(true);
           clearInterval(timer);
@@ -53,7 +59,7 @@ function DropZoneComponent(props: DropZoneProps) {
     useDropzone({
       onDrop,
       accept: {
-        "image/*,application/*,video/*,text/*": props.fileTypes,
+        'image/*,application/*,video/*,text/*': props.fileTypes,
       },
       maxSize,
       noClick: true,
@@ -63,7 +69,7 @@ function DropZoneComponent(props: DropZoneProps) {
     <div className="p-2">
       <Card
         elevation={3}
-        sx={{ width: "70vw", height: "80vh", margin: "2rem auto" }}
+        sx={{ width: '70vw', height: '80vh', margin: '2rem auto' }}
       >
         <p className="text1">Drag and Drop files here...</p>
         <div
@@ -72,91 +78,104 @@ function DropZoneComponent(props: DropZoneProps) {
           style={{ backgroundColor: props.backgroundColor }}
         >
           <input {...getInputProps()} />
-          <>
-            {!file && (
-              <>
-                <UploadFileIcon
-                  sx={{
-                    fontSize: 100,
-                    padding: "1rem",
-                    display: "flex",
-                    position: "relative",
-                    top: "25%",
-                    margin: "auto",
-                    cursor:'pointer'
-                  }}
-                  onClick={open}
-                />
-                {fileRejections?.length > 0 ? (
-                  <p
-                    className="text1"
-                    style={{ color: "red", position: "relative", top: "4rem" }}
-                  >
-                    file size is too large... or it only supports these {props.fileTypes.toString()}{" "}
-                  </p>
-                ) : (
-                  <p
-                    style={{ position: "relative", top: "4rem" }}
-                    className="text1"
-                  >
-                    {" "}
-                    supported file formats are {props.fileTypes.toString()}
-                  </p>
-                )}
-              </>
-            )}
-            {file && (
-              <>
-                <div style={{justifyContent:"space-around", display:'flex'}}>
+          {!file && (
+            <>
+              <UploadFileIcon
+                sx={{
+                  fontSize: 100,
+                  padding: '1rem',
+                  display: 'flex',
+                  position: 'relative',
+                  top: '25%',
+                  margin: 'auto',
+                  cursor: 'pointer',
+                }}
+                onClick={open}
+              />
+              {fileRejections?.length > 0 ? (
+                <p
+                  className="text1"
+                  style={{ color: 'red', position: 'relative', top: '4rem' }}
+                >
+                  file size is too large... or it only supports these{' '}
+                  {props.fileTypes.toString()}{' '}
+                </p>
+              ) : (
+                <p
+                  style={{ position: 'relative', top: '4rem' }}
+                  className="text1"
+                >
+                  {' '}
+                  supported file formats are {props.fileTypes.toString()}
+                </p>
+              )}
+            </>
+          )}
+          {file && (
+            <>
+              <div style={{ justifyContent: 'space-around', display: 'flex' }}>
                 <p className="text">
-                  {file.name} - {file.size} bytes
+                  {file.name} -{file.size} bytes
                 </p>
                 <IconButton disabled={!isProgressComplete}>
-                <DeleteIcon
-                      onClick={handleDelete}
-                      sx={{ cursor:'pointer', alignSelf:'center' }}
-                    />
-                  </IconButton>
-                  </div>
+                  <DeleteIcon
+                    onClick={handleDelete}
+                    sx={{ cursor: 'pointer', alignSelf: 'center' }}
+                  />
+                </IconButton>
+              </div>
 
-                <Grid item justifyContent="center">
-                  {isFileSelected && !isProgressComplete && (
-                    // <CircularProgress variant="determinate" style={{ margin:'auto'}} value={progress} />
-                    <Box sx={{ position: 'relative', left:'25vw', display: 'inline-flex' }}>
-                      <CircularProgress size="25vh" variant="determinate" value={progress} />
-                  </Box>
-                  )}
-                </Grid>
-                {file?.type.split("/")[0] === "image" && isFileSelected && isProgressComplete && (
-                    <img
-                      src={URL.createObjectURL(file)}
-                      alt={file.name}
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        margin: "auto",
-                      }}
-                      width="95%"
-                      height="80%"
+              <Grid item justifyContent="center">
+                {isFileSelected && !isProgressComplete && (
+                  // <CircularProgress variant="determinate" style={{ margin:'auto'}} value={progress} />
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      left: '25vw',
+                      display: 'inline-flex',
+                    }}
+                  >
+                    <CircularProgress
+                      size="25vh"
+                      variant="determinate"
+                      value={progress}
                     />
+                  </Box>
                 )}
-                {file?.type.split("/")[0] === "video" && isFileSelected && isProgressComplete && (
-                  <video
-                    controls
+              </Grid>
+              {file?.type.split('/')[0] === 'image' &&
+                isFileSelected &&
+                isProgressComplete && (
+                  <img
                     src={URL.createObjectURL(file)}
+                    alt={file.name}
                     style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "auto",
-                      padding: "1rem",
+                      display: 'flex',
+                      justifyContent: 'center',
+                      margin: 'auto',
                     }}
                     width="95%"
                     height="80%"
                   />
                 )}
-              </>
-            )}
-          </>
+              {file?.type.split('/')[0] === 'video' &&
+                isFileSelected &&
+                isProgressComplete && (
+                  <video
+                    controls
+                    src={URL.createObjectURL(file)}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      margin: 'auto',
+                      padding: '1rem',
+                    }}
+                    width="95%"
+                    height="80%"
+                  />
+                )}
+            </>
+          )}
         </div>
       </Card>
     </div>
