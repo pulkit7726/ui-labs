@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -11,8 +11,8 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Tooltip, Typography } from "@mui/material";
-import "./sidebar.css";
 import MenuItemList from "./MenuItemList";
+import "./sidebar.css";
 
 const drawerWidth = 245;
 

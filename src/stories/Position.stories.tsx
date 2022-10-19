@@ -15,15 +15,24 @@ export default {
   component: SideBar,
 
   argTypes: {
+<<<<<<< HEAD:src/stories/position.stories.tsx
     backgroundColor: { control: "color" },
     color: { control: "color" },
+=======
+    backgroundColor: { control: 'color' },
+    color: { control: 'color' },
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
   },
 } as ComponentMeta<typeof SideBar>;
 
 const MenuItems = [
   {
     Id: 1,
+<<<<<<< HEAD:src/stories/position.stories.tsx
     Name: "Home",
+=======
+    Name: 'Home',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
     icon: (
       <div>
         <HomeIcon />
@@ -32,7 +41,11 @@ const MenuItems = [
   },
   {
     Id: 2,
+<<<<<<< HEAD:src/stories/position.stories.tsx
     Name: "Content",
+=======
+    Name: 'Content',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
     icon: (
       <div>
         <ContentPasteIcon />
@@ -42,7 +55,11 @@ const MenuItems = [
     SubMenu: [
       {
         Id: 1,
+<<<<<<< HEAD:src/stories/position.stories.tsx
         Name: "New Content Sync",
+=======
+        Name: 'New Content Sync',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
         icon: (
           <div>
             <AddCircleOutlineIcon />
@@ -51,7 +68,11 @@ const MenuItems = [
       },
       {
         Id: 2,
+<<<<<<< HEAD:src/stories/position.stories.tsx
         Name: "Existing Content",
+=======
+        Name: 'Existing Content',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
         icon: (
           <div>
             <FolderCopyIcon />
@@ -63,7 +84,11 @@ const MenuItems = [
 
   {
     Id: 3,
+<<<<<<< HEAD:src/stories/position.stories.tsx
     Name: "Pages",
+=======
+    Name: 'Pages',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
     icon: (
       <div>
         <PagesIcon />
@@ -72,7 +97,11 @@ const MenuItems = [
   },
   {
     Id: 4,
+<<<<<<< HEAD:src/stories/position.stories.tsx
     Name: "Settings",
+=======
+    Name: 'Settings',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
     icon: (
       <div>
         <SettingsIcon />
@@ -82,7 +111,11 @@ const MenuItems = [
     SubMenu: [
       {
         Id: 3,
+<<<<<<< HEAD:src/stories/position.stories.tsx
         Name: "Notification",
+=======
+        Name: 'Notification',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
         icon: (
           <div>
             <NotificationsIcon />
@@ -91,7 +124,11 @@ const MenuItems = [
       },
       {
         Id: 4,
+<<<<<<< HEAD:src/stories/position.stories.tsx
         Name: "Account",
+=======
+        Name: 'Account',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b:src/stories/Position.stories.tsx
         icon: (
           <div>
             <PersonIcon />
@@ -102,9 +139,7 @@ const MenuItems = [
   },
 ];
 
-const Template: ComponentStory<typeof SideBar> = (args) => (
-  <SideBar {...args} />
-);
+const Template: ComponentStory<typeof SideBar> = args => <SideBar {...args} />;
 
 export const Position = Template.bind({});
 Position.args = {

@@ -1,69 +1,60 @@
-import React from "react";
-import { useState, useRef } from "react";
-import Slider, { Settings } from "react-slick";
-import { styled, Theme, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
+import React, { useState, useRef } from 'react';
+import Slider, { Settings } from 'react-slick';
+import { styled, Theme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import { Grid } from '@mui/material';
+import CustomNavigation from './CustomNavigation';
+import ImageItemWithHover from './ImageItemWithHover';
+import { ARROW_MAX_WIDTH } from '../constant';
 
-import CustomNavigation from "./CustomNavigation";
-import ImageItemWithHover from "./ImageItemWithHover";
-import { ARROW_MAX_WIDTH } from "../constant";
-import { Grid } from "@mui/material";
-
-const RootStyle = styled("div")(() => ({
-  position: "relative",
-  overflow: "inherit",
+const RootStyle = styled('div')(() => ({
+  position: 'relative',
+  overflow: 'inherit',
 }));
 
 const StyledSlider = styled(Slider)(
   ({ theme, padding }: { theme: Theme; padding: number }) => ({
-    display: "flex !important",
-    justifyContent: "center",
-    overflow: "initial !important",
-    "& > .slick-list": {
-      overflow: "visible",
+    display: 'flex !important',
+    justifyContent: 'center',
+    overflow: 'initial !important',
+    '& > .slick-list': {
+      overflow: 'visible',
     },
-    [theme.breakpoints.up("sm")]: {
-      "& > .slick-list": {
+    [theme.breakpoints.up('sm')]: {
+      '& > .slick-list': {
         width: `calc(100% - ${2 * padding}px)`,
       },
-      "& .slick-list > .slick-track": {
-        margin: "0px !important",
+      '& .slick-list > .slick-track': {
+        margin: '0px !important',
       },
-      "& .slick-list > .slick-track > .slick-current > div > .MuiBox-root > .MuiPaper-root:hover":
+      '& .slick-list > .slick-track > .slick-current > div > .MuiBox-root > .MuiPaper-root:hover':
         {
-          transformOrigin: "0% 50% !important",
+          transformOrigin: '0% 50% !important',
         },
     },
-    [theme.breakpoints.down("sm")]: {
-      "& > .slick-list": {
+    [theme.breakpoints.down('sm')]: {
+      '& > .slick-list': {
         width: `calc(100% - ${padding}px)`,
       },
     },
-  })
+  }),
 );
 
 interface SlideItemProps {
   item: any;
 }
 
-function SlideItem({ item }: SlideItemProps) {
-  return (
-    <Box sx={{ pr: { xs: 0.5, sm: 0.5 } }}>
-      <ImageItemWithHover image={item} />
-    </Box>
-  );
-}
+const SlideItem = ({ item }: SlideItemProps) => (
+  <Box sx={{ pr: { xs: 0.5, sm: 0.5 } }}>
+    <ImageItemWithHover image={item} />
+  </Box>
+);
 
 interface SlickSliderProps {
   images: any[];
   cardType: string;
-  cardSize: string;
 }
-export default function SlickSlider({
-  images,
-  cardType,
-  cardSize,
-}: SlickSliderProps) {
+export default function SlickSlider({ images, cardType }: SlickSliderProps) {
   const sliderRef = useRef<Slider>(null);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isEnd, setIsEnd] = useState(false);
@@ -82,16 +73,10 @@ export default function SlickSlider({
     speed: 500,
     arrows: false,
     infinite: false,
-    lazyLoad: "ondemand",
+    lazyLoad: 'ondemand',
     slidesToShow: 6,
     slidesToScroll: 6,
-    // afterChange: (current) => {
-    //   console.log("After Change", current);
-    // },
     beforeChange,
-    // onEdge: (direction) => {
-    //   console.log("Edge: ", direction);
-    // },
     responsive: [
       {
         breakpoint: 1536,
@@ -132,35 +117,32 @@ export default function SlickSlider({
     sliderRef.current?.slickNext();
   };
 
-  console.log("cardSize", cardSize);
-
   const renderView = () => {
-
-    if (cardType === "Horizontal Slider") {
+    if (cardType === 'Horizontal Slider') {
       return (
         <span data-testid="horizontal-container">
-        <CustomNavigation
-          isEnd={isEnd}
-          arrowWidth={ARROW_MAX_WIDTH}
-          onNext={handleNext}
-          onPrevious={handlePrevious}
-          activeSlideIndex={activeSlideIndex}
-        >
-          <StyledSlider
-            ref={sliderRef}
-            {...settings}
-            padding={ARROW_MAX_WIDTH}
-            theme={theme}
+          <CustomNavigation
+            isEnd={isEnd}
+            arrowWidth={ARROW_MAX_WIDTH}
+            onNext={handleNext}
+            onPrevious={handlePrevious}
+            activeSlideIndex={activeSlideIndex}
           >
-            {images.map((item, idx) => (
-              <SlideItem key={idx} item={item} />
-            ))}
-          </StyledSlider>
-        </CustomNavigation>
+            <StyledSlider
+              ref={sliderRef}
+              {...settings}
+              padding={ARROW_MAX_WIDTH}
+              theme={theme}
+            >
+              {images.map((item, idx) => (
+                <SlideItem key={idx} item={item} />
+              ))}
+            </StyledSlider>
+          </CustomNavigation>
         </span>
       );
     }
-    if (cardType === "Grid Slider") {
+    if (cardType === 'Grid Slider') {
       return (
         <Box sx={{ flexGrow: 1 }} data-testid="grid-container">
           <Grid
@@ -187,14 +169,10 @@ export default function SlickSlider({
   };
   return (
     <Box
-      sx={{ overflow: "hidden", height: "100%", zIndex: 1 }}
+      sx={{ overflow: 'hidden', height: '100%', zIndex: 1 }}
       data-testid="main-cotainer"
     >
-      {images.length && (
-        <>
-          <RootStyle>{renderView()}</RootStyle>
-        </>
-      )}
+      {images.length && <RootStyle>{renderView()}</RootStyle>}
     </Box>
   );
 }

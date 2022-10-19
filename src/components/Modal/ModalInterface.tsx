@@ -1,6 +1,9 @@
 import { ReactElement } from 'react';
 
-export default interface ModalProps extends FooterProps, HeaderProps, ModalBodyProps {
+export default interface ModalProps
+  extends FooterProps,
+    HeaderProps,
+    ModalBodyProps {
   show?: boolean;
   fullScreen?: boolean;
   transitionDuration?: number;

@@ -8,11 +8,11 @@ export default {
   component: SnackBar,
 } as ComponentMeta<typeof SnackBar>;
 
-const Template: ComponentStory<typeof SnackBar> = (args) => {
+const Template: ComponentStory<typeof SnackBar> = args => {
   const [open, setOpen] = useState(false);
 
   const toggleNotification = () => {
-    setOpen((open) => !open);
+    setOpen(open => !open);
   };
 
   return (

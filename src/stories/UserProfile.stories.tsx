@@ -1,18 +1,23 @@
 import React from 'react';
 import UserProfile from 'components/UserProfile';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { data, avatarImage } from '../data/UserProfile.json'
+import { data, avatarImage } from '../data/UserProfile.json';
 
 type UserProfileProps = {
   alContent?: string;
-  myAccountButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
+  myAccountButtonColor?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'info'
+    | 'warning';
   myAccountButtonSize?: 'small' | 'medium' | 'large';
   myAccountButtonVariant?: 'contained' | 'outlined' | 'text';
   logoutButtonColor?: 'primary' | 'secondary' | 'success' | 'info' | 'warning';
   logoutButtonSize?: 'small' | 'medium' | 'large';
   logoutButtonVariant?: 'contained' | 'outlined' | 'text';
   display?: string;
-  avatarImage?: { avatarImg: string, avatarTitle: string };
+  avatarImage?: { avatarImg: string; avatarTitle: string };
   data?: Array<Object>;
   profileHeading?: string;
   width?: string;
@@ -20,7 +25,6 @@ type UserProfileProps = {
   myAccount?: string;
   logout?: string;
 };
-
 
 const UserProfileStories = (props: UserProfileProps) => (
   <div>
@@ -69,14 +73,18 @@ export default {
     },
     width: {
       control: {
-        type: 'range', min: 200, max: 1200, step: 50,
+        type: 'range',
+        min: 200,
+        max: 1200,
+        step: 50,
       },
     },
   },
-
 } as ComponentMeta<typeof UserProfileStories>;
 
-const Template: ComponentStory<typeof UserProfileStories> = (args) => <UserProfileStories {...args} />;
+const Template: ComponentStory<typeof UserProfileStories> = args => (
+  <UserProfileStories {...args} />
+);
 
 export const BasicProfile = Template.bind({});
 

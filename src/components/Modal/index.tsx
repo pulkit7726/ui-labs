@@ -1,7 +1,5 @@
 import React, { ReactElement } from 'react';
-import {
-  Dialog, Collapse, Fade, Grow, Slide, Zoom, Box,
-} from '@mui/material';
+import { Dialog, Collapse, Fade, Grow, Slide, Zoom, Box } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { styled } from '@mui/material/styles';
 import ModalProps from './ModalInterface';
@@ -35,71 +33,108 @@ function Modal({
   transition,
   transitionDuration,
 }: ModalProps) {
-  const Transition = React.forwardRef((
-    props: TransitionProps & {
-      children: React.ReactElement;
-    },
-    ref: React.Ref<unknown>,
-  ) => (
-    <>
-      {transition === 'collapse' ? (
-        <Collapse in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
-      ) : transition === 'grow' ? (
-        <Grow in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
-      ) : transition === 'slide' ? (
-        <Slide in direction="up" ref={ref} {...(transitionDuration ? { timeout: transitionDuration } : {})} {...props} />
-      ) : transition === 'zoom' ? (
-        <Zoom in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />
-      ) : <Fade in style={{ transformOrigin: '0 0 0' }} {...(transitionDuration ? { timeout: transitionDuration } : {})} ref={ref} {...props} />}
-    </>
-  ));
+  const Transition = React.forwardRef(
+    (
+      props: TransitionProps & {
+        children: React.ReactElement;
+      },
+      ref: React.Ref<unknown>,
+    ) => (
+      <>
+        {transition === 'collapse' ? (
+          <Collapse
+            in
+            style={{ transformOrigin: '0 0 0' }}
+            {...(transitionDuration ? { timeout: transitionDuration } : {})}
+            ref={ref}
+            {...props}
+          />
+        ) : transition === 'grow' ? (
+          <Grow
+            in
+            style={{ transformOrigin: '0 0 0' }}
+            {...(transitionDuration ? { timeout: transitionDuration } : {})}
+            ref={ref}
+            {...props}
+          />
+        ) : transition === 'slide' ? (
+          <Slide
+            in
+            direction="up"
+            ref={ref}
+            {...(transitionDuration ? { timeout: transitionDuration } : {})}
+            {...props}
+          />
+        ) : transition === 'zoom' ? (
+          <Zoom
+            in
+            style={{ transformOrigin: '0 0 0' }}
+            {...(transitionDuration ? { timeout: transitionDuration } : {})}
+            ref={ref}
+            {...props}
+          />
+        ) : (
+          <Fade
+            in
+            style={{ transformOrigin: '0 0 0' }}
+            {...(transitionDuration ? { timeout: transitionDuration } : {})}
+            ref={ref}
+            {...props}
+          />
+        )}
+      </>
+    ),
+  );
 
   return (
     <>
-      {Boolean((keepMounted || show)) && (
-      <CssDialog
-        open={Boolean((keepMounted || show))}
-        fullScreen={!!fullScreen}
-        onClose={onClose}
-        data-testid="CssDialog-fullScreen"
-        className="CssDialog"
-        aria-labelledby="customized-dialog-title"
-        TransitionComponent={Transition}
-        style={{ width, height }}
-      >
+      {Boolean(keepMounted || show) && (
+        <CssDialog
+          open={Boolean(keepMounted || show)}
+          fullScreen={!!fullScreen}
+          onClose={onClose}
+          data-testid="CssDialog-fullScreen"
+          className="CssDialog"
+          aria-labelledby="customized-dialog-title"
+          TransitionComponent={Transition}
+          style={{ width, height }}
+        >
+          {/* Header */}
 
-        {/* Header */}
-
-        {(headerTitle) && (
-          <Header
-            onClose={onClose}
-            headerTitle={headerTitle}
-            keepMounted={keepMounted}
-            width={width}
-            headerBackground={headerBackground}
-          />
-        )}
-
-        {/* Body */}
-
-        <>
-          {(keepMounted || show || fullScreen) && (
-            <ModalBody
-              background={background}
+          {headerTitle && (
+            <Header
+              onClose={onClose}
+              headerTitle={headerTitle}
+              keepMounted={keepMounted}
               width={width}
-              height={height}
-              children={children}
+              headerBackground={headerBackground}
             />
           )}
-        </>
 
-        {/* Footer */}
+          {/* Body */}
 
-        {footerContent && <Footer footerContent={footerContent} footerBackground={footerBackground} width={width} />}
+          <>
+            {(keepMounted || show || fullScreen) && (
+              <ModalBody
+                background={background}
+                width={width}
+                height={height}
+                children={children}
+              />
+            )}
+          </>
 
-      </CssDialog>
+          {/* Footer */}
+
+          {footerContent && (
+            <Footer
+              footerContent={footerContent}
+              footerBackground={footerBackground}
+              width={width}
+            />
+          )}
+        </CssDialog>
       )}
-
     </>
   );
 }

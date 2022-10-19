@@ -9,7 +9,7 @@ export default {
 
 // 👇 We create a “template” of how args map to rendering
 
-const Template: ComponentStory<typeof Image> = (args) => (
+const Template: ComponentStory<typeof Image> = args => (
   <Image itemData={args.itemData} />
 );
 

@@ -29,14 +29,14 @@ const config = {
   initialMessages: [
     createChatBotMessage(
       "Hi, I'm here to provide you with latest COVID 19 data to keep you safe!",
-      {}
+      {},
     ),
     createChatBotMessage(
       "Here's a quick overview of what I can help you with. You can also type in.",
       {
         delay: 400,
         widget: 'overview',
-      }
+      },
     ),
   ] as any,
   state: {} as any,

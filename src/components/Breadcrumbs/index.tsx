@@ -10,22 +10,38 @@ type BreadcrumbsProps = {
   maxItems?: number;
 };
 const Breadcrumb = ({
-  list, separator, maxItems, ...props
+  list,
+  separator,
+  maxItems,
+  ...props
 }: BreadcrumbsProps) => {
   console.log(list);
   return (
-    <Breadcrumbs maxItems={maxItems} separator={separator} aria-label="breadcrumb">
-      {list.map((item, index) => (item.isLink ? (
-        <Link key={index} color={item.color} aria-current={item.activePage} underline={item.underline} sx={{ display: 'flex', alignItems: 'center' }} href={item.url}>
-          {item.icon}
-          {item.title}
-        </Link>
-      ) : (
-        <Typography sx={{ display: 'flex', alignItems: 'center' }}>
-          {item.icon}
-          {item.title}
-        </Typography>
-      )))}
+    <Breadcrumbs
+      maxItems={maxItems}
+      separator={separator}
+      aria-label="breadcrumb"
+    >
+      {list.map((item, index) =>
+        item.isLink ? (
+          <Link
+            key={index}
+            color={item.color}
+            aria-current={item.activePage}
+            underline={item.underline}
+            sx={{ display: 'flex', alignItems: 'center' }}
+            href={item.url}
+          >
+            {item.icon}
+            {item.title}
+          </Link>
+        ) : (
+          <Typography sx={{ display: 'flex', alignItems: 'center' }}>
+            {item.icon}
+            {item.title}
+          </Typography>
+        ),
+      )}
     </Breadcrumbs>
   );
 };

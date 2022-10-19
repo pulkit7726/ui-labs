@@ -52,7 +52,7 @@ function Infy(props: any) {
             </span>
           </div>
         </Card>
-      </Box>
+      </Box>,
     );
   }
   const [list, setList] = useState(testData);
@@ -72,7 +72,7 @@ function Infy(props: any) {
                 <span>{i} -----</span>
               </div>
             </Card>
-          </Box>
+          </Box>,
         );
       }
       setList(data1);

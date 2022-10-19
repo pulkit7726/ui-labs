@@ -14,6 +14,7 @@ import ResponsiveSideBar from "./Responsive";
 const drawerWidth = 240;
 
 type SideBarProps = {
+<<<<<<< HEAD
   /**display menuItems */
   MenuItems: any;
   /**hide show  in responsive sidebar */
@@ -40,6 +41,23 @@ type SideBarProps = {
 };
 
 export const SideBar = ({
+=======
+  MenuItems: any;
+  showArrowIcon: boolean;
+  tooltip: boolean;
+  Responsive: boolean;
+  position?: 'left' | 'right';
+  showActiveTabs?: boolean;
+  window?: () => Window;
+  title?: string;
+  image?: string;
+  backgroundColor?: string;
+  color?: string;
+  activeIndicatorClass?: string;
+};
+
+export function SideBar({
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
   position,
   Responsive,
   showArrowIcon,
@@ -53,10 +71,17 @@ export const SideBar = ({
   color,
   activeIndicatorClass,
   ...props
+<<<<<<< HEAD
 }: SideBarProps) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState("");
   const [activeSubMenu, setActiveSubMenu] = React.useState("");
+=======
+}: SideBarProps) {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState('');
+  const [activeSubMenu, setActiveSubMenu] = React.useState('');
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -75,7 +100,11 @@ export const SideBar = ({
             setActiveTab={setActiveTab}
             className={`${
               showActiveTabs &&
+<<<<<<< HEAD
               (item.Id === activeTab ? "avtiveTab" : "inActiveTab")
+=======
+              (item.Id === activeTab ? 'avtiveTab' : 'inActiveTab')
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
             } hover-List`}
             item={item}
             key={item.Id}
@@ -90,16 +119,26 @@ export const SideBar = ({
   );
 
   return (
+<<<<<<< HEAD
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar style={{ backgroundColor: "#343A40" }} position="fixed">
+=======
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar style={{ backgroundColor: '#343A40' }} position="fixed">
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
+<<<<<<< HEAD
             sx={{ mr: 2, display: { sm: "none" } }}
+=======
+            sx={{ mr: 2, display: { sm: 'none' } }}
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
           >
             <MenuIcon />
           </IconButton>
@@ -122,9 +161,15 @@ export const SideBar = ({
               keepMounted: true,
             }}
             sx={{
+<<<<<<< HEAD
               display: { xs: "block", sm: "none" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
+=======
+              display: { xs: 'block', sm: 'none' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
                 width: drawerWidth,
               },
             }}
@@ -132,8 +177,13 @@ export const SideBar = ({
               style: {
                 backgroundColor,
                 color,
+<<<<<<< HEAD
                 width: "max-content",
                 minWidth: "245px",
+=======
+                width: 'max-content',
+                minWidth: '245px',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
               },
             }}
           >
@@ -143,9 +193,15 @@ export const SideBar = ({
             anchor={position}
             variant="permanent"
             sx={{
+<<<<<<< HEAD
               display: { xs: "none", sm: "block" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
+=======
+              display: { xs: 'none', sm: 'block' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
                 width: drawerWidth,
               },
             }}
@@ -154,8 +210,13 @@ export const SideBar = ({
               style: {
                 backgroundColor,
                 color,
+<<<<<<< HEAD
                 width: "max-content",
                 minWidth: "245px",
+=======
+                width: 'max-content',
+                minWidth: '245px',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
               },
             }}
           >
@@ -165,7 +226,11 @@ export const SideBar = ({
       ) : (
         <ResponsiveSideBar
           MenuItems={MenuItems}
+<<<<<<< HEAD
           position={"left"}
+=======
+          position="left"
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
           showArrowIcon={showArrowIcon}
           title={title}
           image={image}
@@ -178,8 +243,15 @@ export const SideBar = ({
       )}
     </Box>
   );
+<<<<<<< HEAD
 };
 
 SideBar.defaultProps = {
   activeIndicatorClass: "activeTab",
+=======
+}
+
+SideBar.defaultProps = {
+  activeIndicatorClass: 'activeTab',
+>>>>>>> efdb20a4c957b0cbcafb4f352d9955c90b55054b
 };
