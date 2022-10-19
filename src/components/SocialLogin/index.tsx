@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import './login.css';
 import { Button, Grid, Typography } from '@mui/material';
 import { GoogleLogin } from 'react-google-login';
-import { gapi } from 'gapi-script';
+import { gapi } from 'gapi-cjs';
 
 type ImageType = {
   url: string;
@@ -81,10 +81,10 @@ function Login({
         justifyContent="space-between"
         style={{ width: '36vw', margin: 'auto' }}
       >
-        {ImagesData.map((image): any => (
+        {ImagesData.map((image:any,index:number) => (
           <>
             {image.visibility && (
-              <Grid
+              <Grid key = {index}
                 item
                 xs={size === 'large' ? 5 : 2}
                 style={{ margin: '0.5rem' }}
