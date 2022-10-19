@@ -48,8 +48,8 @@ const Template: ComponentStory<typeof ResizableGridStories> = args => (
   <ResizableGridStories {...args} />
 );
 
-export const ResizableGridWithTable = Template.bind({});
-ResizableGridWithTable.args = {
+export const WithTable = Template.bind({});
+WithTable.args = {
   display: 'table',
   data,
   dataLabel,
@@ -60,19 +60,8 @@ ResizableGridWithTable.args = {
     </Grid>
   ),
 };
-export const ResizableGridWithAppBar = Template.bind({});
-ResizableGridWithAppBar.args = {
-  display: 'table',
-  appBar,
-  layout: [{ i: '1', x: 0, y: 3, w: 5, h: 2 }],
-  children: (
-    <Grid key="1">
-      <BodyAppBar appBar={appBar} />
-    </Grid>
-  ),
-};
-export const ResizableGridWithCard = Template.bind({});
-ResizableGridWithCard.args = {
+export const WithCard = Template.bind({});
+WithCard.args = {
   display: 'card',
   card,
   layout: [{ i: '1', x: 0, y: 0, w: 3, h: 2.5 }],
@@ -82,14 +71,37 @@ ResizableGridWithCard.args = {
     </Grid>
   ),
 };
-export const ResizableGridWithImage = Template.bind({});
-ResizableGridWithImage.args = {
+export const WithImage = Template.bind({});
+WithImage.args = {
   display: 'image',
   imageData,
   layout: [{ i: '1', x: 0, y: 3, w: 5, h: 2 }],
   children: (
     <Grid key="1">
       <BodyImage imageData={imageData} />
+    </Grid>
+  ),
+};
+export const WithFullscreen = Template.bind({});
+WithFullscreen.args = {
+  display: 'fullscreen',
+  data,
+  dataLabel,
+  layout: [{ i: '1', x: 0, y: 0, w: 12, h: 4 }],
+  children: (
+    <Grid key="1">
+      <BodyTable data={data} dataLabel={dataLabel} />
+    </Grid>
+  ),
+};
+export const AppBarWithContent = Template.bind({});
+AppBarWithContent.args = {
+  display: 'table',
+  appBar,
+  layout: [{ i: '1', x: 0, y: 3, w: 5, h: 2 }],
+  children: (
+    <Grid key="1">
+      <BodyAppBar appBar={appBar} />
     </Grid>
   ),
 };
@@ -125,18 +137,6 @@ MultipleElementWithGrid.args = {
   childrenThree: (
     <Grid key="4">
       <BodyAppBar appBar={appBar} />
-    </Grid>
-  ),
-};
-export const ResizableGridWithFullscreen = Template.bind({});
-ResizableGridWithFullscreen.args = {
-  display: 'fullscreen',
-  data,
-  dataLabel,
-  layout: [{ i: '1', x: 0, y: 0, w: 12, h: 4 }],
-  children: (
-    <Grid key="1">
-      <BodyTable data={data} dataLabel={dataLabel} />
     </Grid>
   ),
 };
