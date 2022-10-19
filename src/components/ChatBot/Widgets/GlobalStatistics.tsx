@@ -24,18 +24,21 @@ const useStyles = makeStyles({
 });
 
 const GlobalStatistics = () => {
-  const [stats, setStats] = useState([]);
+  const [stats, setStats] = useState({
+    global_total_cases: null,
+    global_new_cases: null,
+    global_recovered: null,
+    global_deaths: null,
+  });
   const [loading, setLoading] = useState(true);
   const classes = useStyles();
 
   useEffect(() => {
     const getStats = async () => {
-      let data = await fetch(
+      const getData = await fetch(
         'https://www.hpb.health.gov.lk/api/get-current-statistical',
       );
-      data = await data.json();
-      // const filteredFlights = flights.filter((item) => item.Status === null);
-
+      const data = await getData.json();
       setStats(data.data);
       setLoading(false);
     };
