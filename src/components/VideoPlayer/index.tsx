@@ -15,9 +15,9 @@ export  function VideoPlayerComponent({
  return (
   <div >
       {!openCustomVideo && (     
+        <> <h2>{"Video Player with Default Controllers"}</h2>
             <div className="container">
             <div className="video-wrapper">
-      <h2>{"Video Player with Default Controllers"}</h2>
        <ReactPlayer url={"https://www.youtube.com/watch?v=tf8phrV7Dq0"}
        config={{
         youtube: {
@@ -29,7 +29,8 @@ export  function VideoPlayerComponent({
        >
        </ReactPlayer>
        </div>
-      </div>) }
+      </div>
+      </>) }
 
       {openCustomVideo && (      <>
         <h2>{"Video Player with Custom Controllers"}</h2>
