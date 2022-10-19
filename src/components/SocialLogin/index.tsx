@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import './login.css';
-
 import { Button, Grid, Typography } from '@mui/material';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 
-type imagetype = {
+type ImageType = {
   url: string;
   visibility?: boolean;
   alt: string;
@@ -17,15 +16,16 @@ interface GridProps {
   backgroundColor?: string;
   color?: string;
 
-  ImagesData: imagetype[];
+  ImagesData: ImageType[];
   size: string;
   logo: string;
 }
 
-const clientId =
-  '64805035465-7u5vbi8520gfk2v6lq0j8qnemk68imn5.apps.googleusercontent.com';
+const clientId = '64805035465-7u5vbi8520gfk2v6lq0j8qnemk68imn5.apps.googleusercontent.com';
 
-function Login({ ImagesData, size, logo, backgroundColor, color }: GridProps) {
+function Login({
+  ImagesData, size, logo, backgroundColor, color,
+}: GridProps) {
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({

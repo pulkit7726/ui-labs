@@ -24,17 +24,23 @@ const useStyles = makeStyles({
 });
 
 const LocalStatistics = () => {
-  const [stats, setStats] = useState([]);
+  const [stats, setStats] = useState({
+    local_total_cases: null,
+    local_new_cases: null,
+    local_recovered: null,
+    local_deaths: null,
+    local_new_deaths: null,
+    local_active_cases: null,
+  });
   const [loading, setLoading] = useState(true);
   const classes = useStyles();
 
   useEffect(() => {
     const getStats = async () => {
-      let data = await fetch(
+      const getData = await fetch(
         'https://www.hpb.health.gov.lk/api/get-current-statistical',
       );
-      data = await data.json();
-
+      const data = await getData.json();
       setStats(data.data);
       setLoading(false);
     };

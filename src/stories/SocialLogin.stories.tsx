@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import Login from '../components/SocialLogin/Login';
+import Login from 'components/SocialLogin';
 
 export default {
   title: 'ui/SocialLogin',
@@ -17,7 +17,7 @@ export default {
   },
 } as ComponentMeta<typeof Login>;
 
-const Template: ComponentStory<typeof Login> = args => (
+const Template: ComponentStory<typeof Login> = (args) => (
   <MemoryRouter>
     <Login {...args} />
   </MemoryRouter>
