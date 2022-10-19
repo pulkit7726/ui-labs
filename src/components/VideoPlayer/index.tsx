@@ -1,82 +1,41 @@
-import React,  {useState} from 'react';
-import VideoPlayer from 'react-video-js-player';
-import { makeStyles } from '@mui/styles';
-import { DialogContent, Dialog} from '@material-ui/core';
-import CancelIcon from '@mui/icons-material/Cancel';
+import React,  {useState, useRef} from 'react';
+import "./useVideoPlayer.css";
+import CustomVideo from "./CustomVideo"; 
+import ReactPlayer from 'react-player'
+import "./useVideoPlayer.css";
 
 type VideoPlayerProps = {
-  open: boolean;
-  VideoPath : string;
+  openCustomVideo: boolean;
 
 };
 export  function VideoPlayerComponent({
-  open,
-  VideoPath
+  openCustomVideo
 }: VideoPlayerProps) {
-  
-const useStyles = makeStyles({
-    videoStyling :{
-      marginLeft: "400px",
-      marginTop:"100px",
-      width:"300px",
-      height:"180px",
-    },
-  });
-
-const classes = useStyles();
-const[videoViewer,setVideoViewer]= useState(false);
-
-const handleVideoClose = () => {
-  setVideoViewer(false);
-};
 
  return (
-  <div>
-  {open &&
-    (  <div>
-      <h1>Video Player</h1>
-      <VideoPlayer
-      className={classes.videoStyling}
-      src= {VideoPath}      
-      />      
-      </div>
-    )
-  }
-{!open &&
-    ( 
-      <>
-      <h1>Video Player in Dialog Box</h1>
-      <video
-      className={classes.videoStyling}
-      src= {VideoPath}
-      onClick ={()=>
-       setVideoViewer(true)
-      }
-      />
-      </>
-      )
-}
-       <Dialog
-       open={videoViewer}
-       id={'view-video'}
-       fullWidth={false}
-       maxWidth={'lg'}
-       title={"Video Player"}
-       onClose={handleVideoClose}
-      >
-      <CancelIcon onClick={() =>handleVideoClose()}></CancelIcon>
-       <DialogContent>
-             <video
-               controls
-               autoPlay={true}
-               preload='auto'
-               height='500px'
-               width='700px'
-             >
-               <source src={VideoPath} type='video/mp4' />
-             </video>
-       </DialogContent>
-     </Dialog>    
+  <div >
+      {!openCustomVideo && (     
+            <div className="container">
+            <div className="video-wrapper">
+      <h2>{"Video Player with Default Controllers"}</h2>
+       <ReactPlayer url={"https://www.youtube.com/watch?v=tf8phrV7Dq0"}
+       config={{
+        youtube: {
+          playerVars: { showinfo: 1 }
+        }
+      }}
+       playing={true}
+       controls
+       >
+       </ReactPlayer>
+       </div>
+      </div>) }
+
+      {openCustomVideo && (      <>
+        <h2>{"Video Player with Custom Controllers"}</h2>
+       <CustomVideo  />
+      </>) }
+
   </div>
  );
 }
