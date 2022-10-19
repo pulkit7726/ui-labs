@@ -58,29 +58,27 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   marginRight: '25px',
 }));
 
-export const BodyTable = ({ ...props }) => {
+export const BodyTable = ({ data, dataLabel }) => {
   return (
     <>
       <TableContainer sx={{ height: '100%' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
+              <StyledTableCell align="center">{dataLabel.name}</StyledTableCell>
               <StyledTableCell align="center">
-                {props.dataLabel.name}
+                {dataLabel.email}
               </StyledTableCell>
               <StyledTableCell align="center">
-                {props.dataLabel.email}
+                {dataLabel.contact}
               </StyledTableCell>
               <StyledTableCell align="center">
-                {props.dataLabel.contact}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {props.dataLabel.designation}
+                {dataLabel.designation}
               </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.data.map(obj => (
+            {data.map(obj => (
               <TableRow key={obj.id}>
                 <StyledTableCell align="center">
                   <Typography>{obj.value}</Typography>
@@ -102,30 +100,26 @@ export const BodyTable = ({ ...props }) => {
     </>
   );
 };
-export const BodyCard = ({ ...props }) => (
+export const BodyCard = ({ card }) => (
   <>
     <StyledCard>
-      <CardMedia
-        component="img"
-        image={props.card.imageurl}
-        alt="green iguana"
-      />
+      <CardMedia component="img" image={card.imageurl} alt="green iguana" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.card.title}
+          {card.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.card.content}
+          {card.content}
         </Typography>
       </CardContent>
     </StyledCard>
   </>
 );
 
-export const BodyImage = ({ ...props }) => {
+export const BodyImage = ({ imageData }) => {
   return (
     <StyledImageList variant="quilted" cols={4} rowHeight={121}>
-      {props.imageData.map((item, i) => (
+      {imageData.map((item, i) => (
         <ImageListItem key={i} cols={item.cols || 1} rows={item.rows || 1}>
           <img src={item.img} alt={item.title} />
         </ImageListItem>
@@ -134,7 +128,7 @@ export const BodyImage = ({ ...props }) => {
   );
 };
 
-export const BodyAppBar = ({ ...props }) => {
+export const BodyAppBar = ({ appBar }) => {
   return (
     <StyledBox component="main">
       <AppBar position="fixed">
@@ -148,12 +142,12 @@ export const BodyAppBar = ({ ...props }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div">
-            {props.appBar.title}
+            {appBar.title}
           </Typography>
         </Toolbar>
       </AppBar>
       {/* <Toolbar /> */}
-      <StyledTypography>{props.appBar.content}</StyledTypography>
+      <StyledTypography>{appBar.content}</StyledTypography>
     </StyledBox>
   );
 };
