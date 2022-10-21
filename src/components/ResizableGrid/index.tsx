@@ -1,15 +1,13 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { Grid, styled } from '@mui/material';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import { BodyTable } from 'components/ResizableGrid/Body';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const Root = styled(Grid)(({ theme }) => ({
-  padding: '16px',
-}));
-
 const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(
   ({ gridBackground }) => ({
+    margin: '-26px',
     '& .react-grid-item > .react-resizable-handle': {
       position: 'absolute',
       bottom: 0,
@@ -37,32 +35,66 @@ type ResizableGridProps = {
   childrenOne?: ReactElement | string;
   childrenTwo?: ReactElement | string;
   childrenThree?: ReactElement | string;
-  layout?: Array<object>;
+  layouts?: any;
+  mainLayouts?: Array<object>;
   data?: Array<object>;
   dataLabel?: object;
-  card?: object;
   display?: string;
+  card?: object;
   imageData?: Array<object>;
   gridBackground?: string;
   appBar?: object;
+  isDraggable?: boolean;
+  tableAlign?: 'left' | 'center' | 'right';
+  layoutSize?: 'small' | 'medium' | 'large';
 };
 
-const ResizableGrid = ({ ...props }: ResizableGridProps) => {
+const ResizableGrid = ({
+  layouts,
+  isDraggable,
+  children,
+  childrenOne,
+  childrenTwo,
+  childrenThree,
+  gridBackground,
+  display,
+  layoutSize,
+  mainLayouts,
+  tableAlign,
+  data,
+  dataLabel,
+}: ResizableGridProps) => {
+  console.log(123, isDraggable);
+
   return (
     <>
       <StyledResponsiveGridLayout
-        layouts={{ lg: props.layout }}
-        measureBeforeMount={true}
-        isDragable={true}
-        isResizable={true}
-        margin={[20, 20]}
-        sx={{ margin: '-35px' }}
-        gridBackground={props.gridBackground}
+        layouts={
+          display === 'fullscreen'
+            ? { lg: mainLayouts }
+            : display === 'multiple'
+            ? { lg: mainLayouts }
+            : layoutSize === 'large'
+            ? { lg: layouts.layoutsLG }
+            : layoutSize === 'small'
+            ? { sm: layouts.layoutsSM }
+            : { md: layouts.layoutsMD }
+        }
+        gridBackground={gridBackground}
       >
-        {props.children}
-        {props.childrenOne}
-        {props.childrenTwo}
-        {props.childrenThree}
+        {display === 'multiple' ? (
+          [childrenOne, childrenTwo, childrenThree]
+        ) : display === 'table' ? (
+          <Grid key="1">
+            <BodyTable
+              data={data}
+              dataLabel={dataLabel}
+              tableAlign={tableAlign}
+            />
+          </Grid>
+        ) : (
+          children
+        )}
       </StyledResponsiveGridLayout>
     </>
   );

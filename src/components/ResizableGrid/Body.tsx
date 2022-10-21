@@ -58,21 +58,23 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   marginRight: '25px',
 }));
 
-export const BodyTable = ({ data, dataLabel }) => {
+export const BodyTable = ({ data, dataLabel, tableAlign }) => {
   return (
     <>
       <TableContainer sx={{ height: '100%' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">{dataLabel.name}</StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align={tableAlign || 'center'}>
+                {dataLabel.name}
+              </StyledTableCell>
+              <StyledTableCell align={tableAlign || 'center'}>
                 {dataLabel.email}
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align={tableAlign || 'center'}>
                 {dataLabel.contact}
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align={tableAlign || 'center'}>
                 {dataLabel.designation}
               </StyledTableCell>
             </TableRow>
@@ -80,16 +82,16 @@ export const BodyTable = ({ data, dataLabel }) => {
           <TableBody>
             {data.map(obj => (
               <TableRow key={obj.id}>
-                <StyledTableCell align="center">
+                <StyledTableCell align={tableAlign || 'center'}>
                   <Typography>{obj.value}</Typography>
                 </StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align={tableAlign || 'center'}>
                   <Typography>{obj.email}</Typography>
                 </StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align={tableAlign || 'center'}>
                   <Typography>{obj.contact}</Typography>
                 </StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align={tableAlign || 'center'}>
                   <Typography>{obj.designation}</Typography>
                 </StyledTableCell>
               </TableRow>
@@ -146,7 +148,6 @@ export const BodyAppBar = ({ appBar }) => {
           </Typography>
         </Toolbar>
       </AppBar>
-      {/* <Toolbar /> */}
       <StyledTypography>{appBar.content}</StyledTypography>
     </StyledBox>
   );
