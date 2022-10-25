@@ -26,6 +26,7 @@ type ResizableGridProps = {
   imageData?: Array<object>;
   gridBackground?: string;
   appBar?: object;
+  isDraggable?: boolean;
   tableAlign?: 'left' | 'center' | 'right';
   layoutSize?: 'small' | 'medium' | 'large';
 };
@@ -62,6 +63,7 @@ const Template: ComponentStory<typeof ResizableGridStories> = args => (
 );
 export const AppBarWithContent = Template.bind({});
 AppBarWithContent.args = {
+  isDraggable: true,
   display: 'appbar',
   appBar,
   layouts: layout,
@@ -73,6 +75,7 @@ AppBarWithContent.args = {
 };
 export const WithTable = Template.bind({});
 WithTable.args = {
+  isDraggable: true,
   display: 'table',
   data,
   dataLabel,
@@ -80,6 +83,7 @@ WithTable.args = {
 };
 export const WithCard = Template.bind({});
 WithCard.args = {
+  isDraggable: true,
   display: 'card',
   card,
   layouts: layout,
@@ -91,6 +95,7 @@ WithCard.args = {
 };
 export const WithImage = Template.bind({});
 WithImage.args = {
+  isDraggable: true,
   display: 'image',
   imageData,
   layouts: layout,
@@ -102,6 +107,7 @@ WithImage.args = {
 };
 export const WithFullscreen = Template.bind({});
 WithFullscreen.args = {
+  isDraggable: true,
   display: 'fullscreen',
   data,
   dataLabel,
@@ -115,6 +121,7 @@ WithFullscreen.args = {
 
 export const MultipleElementWithGrid = Template.bind({});
 MultipleElementWithGrid.args = {
+  isDraggable: true,
   display: 'multiple',
   data,
   dataLabel,
@@ -122,8 +129,8 @@ MultipleElementWithGrid.args = {
   imageData,
   appBar,
   mainLayouts: [
-    { i: '2', x: 5, y: 0, w: 4, h: 2 },
-    { i: '3', x: 0, y: 0, w: 6, h: 2 },
+    { i: '2', x: 5, y: 0, w: 3, h: 2 },
+    { i: '3', x: 0, y: 0, w: 5, h: 2 },
     { i: '4', x: 0, y: 0, w: 8, h: 2 },
   ],
   childrenOne: (

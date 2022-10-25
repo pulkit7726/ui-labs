@@ -41,12 +41,14 @@ type ResizableGridProps = {
   dataLabel?: object;
   display?: string;
   gridBackground?: string;
+  isDraggable?: boolean;
   tableAlign?: 'left' | 'center' | 'right';
   layoutSize?: 'small' | 'medium' | 'large';
 };
 
 const ResizableGrid = ({
   layouts,
+  isDraggable,
   children,
   childrenOne,
   childrenTwo,
@@ -59,6 +61,8 @@ const ResizableGrid = ({
   data,
   dataLabel,
 }: ResizableGridProps) => {
+  console.log(123, isDraggable);
+
   return (
     <>
       <StyledResponsiveGridLayout
@@ -74,6 +78,8 @@ const ResizableGrid = ({
             : { md: layouts.layoutsMD }
         }
         gridBackground={gridBackground}
+        isDraggable={isDraggable}
+        rowHeight={isDraggable ? 150 : 200}
       >
         {display === 'multiple' ? (
           [childrenOne, childrenTwo, childrenThree]
