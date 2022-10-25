@@ -77,7 +77,7 @@ const ResizableGrid = ({
         }
         gridBackground={gridBackground}
         isDraggable={isDraggable}
-        rowHeight={isDraggable ? 150 : 200}
+        rowHeight={isDraggable ? 150 : 151}
       >
         {display === 'multiple' ? (
           [childrenOne, childrenTwo, childrenThree]
