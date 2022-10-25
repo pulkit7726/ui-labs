@@ -69,8 +69,6 @@ const ResizableGrid = ({
         layouts={
           display === 'fullscreen'
             ? { lg: mainLayouts }
-            : display === 'multiple'
-            ? { lg: mainLayouts }
             : layoutSize === 'large'
             ? { lg: layouts.layoutsLG }
             : layoutSize === 'small'

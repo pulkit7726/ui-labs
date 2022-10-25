@@ -128,11 +128,7 @@ MultipleElementWithGrid.args = {
   card,
   imageData,
   appBar,
-  mainLayouts: [
-    { i: '2', x: 5, y: 0, w: 3, h: 2 },
-    { i: '3', x: 0, y: 0, w: 5, h: 2 },
-    { i: '4', x: 0, y: 0, w: 8, h: 2 },
-  ],
+  layouts: layout,
   childrenOne: (
     <Grid key="2">
       <BodyCard card={card} />
