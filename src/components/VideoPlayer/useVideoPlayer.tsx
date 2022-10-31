@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useVideoPlayer = (videoElement) => {
+const UseVideoPlayer = (videoElement) => {
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     progress: [0],
@@ -83,5 +83,4 @@ const useVideoPlayer = (videoElement) => {
     toggleMute,
   };
 };
-
-export default useVideoPlayer;
+export default UseVideoPlayer;

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import "./useVideoPlayer.css";
-import useVideoPlayer from "./useVideoPlayer";
+import "./UseVideoPlayer.css";
+import UseVideoPlayer from "./UseVideoPlayer";
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -8,7 +8,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { Range } from 'react-range';
 import ReactPlayer from 'react-player'
 
-const CustomVideo = () => {
+const CustomVideo = (url) => {
   const videoElement = useRef(null);
   const {
     playerState,
@@ -18,20 +18,18 @@ const CustomVideo = () => {
     handleVideoProgress,
     handleVideoSpeed,
     toggleMute,
-  } = useVideoPlayer(videoElement);
+  } = UseVideoPlayer(videoElement);
   return (
     <div className="container">
       <div className="video-wrapper">
         <ReactPlayer
-          url={"https://www.youtube.com/watch?v=tf8phrV7Dq0"}
+          url={url.url}
           ref={videoElement}
           onProgress={ (e) => handleOnTimeUpdate(e)}
           playing={playerState.isPlaying}
           muted={playerState.isMuted}
           playbackRate={playerState.speed}
-          onEnded={() => {
-            handleOnEndVideo();
-          }}
+          onEnded={handleOnEndVideo}
           
         />
         <div className="controls">
@@ -45,23 +43,24 @@ const CustomVideo = () => {
             </button>
           </div>
            <Range
-        step={1}
-        min={0}
-        max={playerState.totalDurationofVideo}
-        values={playerState.progress}
-        onChange={(e) => handleVideoProgress(e)}
-        renderTrack={({ props, children }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: '6px',
-              width: '70%',
-              backgroundColor: '#ccc',
-            }}
+             step={1}
+             min={0}
+             max={playerState.totalDurationofVideo}
+             values={playerState.progress}
+             onChange={(e) => handleVideoProgress(e)}
+             renderTrack={({ props, children }) => (
+              <div
+              {...props}
+              style={{
+                  ...props.style,
+                  height: '6px',
+                  width: '70%',
+                  background: `linear-gradient(to right, orange 
+                  ${(playerState.progress[0] - 0) * 100 / (playerState.totalDurationofVideo - 0)}%, #ccc 0px`,
+              }}
           >
-            {children}
-          </div>
+             {children}
+            </div>
         )}
         renderThumb={({ props }) => (
           <div
@@ -76,8 +75,6 @@ const CustomVideo = () => {
           />
         )}
       />
-
-
           <select
             className="velocity"
             value={playerState.speed}

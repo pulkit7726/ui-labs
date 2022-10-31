@@ -16,13 +16,8 @@ const Template: ComponentStory<typeof VideoPlayerComponent> = (args) => {
 };
 
 
-export const VideoWithDefaultControls = Template.bind({});
-VideoWithDefaultControls.args = {
- Title:"",
- openCustomVideo:false,
-};
-export const VideoWithCustomControls = Template.bind({});
-VideoWithCustomControls.args = {
- Title:"",
- openCustomVideo:true,
+export const VideoWithControls = Template.bind({});
+VideoWithControls.args = {
+  customControls:false,
+ url:"",
 };

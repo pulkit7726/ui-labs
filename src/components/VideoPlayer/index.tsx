@@ -1,42 +1,49 @@
 import React,  {useState, useRef} from 'react';
-import "./useVideoPlayer.css";
+import "./UseVideoPlayer.css";
 import CustomVideo from "./CustomVideo"; 
 import ReactPlayer from 'react-player'
-import "./useVideoPlayer.css";
+import { Typography } from '@mui/material';
 
 type VideoPlayerProps = {
-  openCustomVideo: boolean;
+  customControls: boolean;
+  url:string
 
 };
 export  function VideoPlayerComponent({
-  openCustomVideo
+  customControls,
+  url,
 }: VideoPlayerProps) {
 
  return (
   <div >
-      {!openCustomVideo && (     
-        <> <h2>{"Video Player with Default Controllers"}</h2>
+     {!customControls && (
+        <>
+            <Typography>{"Video Player with Default Controllers"}</Typography>
             <div className="container">
-            <div className="video-wrapper">
-       <ReactPlayer url={"https://www.youtube.com/watch?v=tf8phrV7Dq0"}
-       config={{
-        youtube: {
-          playerVars: { showinfo: 1 }
-        }
-      }}
-       playing={true}
-       controls
-       >
-       </ReactPlayer>
-       </div>
-      </div>
-      </>) }
+                <div className="video-wrapper">
+                    <ReactPlayer url={url}
+                        config={{
+                            youtube: {
+                                playerVars: { showinfo: 1 }
+                            }
+                        }}
+                        playing={true}
+                        controls
+                    >
+                    </ReactPlayer>
+                </div>
+            </div>
+        </>
+      )
+    }
 
-      {openCustomVideo && (      <>
-        <h2>{"Video Player with Custom Controllers"}</h2>
-       <CustomVideo  />
-      </>) }
-
+   {customControls && (
+        <>
+            <Typography>{"Video Player with Custom Controllers"}</Typography>
+            <CustomVideo url={url} />
+        </>
+      )
+   }
   </div>
  );
 }

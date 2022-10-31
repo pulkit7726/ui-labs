@@ -5,7 +5,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "^5.0.0-alpha.93",
     "@mui/material": "^5.9.3",
@@ -19,14 +18,15 @@
     "@types/node": "^16.11.47",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
-    "boxicons": "^2.1.4",
     "filefy": "^0.1.11",
     "framer-motion": "4.1.17",
     "gapi-script": "^1.2.0",
+    "igniteui-react-charts": "^18.0.0",
+    "igniteui-react-core": "^18.0.0",
     "jspdf": "^2.5.1",
     "notistack": "^2.0.5",
+    "postcss": "8.1.9",
     "react": "^18.2.0",
-    "react-awesome-lightbox": "^1.8.1",
     "react-chatbot-kit": "^2.1.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.2",
@@ -39,58 +39,30 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.6",
-    "react-video-js-player": "^1.1.1",
     "recharts": "^2.1.14",
     "slick-carousel": "^1.8.1",
     "swiper": "^8.3.2",
     "typed.js": "^2.0.12",
     "typescript": "^4.7.4",
-    "video-react": "^0.15.0",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "window-storybook": "set DISABLE_ESLINT_PLUGIN=true && start-storybook -p 4000",
+    "build-storybook": "DISABLE_ESLINT_PLUGIN=true build-storybook",
     "build-static-webapp": "expo build:web",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
-    "linux-storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 4000"
+    "storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      },
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      },
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
     ]
   },
   "browserslist": {
@@ -107,21 +79,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
-    "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-docs": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/manager-webpack5": "^6.5.12",
-    "@storybook/node-logger": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
     "@storybook/preset-create-react-app": "^4.1.2",
-    "@storybook/testing-library": "^0.0.13",
+    "@storybook/testing-library": "0.0.13",
     "@storybook/theming": "^6.5.10",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "babel-loader": "^8.2.5",
-    "babel-plugin-named-exports-order": "^0.0.2",
     "chromatic": "^6.10.0",
     "eslint": "^8.24.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -129,9 +98,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
-    "jest-watch-typeahead": "^0.6.5",
-    "prop-types": "^15.8.1",
-    "webpack": "^5.74.0"
+    "jest-watch-typeahead": "^0.6.5"
   },
   "readme": "ERROR: No README data found!",
   "_id": "ui-labs@0.1.0"
