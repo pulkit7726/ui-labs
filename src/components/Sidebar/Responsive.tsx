@@ -10,10 +10,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import {
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 import MenuItemList from './MenuItemList';
 import './sidebar.css';
 
@@ -54,7 +51,7 @@ interface AppBarProps extends MuiAppBarProps {
 }
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: prop => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
@@ -74,7 +71,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Drawer: any = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: prop => prop !== 'open',
 })(({ theme, open }) => ({
   width: 'max-content',
   minWidth: '245px',
@@ -185,7 +182,10 @@ export default function ResponsiveSideBar({
                   item={item}
                   drawerOpen={drawerOpen}
                   setActiveTab={setActiveTab}
-                  className={`${showActiveTabs && (item.Id === activeTab ? 'avtiveTab' : 'inActiveTab')} hover-List`}
+                  className={`${
+                    showActiveTabs &&
+                    (item.Id === activeTab ? 'avtiveTab' : 'inActiveTab')
+                  } hover-List`}
                   key={item.Id}
                   backgroundColor={`${backgroundColor}`}
                   setActiveSubMenu={setActiveSubMenu}
