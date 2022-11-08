@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import Typed from "typed.js";
+import React, { useEffect } from 'react';
+import Typed from 'typed.js';
 
-const TypedReact = (props) => {
+const TypedReact = props => {
   // Create reference to store the DOM element containing the animation
-  const el:any = React.useRef(null);
+  const el: any = React.useRef(null);
   // Create reference to store the Typed instance itself
-  const typed:any = React.useRef(null);
+  const typed: any = React.useRef(null);
   useEffect(() => {
     setTimeout(() => {
       const options = {
@@ -13,7 +13,7 @@ const TypedReact = (props) => {
         strings: props?.onLoadMessage,
         typeSpeed: 50,
         backSpeed: 50,
-        backDelay: 2000
+        backDelay: 2000,
       };
 
       // elRef refers to the <span> rendered below

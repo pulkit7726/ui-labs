@@ -70,7 +70,9 @@ export function SnackBar({
   showUndo,
   handleUndo,
 }: SnackbarProps) {
-  const SlideTransitionCallback = useCallback(SlideTransition, [slideDirection]);
+  const SlideTransitionCallback = useCallback(SlideTransition, [
+    slideDirection,
+  ]);
 
   function SlideTransition(props: SlideProps) {
     return <Slide {...props} direction={slideDirection} />;
@@ -78,13 +80,11 @@ export function SnackBar({
 
   const action = (
     <>
-      {
-        showUndo && (
+      {showUndo && (
         <Button color="secondary" size="small" onClick={handleUndo}>
           UNDO
         </Button>
-        )
-      }
+      )}
       <IconButton
         size="small"
         aria-label="close"
@@ -99,71 +99,71 @@ export function SnackBar({
   function NotiStackComp() {
     const { enqueueSnackbar } = useSnackbar();
 
-    const handleNotisClick = (variant: any) => !enqueueSnackbar(`${message}`, { variant });
+    const handleNotisClick = (variant: any) =>
+      !enqueueSnackbar(`${message}`, { variant });
 
-    return (
-      <>
-        {open && handleNotisClick(notistackVariant)}
-      </>
-    );
+    return <>{open && handleNotisClick(notistackVariant)}</>;
   }
 
   return (
     <Stack spacing={2} sx={{ width: '50px' }}>
       {basic && (
-      <Snackbar
-        open={open}
-        message={message}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        action={action}
-      />
+        <Snackbar
+          open={open}
+          message={message}
+          autoHideDuration={autoHideDuration}
+          onClose={handleClose}
+          action={action}
+        />
       )}
 
       {transition && (
-      <Snackbar
-        open={open}
-        message={message}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        action={action}
-        TransitionComponent={transition === 'slide' ? SlideTransitionCallback : transition === 'grow' ? GrowTransition : Fade}
-      />
+        <Snackbar
+          open={open}
+          message={message}
+          autoHideDuration={autoHideDuration}
+          onClose={handleClose}
+          action={action}
+          TransitionComponent={
+            transition === 'slide'
+              ? SlideTransitionCallback
+              : transition === 'grow'
+              ? GrowTransition
+              : Fade
+          }
+        />
       )}
 
       {notistack && (
-      <SnackbarProvider
-        maxSnack={maxsnack}
-        autoHideDuration={autoHideDuration}
-      >
-        <NotiStackComp />
-      </SnackbarProvider>
+        <SnackbarProvider
+          maxSnack={maxsnack}
+          autoHideDuration={autoHideDuration}
+        >
+          <NotiStackComp />
+        </SnackbarProvider>
       )}
       {!basic && !transition && !notistack && (
-      <Snackbar
-        onClose={handleClose}
-        open={open}
-        action={action}
-        autoHideDuration={autoHideDuration}
-        anchorOrigin={{
-          horizontal: position?.horizontal || 'left',
-          vertical: position?.vertical || 'bottom',
-        }}
-      >
-        <Alert
+        <Snackbar
           onClose={handleClose}
-          color={color}
-          severity={color}
-          variant={variant}
-          sx={{ width: '100%' }}
+          open={open}
+          action={action}
+          autoHideDuration={autoHideDuration}
+          anchorOrigin={{
+            horizontal: position?.horizontal || 'left',
+            vertical: position?.vertical || 'bottom',
+          }}
         >
-          <AlertTitle>
-            {' '}
-            {title}
-          </AlertTitle>
-          {message}
-        </Alert>
-      </Snackbar>
+          <Alert
+            onClose={handleClose}
+            color={color}
+            severity={color}
+            variant={variant}
+            sx={{ width: '100%' }}
+          >
+            <AlertTitle> {title}</AlertTitle>
+            {message}
+          </Alert>
+        </Snackbar>
       )}
     </Stack>
   );

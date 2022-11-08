@@ -7,7 +7,7 @@ export default {
   component: Linear,
 } as ComponentMeta<typeof Linear>;
 
-const Template: ComponentStory<typeof Linear> = (args) => <Linear {...args} />;
+const Template: ComponentStory<typeof Linear> = args => <Linear {...args} />;
 export const Indeterminate = Template.bind({});
 Indeterminate.args = {
   color: 'secondary',

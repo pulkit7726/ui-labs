@@ -5,14 +5,18 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-function srcset(image: string, width: number, height: number, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
+const srcset = (
+  image: string,
+  width: number,
+  height: number,
+  rows = 1,
+  cols = 1,
+) => ({
+  src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+  srcSet: `${image}?w=${width * cols}&h=${
+    height * rows
+  }&fit=crop&auto=format&dpr=2 2x`,
+});
 
 export interface CustomImageProps {
   itemData: Array<Type>;
@@ -21,11 +25,11 @@ export interface CustomImageProps {
 interface Type {
   img: string;
   title: string;
-  author:string;
-  featured?:boolean;
+  author: string;
+  featured?: boolean;
 }
 
-export const Image: FC<CustomImageProps > = ({ itemData }) => (
+export const Image: FC<CustomImageProps> = ({ itemData }) => (
   <ImageList
     sx={{
       width: 500,
@@ -36,12 +40,17 @@ export const Image: FC<CustomImageProps > = ({ itemData }) => (
     gap={1}
     data-testid="main-cotainer"
   >
-    {itemData.map((item) => {
+    {itemData.map(item => {
       const cols = item.featured ? 2 : 1;
       const rows = item.featured ? 2 : 1;
 
       return (
-        <ImageListItem key={item.img} cols={cols} rows={rows} data-testid="item-container">
+        <ImageListItem
+          key={item.img}
+          cols={cols}
+          rows={rows}
+          data-testid="item-container"
+        >
           <img
             {...srcset(item.img, 250, 200, rows, cols)}
             alt={item.title}
@@ -50,19 +59,19 @@ export const Image: FC<CustomImageProps > = ({ itemData }) => (
           <ImageListItemBar
             sx={{
               background:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, '
-                  + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+                'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
             }}
             title={item.title}
             position="top"
-            actionIcon={(
+            actionIcon={
               <IconButton
                 sx={{ color: 'white' }}
                 aria-label={`star ${item.title}`}
               >
                 <StarBorderIcon />
               </IconButton>
-              )}
+            }
             actionPosition="left"
           />
         </ImageListItem>

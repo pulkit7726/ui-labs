@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  IconButton,
-  Toolbar,
-  Grid,
-  Tooltip,
-} from '@mui/material';
+import { IconButton, Toolbar, Grid, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { HeaderProps } from './ModalInterface';
 
@@ -16,14 +11,32 @@ function Header({
   width,
 }: HeaderProps) {
   return (
-    <div style={{ width: width && width + 50, backgroundColor: headerBackground || '#007ab4' }} data-testid="test-box">
+    <div
+      style={{
+        width: width && width + 50,
+        backgroundColor: headerBackground || '#007ab4',
+      }}
+      data-testid="test-box"
+    >
       <div className="CssDialog-appbar" data-testid="test-appbar">
         <Toolbar className="CssDialog-toolbar" data-testid="test-toolbar">
-          <Grid container justifyContent="space-between" direction="row" alignItems="center" className="CssDialog-grid" data-testid="test-grid">
-
+          <Grid
+            container
+            justifyContent="space-between"
+            direction="row"
+            alignItems="center"
+            className="CssDialog-grid"
+            data-testid="test-grid"
+          >
             <Grid item xs="auto">
-              {keepMounted ? (<></>) : (
-                <Tooltip className="CssDialog-tooltip" data-testid="test-tooltip" title="Close">
+              {keepMounted ? (
+                <></>
+              ) : (
+                <Tooltip
+                  className="CssDialog-tooltip"
+                  data-testid="test-tooltip"
+                  title="Close"
+                >
                   <IconButton
                     edge="start"
                     color="inherit"
@@ -48,7 +61,6 @@ function Header({
               justifyContent="flex-end"
               alignItems="center"
             />
-
           </Grid>
         </Toolbar>
       </div>
