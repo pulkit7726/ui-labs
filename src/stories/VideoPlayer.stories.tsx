@@ -19,5 +19,7 @@ const Template: ComponentStory<typeof VideoPlayerComponent> = (args) => {
 export const VideoWithControls = Template.bind({});
 VideoWithControls.args = {
   customControls:false,
- url:"",
+  url:"https://www.youtube.com/watch?v=HteQt1mkRfM",
+  iconColor:"blue",
+  rangeColor:"red",
 };

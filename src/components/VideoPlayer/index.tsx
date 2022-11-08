@@ -7,11 +7,15 @@ import { Typography } from '@mui/material';
 type VideoPlayerProps = {
   customControls: boolean;
   url:string
+  iconColor:string,
+  rangeColor:string,
 
 };
 export  function VideoPlayerComponent({
   customControls,
   url,
+  iconColor,
+  rangeColor,
 }: VideoPlayerProps) {
 
  return (
@@ -38,10 +42,14 @@ export  function VideoPlayerComponent({
     }
 
    {customControls && (
-        <>
-            <Typography>{"Video Player with Custom Controllers"}</Typography>
-            <CustomVideo url={url} />
-        </>
+       <>
+         <Typography>{"Video Player with Custom Controllers"}</Typography>
+          <CustomVideo
+           url={url}
+           iconColor={iconColor}
+           rangeColor={rangeColor}
+          />
+       </>
       )
    }
   </div>
