@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const UseVideoPlayer = (videoElement) => {
   const [playerState, setPlayerState] = useState({
-    isPlaying: false,
+    isPlaying: true,
     progress: [0],
     speed: 1,
     totalDurationofVideo : 1,
@@ -11,17 +11,13 @@ const UseVideoPlayer = (videoElement) => {
 
   const togglePlay = () => {
     videoElement.current.loop = false;
-    let totalDurationofVideo : any;  
-    if(playerState.totalDurationofVideo===1 || playerState.totalDurationofVideo=== videoElement.current.getDuration()){
-    totalDurationofVideo= videoElement.current.getDuration()
-   }
-
     setPlayerState({
       ...playerState,
       isPlaying: !playerState.isPlaying,
-      totalDurationofVideo,
+      totalDurationofVideo : playerState.totalDurationofVideo===1 ? videoElement.current.getDuration() : playerState.totalDurationofVideo, 
     });
   };
+
 
   useEffect(() => {
     playerState.isPlaying
@@ -34,6 +30,21 @@ const UseVideoPlayer = (videoElement) => {
     setPlayerState({
       ...playerState,
       progress,
+    });
+  };
+
+  const handlePlay = () => {
+    setPlayerState({
+      ...playerState,
+      isPlaying: true,
+      totalDurationofVideo : playerState.totalDurationofVideo===1 ? videoElement.current.getDuration() : playerState.totalDurationofVideo, 
+    });
+  };
+
+  const handlePause = () => {
+    setPlayerState({
+      ...playerState,
+      isPlaying: false,
     });
   };
 
@@ -81,6 +92,8 @@ const UseVideoPlayer = (videoElement) => {
     handleVideoProgress,
     handleVideoSpeed,
     toggleMute,
+    handlePlay,
+    handlePause,
   };
 };
 export default UseVideoPlayer;

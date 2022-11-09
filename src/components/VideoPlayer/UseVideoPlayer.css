@@ -6,7 +6,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 h1 {
@@ -39,7 +38,7 @@ video {
   bottom: 30px;
   padding: 14px;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);

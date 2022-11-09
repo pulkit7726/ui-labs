@@ -9,6 +9,7 @@ type VideoPlayerProps = {
   url:string
   iconColor:string,
   rangeColor:string,
+  speedColor:string,
 
 };
 export  function VideoPlayerComponent({
@@ -16,6 +17,7 @@ export  function VideoPlayerComponent({
   url,
   iconColor,
   rangeColor,
+  speedColor,
 }: VideoPlayerProps) {
 
  return (
@@ -48,6 +50,7 @@ export  function VideoPlayerComponent({
            url={url}
            iconColor={iconColor}
            rangeColor={rangeColor}
+           speedColor={speedColor}
           />
        </>
       )
