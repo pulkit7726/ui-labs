@@ -59,7 +59,9 @@ const CustomVideo = (props) => {
         />
         <div className="controls">
           <div className="actions">
-            <button onClick={togglePlay} >
+            <button onClick={togglePlay}
+             title= {!playerState.isPlaying ? 'Play' : 'Pause'}
+              >
               {!playerState.isPlaying ? (
                 <PlayArrowIcon style={{ color: props.iconColor }} />
               ) : (
@@ -105,8 +107,6 @@ const CustomVideo = (props) => {
             value={playerState.speed}
             onChange={(e) => handleVideoSpeed(e)}
             style={{
-              background: props.speedColor,
-              width: '25px',
               marginLeft: '10px'
             }}
           >
@@ -116,6 +116,7 @@ const CustomVideo = (props) => {
             <option value="2">2x</option>
           </select>
           <button className="mute-btn"
+           title= {!playerState.isMuted ? 'Mute' : 'Unmute'}
             onClick={toggleMute}>
             {!playerState.isMuted ? (
               <VolumeMuteIcon style={{ color: props.iconColor }} />
@@ -126,7 +127,7 @@ const CustomVideo = (props) => {
           <Button
             variant="text"
             aria-label='Full Screen'
-            title='Full Screen'
+            title= {Object.keys(screen).length === 0 ? 'Full Screen' : 'Exit Full Screen'}
             onClick={onToggleFullScreen}
             style={{
               width: '0px',
