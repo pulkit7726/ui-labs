@@ -107,7 +107,8 @@ const CustomVideo = (props) => {
             value={playerState.speed}
             onChange={(e) => handleVideoSpeed(e)}
             style={{
-              marginLeft: '10px'
+              marginLeft: '10px',
+              color: '#92979d'
             }}
           >
             <option value="0.50">0.50x</option>
